@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberSurf | Has Your Password Been Stolen?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --aqua:    #00d2ff;
+      --ocean:   #0077be;
+      --charcoal:#2d3436;
+      --sand:    #fcfdf2;
+      --white:   #ffffff;
+      --alert:   #ff4757;
+      --mid:     #636e72;
+      --border:  rgba(0,210,255,.18);
+      --radius:  14px;
+      --nav-h:   76px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--sand);
+      color: var(--charcoal);
+      line-height: 1.7;
+    }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-height: 1.2; }
+
+    /* ══════════════════════════════════════
+       NAV
+    ══════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(252,253,242,.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .nav-wordmark {
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      font-weight: 800; font-size: 22px;
+      color: var(--charcoal);
+      letter-spacing: -0.02em;
+    }
+    .nav-wordmark .surf { color: var(--ocean); }
+    .nav-wordmark .security {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 2px;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-link {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 14px;
+      color: var(--charcoal); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-link:hover { color: var(--ocean); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 14px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { opacity: .9; transform: translateY(-1px); }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      padding-top: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 60% 40%, rgba(0,210,255,.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 80%, rgba(0,119,190,.07) 0%, transparent 50%),
+        var(--sand);
+      padding-left: 5%; padding-right: 5%;
+    }
+
+    .hero-inner { max-width: 760px; }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(255,71,87,.1);
+      color: var(--alert);
+      border: 1px solid rgba(255,71,87,.25);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 12px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .hero-h1 {
+      font-size: clamp(34px, 6vw, 62px);
+      font-weight: 900;
+      color: var(--charcoal);
+      margin-bottom: 22px;
+      letter-spacing: -1px;
+    }
+    .hero-h1 .highlight {
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 18px; font-weight: 300;
+      color: var(--mid);
+      max-width: 580px; margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 16px;
+      padding: 16px 36px; border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,119,190,.30);
+      transition: transform .2s, box-shadow .2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,119,190,.40); }
+
+    .btn-ghost {
+      color: var(--ocean);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      border: 2px solid var(--border);
+      padding: 14px 28px; border-radius: 10px;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-ghost:hover { border-color: var(--aqua); background: rgba(0,210,255,.05); }
+
+    /* Price pill in hero */
+    .hero-price-pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 10px 20px 10px 14px;
+      box-shadow: 0 4px 16px rgba(0,210,255,.10);
+    }
+    .price-badge {
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900; font-size: 18px;
+      padding: 4px 14px; border-radius: 30px;
+    }
+    .price-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 14px;
+      color: var(--charcoal);
+    }
+    .price-text s { color: var(--mid); font-weight: 400; margin-right: 4px; }
+
+    /* ══════════════════════════════════════
+       WHAT IS IT — PRODUCT EXPLAINER
+    ══════════════════════════════════════ */
+    #what {
+      padding: 96px 5%;
+      background: var(--white);
+    }
+
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--aqua); margin-bottom: 14px;
+    }
+
+    .section-h2 {
+      font-size: clamp(26px, 4vw, 42px);
+      color: var(--charcoal);
+      margin-bottom: 18px;
+      letter-spacing: -.5px;
+    }
+
+    .section-lead {
+      font-size: 17px; color: var(--mid);
+      max-width: 600px; line-height: 1.75;
+      margin-bottom: 52px;
+    }
+
+    /* Two-col layout for explainer */
+    .explainer-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .explainer-text .section-label,
+    .explainer-text .section-h2,
+    .explainer-text .section-lead { margin-left: 0; }
+
+    .explainer-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .explainer-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .explainer-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(0,210,255,.12), rgba(0,119,190,.12));
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .explainer-item-text h4 {
+      font-size: 15px; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 3px;
+    }
+    .explainer-item-text p { font-size: 14px; color: var(--mid); }
+
+    /* Report mockup card */
+    .report-mockup {
+      background: var(--charcoal);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(45,52,54,.25);
+    }
+    .mockup-bar {
+      background: #1a1f2e;
+      padding: 14px 20px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .mockup-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .mockup-dot.r { background: #ff5f57; }
+    .mockup-dot.y { background: #febc2e; }
+    .mockup-dot.g { background: #28c840; }
+    .mockup-title {
+      margin-left: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px; font-weight: 600; color: rgba(255,255,255,.5);
+    }
+    .mockup-body { padding: 28px 24px; }
+    .mockup-header {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--aqua); letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .mockup-row {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .mockup-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .mockup-key { font-size: 11px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .mockup-val { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; color: #fff; }
+    .mockup-val.red { color: #ff4757; }
+    .mockup-val.green { color: #00b894; }
+    .mockup-val.amber { color: #fdcb6e; }
+    .mockup-password {
+      display: inline-block;
+      background: rgba(255,71,87,.15);
+      border: 1px solid rgba(255,71,87,.35);
+      color: #ff4757;
+      font-family: monospace; font-size: 16px; font-weight: 700;
+      padding: 6px 14px; border-radius: 6px;
+      letter-spacing: 1px;
+    }
+    .mockup-action {
+      margin-top: 20px;
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 700;
+      padding: 12px 20px; border-radius: 8px;
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════════
+       HOW IT WORKS
+    ══════════════════════════════════════ */
+    #how {
+      padding: 96px 5%;
+      background: var(--sand);
+      text-align: center;
+    }
+
+    #how .section-label, #how .section-h2, #how .section-lead {
+      margin: 0 auto;
+    }
+
+    .steps-grid {
+      max-width: 960px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .step-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,210,255,.06);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .step-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,210,255,.12); }
+
+    .step-number {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900; font-size: 20px; color: #fff;
+      margin: 0 auto 20px;
+    }
+
+    .step-card h3 { font-size: 17px; color: var(--charcoal); margin-bottom: 10px; }
+    .step-card p { font-size: 14px; color: var(--mid); line-height: 1.6; }
+
+    /* connector line between steps */
+    .steps-wrapper { position: relative; }
+
+    /* ══════════════════════════════════════
+       WHY PAY $30 — VALUE PROP
+    ══════════════════════════════════════ */
+    #why {
+      padding: 96px 5%;
+      background: linear-gradient(135deg, #0a1628 0%, #0d2240 50%, #0a2a38 100%);
+      color: var(--sand);
+      text-align: center;
+    }
+
+    #why .section-label { color: var(--aqua); }
+    #why .section-h2 { color: var(--sand); margin: 0 auto 14px; }
+    #why .section-lead { color: rgba(252,253,242,.65); margin: 0 auto 52px; }
+
+    .value-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .value-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(0,210,255,.15);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      transition: background .2s;
+    }
+    .value-card:hover { background: rgba(0,210,255,.08); }
+    .value-icon { font-size: 32px; margin-bottom: 14px; }
+    .value-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px; font-weight: 700;
+      color: var(--sand); margin-bottom: 8px;
+    }
+    .value-card p { font-size: 13px; color: rgba(252,253,242,.55); line-height: 1.6; }
+
+    .vs-row {
+      max-width: 700px; margin: 52px auto 0;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(0,210,255,.12);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .vs-header {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      padding: 12px 24px;
+      background: rgba(0,210,255,.08);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(252,253,242,.5);
+    }
+    .vs-row-item {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      padding: 14px 24px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      font-size: 13px; color: rgba(252,253,242,.7);
+      align-items: center;
+    }
+    .vs-check { color: #00b894; font-size: 18px; font-weight: 700; }
+    .vs-cross { color: #ff4757; font-size: 18px; }
+    .vs-col-cs { color: var(--aqua); font-weight: 600; }
+
+    /* ══════════════════════════════════════
+       ABOUT / TRUST
+    ══════════════════════════════════════ */
+    #about {
+      padding: 96px 5%;
+      background: var(--white);
+    }
+
+    .about-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+
+    .about-text .section-h2 { margin-bottom: 18px; }
+    .about-text p {
+      font-size: 16px; color: var(--mid);
+      margin-bottom: 16px; line-height: 1.75;
+    }
+    .about-text p:last-of-type { margin-bottom: 32px; }
+
+    .trust-items { display: flex; flex-direction: column; gap: 16px; }
+    .trust-item {
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .trust-item-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(0,210,255,.12), rgba(0,119,190,.12));
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .trust-item-text h4 { font-size: 14px; color: var(--charcoal); margin-bottom: 2px; }
+    .trust-item-text p { font-size: 13px; color: var(--mid); }
+
+    /* Stat cards on right side */
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .stat-card {
+      background: var(--sand);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .stat-value {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px; font-weight: 900;
+      color: var(--ocean); line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label { font-size: 13px; color: var(--mid); line-height: 1.4; }
+
+    /* ══════════════════════════════════════
+       SERVICES — BRIEF STACK
+    ══════════════════════════════════════ */
+    #services {
+      padding: 96px 5%;
+      background: var(--sand);
+      text-align: center;
+    }
+
+    #services .section-label,
+    #services .section-h2,
+    #services .section-lead { margin: 0 auto; }
+
+    .services-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: left;
+      position: relative;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .service-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,210,255,.10); }
+
+    .service-card.featured {
+      border-color: var(--aqua);
+      box-shadow: 0 0 0 2px rgba(0,210,255,.15);
+    }
+
+    .service-badge {
+      position: absolute; top: -13px; left: 28px;
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 20px;
+    }
+
+    .service-icon { font-size: 32px; margin-bottom: 16px; }
+    .service-card h3 {
+      font-size: 18px; color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+    .service-price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px; font-weight: 900;
+      color: var(--ocean); margin-bottom: 12px;
+    }
+    .service-price span { font-size: 14px; font-weight: 400; color: var(--mid); }
+    .service-card p { font-size: 14px; color: var(--mid); margin-bottom: 20px; line-height: 1.6; }
+    .service-link {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 13px;
+      color: var(--ocean); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap .2s;
+    }
+    .service-link:hover { gap: 10px; }
+
+    /* ══════════════════════════════════════
+       CTA STRIP
+    ══════════════════════════════════════ */
+    #cta {
+      padding: 80px 5%;
+      background: linear-gradient(135deg, var(--aqua) 0%, var(--ocean) 100%);
+      text-align: center;
+      color: #fff;
+    }
+
+    #cta h2 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 900; margin-bottom: 16px;
+      color: #fff;
+    }
+    #cta p { font-size: 17px; opacity: .88; margin-bottom: 36px; }
+    .btn-white {
+      background: #fff;
+      color: var(--ocean);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 16px;
+      padding: 16px 40px; border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,.15);
+      display: inline-block;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,.2); }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer {
+      background: var(--charcoal);
+      color: rgba(252,253,242,.55);
+      padding: 40px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 18px; color: var(--sand);
+    }
+    .footer-brand span { color: var(--aqua); }
+
+    footer nav a {
+      color: rgba(252,253,242,.45);
+      text-decoration: none; font-size: 13px;
+      margin-left: 24px;
+      transition: color .2s;
+    }
+    footer nav a:hover { color: var(--aqua); }
+
+    .footer-legal {
+      width: 100%;
+      font-size: 11px; color: rgba(252,253,242,.3);
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 20px; margin-top: 12px;
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 860px) {
+      .explainer-grid,
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .steps-grid,
+      .services-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .nav-link { display: none; }
+    }
+
+    @media (max-width: 520px) {
+      .value-grid { grid-template-columns: 1fr 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .vs-row-item, .vs-header { grid-template-columns: 2fr 1fr 1fr; font-size: 11px; padding: 10px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav aria-label="Main navigation">
+  <a href="#hero" class="nav-brand" aria-label="Cyber Surf Security home">
+    <img src="./logo.png" alt="Cyber Surf Security logo" class="nav-logo" loading="eager" decoding="async" onerror="this.onerror=null;this.src='./cybersurflogo.png';">
+    <span class="nav-wordmark">Cyber <span class="surf">Surf</span><span class="security">Security</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="#what" class="nav-link">What You Get</a>
+    <a href="#how" class="nav-link">How It Works</a>
+    <a href="#about" class="nav-link">Why CyberSurf</a>
+    <a href="#cta" class="nav-cta">Book a Free Call</a>
+  </div>
+</nav>
+
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">⚠ Data Breach Alert — Sunshine Coast</div>
+
+    <h1 class="hero-h1">
+      Has your password been<br>
+      <span class="highlight">stolen and sold online?</span>
+    </h1>
+
+    <p class="hero-sub">
+      Right now, criminals are buying and selling stolen login details — emails, passwords, banking credentials — in underground markets. For most people, it's already happened. Most just don't know yet.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">Find Out for $30 &rarr;</a>
+      <a href="#what" class="btn-ghost">What's included?</a>
+    </div>
+
+    <div class="hero-price-pill">
+      <span class="price-badge">$30</span>
+      <span class="price-text"><s>$49</s> One-time report &mdash; no subscription</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ WHAT IS IT ══ -->
+<section id="what">
+  <div class="explainer-grid">
+
+    <div class="explainer-text">
+      <p class="section-label">The Tripwire Report</p>
+      <h2 class="section-h2">Your personal data<br>breach investigation</h2>
+      <p class="section-lead">
+        We search the same criminal databases that hackers use. If your credentials have been stolen, we find them — and show you exactly what was exposed.
+      </p>
+
+      <ul class="explainer-list">
+        <li class="explainer-item">
+          <div class="explainer-icon">🔍</div>
+          <div class="explainer-item-text">
+            <h4>We search breach databases for your email</h4>
+            <p>Cross-referencing 14 billion+ stolen records across Dehashed, HIBP, and intelligence databases.</p>
+          </div>
+        </li>
+        <li class="explainer-item">
+          <div class="explainer-icon">🔓</div>
+          <div class="explainer-item-text">
+            <h4>We show you your actual exposed password</h4>
+            <p>Not just "a breach occurred" — we show you the exact password criminals have for your account.</p>
+          </div>
+        </li>
+        <li class="explainer-item">
+          <div class="explainer-icon">📋</div>
+          <div class="explainer-item-text">
+            <h4>We name the breach — when and where it happened</h4>
+            <p>LinkedIn 2021? Optus 2022? Medibank 2023? You'll know exactly which company exposed you.</p>
+          </div>
+        </li>
+        <li class="explainer-item">
+          <div class="explainer-icon">✅</div>
+          <div class="explainer-item-text">
+            <h4>Plain-English steps to fix it — today</h4>
+            <p>No jargon. A clear action list: which passwords to change, which accounts to lock, what to do first.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Report mockup -->
+    <div class="report-mockup">
+      <div class="mockup-bar">
+        <div class="mockup-dot r"></div>
+        <div class="mockup-dot y"></div>
+        <div class="mockup-dot g"></div>
+        <span class="mockup-title">CyberSurf Tripwire Report.pdf</span>
+      </div>
+      <div class="mockup-body">
+        <div class="mockup-header">⚠ Breach Found — Action Required</div>
+
+        <div class="mockup-row">
+          <div class="mockup-key">Email searched</div>
+          <div class="mockup-val">j.smith@gmail.com</div>
+        </div>
+        <div class="mockup-row">
+          <div class="mockup-key">Breaches found</div>
+          <div class="mockup-val red">3 confirmed exposures</div>
+        </div>
+        <div class="mockup-row">
+          <div class="mockup-key">Most recent breach</div>
+          <div class="mockup-val amber">Optus — October 2022</div>
+        </div>
+        <div class="mockup-row">
+          <div class="mockup-key">Your exposed password</div>
+          <div class="mockup-password">Summ3r2019!</div>
+        </div>
+        <div class="mockup-row">
+          <div class="mockup-key">Other data exposed</div>
+          <div class="mockup-val red">Phone · DOB · Home address</div>
+        </div>
+        <div class="mockup-row">
+          <div class="mockup-key">Still using this password?</div>
+          <div class="mockup-val red">⚠ Change immediately</div>
+        </div>
+        <div class="mockup-row">
+          <div class="mockup-key">Risk level</div>
+          <div class="mockup-val red">HIGH — Account takeover risk</div>
+        </div>
+        <div class="mockup-action">3 actions to secure your accounts →</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══ HOW IT WORKS ══ -->
+<section id="how">
+  <p class="section-label">Simple Process</p>
+  <h2 class="section-h2">How it works</h2>
+  <p class="section-lead" style="margin-bottom:52px;">
+    No tech knowledge required. From checkout to report in under 24 hours.
+  </p>
+
+  <div class="steps-wrapper">
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Pay &amp; submit your email</h3>
+        <p>One secure $30 payment. No account needed. Enter the email address you want us to check.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>We run the investigation</h3>
+        <p>Our team searches criminal breach databases and intelligence sources for your credentials. Manual, expert-checked — not an automated guess.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Receive your report</h3>
+        <p>Your personalised PDF report arrives within 24 hours. Clear findings, exposed passwords (if found), and a step-by-step fix plan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ WHY PAY $30 ══ -->
+<section id="why">
+  <p class="section-label">Why CyberSurf</p>
+  <h2 class="section-h2" style="color:var(--sand)">Not just "have you been pwned" — <em>here's the proof</em></h2>
+  <p class="section-lead">
+    Free tools tell you a breach happened. We show you the actual evidence — and what to do about it.
+  </p>
+
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="value-icon">🔐</div>
+      <h4>Your actual password</h4>
+      <p>See the exact credential criminals have. Free tools won't show you this.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🎯</div>
+      <h4>Named breach source</h4>
+      <p>Know which company leaked your data and when. Context matters.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">📄</div>
+      <h4>PDF evidence report</h4>
+      <p>A document you can act on — and share with your IT provider if needed.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🇦🇺</div>
+      <h4>Australian-based support</h4>
+      <p>Sunshine Coast team. Real people. No offshore call centres.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🔒</div>
+      <h4>Zero data retention</h4>
+      <p>Your email and results are deleted within 24 hours of delivery. We don't store what we find.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🗣️</div>
+      <h4>Plain-English fix plan</h4>
+      <p>Step-by-step instructions written for business owners, not IT departments.</p>
+    </div>
+  </div>
+
+  <!-- Comparison table -->
+  <div class="vs-row">
+    <div class="vs-header">
+      <div>Feature</div>
+      <div class="vs-col-cs">CyberSurf $30</div>
+      <div>HIBP (Free)</div>
+    </div>
+    <div class="vs-row-item">
+      <div>Tells you a breach happened</div>
+      <div class="vs-check vs-col-cs">✓</div>
+      <div class="vs-check">✓</div>
+    </div>
+    <div class="vs-row-item">
+      <div>Shows your actual password</div>
+      <div class="vs-check vs-col-cs">✓</div>
+      <div class="vs-cross">✗</div>
+    </div>
+    <div class="vs-row-item">
+      <div>Names the exact breach source</div>
+      <div class="vs-check vs-col-cs">✓</div>
+      <div class="vs-cross">✗</div>
+    </div>
+    <div class="vs-row-item">
+      <div>PDF report with evidence</div>
+      <div class="vs-check vs-col-cs">✓</div>
+      <div class="vs-cross">✗</div>
+    </div>
+    <div class="vs-row-item">
+      <div>Step-by-step fix instructions</div>
+      <div class="vs-check vs-col-cs">✓</div>
+      <div class="vs-cross">✗</div>
+    </div>
+    <div class="vs-row-item">
+      <div>Australian local support</div>
+      <div class="vs-check vs-col-cs">✓</div>
+      <div class="vs-cross">✗</div>
+    </div>
+    <div class="vs-row-item">
+      <div>Subscription required</div>
+      <div class="vs-cross vs-col-cs">✗</div>
+      <div class="vs-cross">✗</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="section-label">About CyberSurf</p>
+      <h2 class="section-h2">Sunshine Coast cybersecurity — without the enterprise price tag</h2>
+      <p>
+        CyberSurf was built for local business owners who need professional-grade security but don't have a $150,000-a-year security team. We're your Cyber Security Guard — your cybersecurity expert, on retainer, without the full-time hire.
+      </p>
+      <p>
+        The $30 Tripwire Report is our entry point. It's designed to show you exactly what criminals already know about you — so you can act before they do.
+      </p>
+      <a href="#cta" class="btn-primary" style="font-size:14px;padding:12px 28px;">Get your report &rarr;</a>
+    </div>
+
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-value">1 in 6<span style="font-size:18px"></span></div>
+        <div class="stat-label">Australian adults had personal data stolen in the last year</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">6 min</div>
+        <div class="stat-label">A cybercrime is reported in Australia every 6 minutes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">$46k</div>
+        <div class="stat-label">Average cost of a cyber incident for an Australian SME</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">67%</div>
+        <div class="stat-label">Of breaches involve stolen or weak credentials</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <p class="section-label">Our Services</p>
+  <h2 class="section-h2">Start for $30. Scale as you need.</h2>
+  <p class="section-lead" style="margin-bottom:52px;">
+    Most clients start with the Tripwire Report. Many discover they need more. We're here for both.
+  </p>
+
+  <div class="services-grid">
+
+    <div class="service-card featured">
+      <div class="service-badge">Start Here</div>
+      <div class="service-icon">🔍</div>
+      <h3>Tripwire Report</h3>
+      <div class="service-price">$30 <span>one-time</span></div>
+      <p>Personal credential breach investigation. We search the dark web for your email and deliver a plain-English PDF report within 24 hours.</p>
+      <a href="#cta" class="service-link">Get your report &rarr;</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🏄</div>
+      <h3>Surf-Check Assessment</h3>
+      <div class="service-price">$249 <span>one-time</span></div>
+      <p>Full security health check for your business. We assess your systems, identify vulnerabilities, and give you a prioritised action plan.</p>
+      <a href="#cta" class="service-link">Book an assessment &rarr;</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🛡️</div>
+      <h3>Cyber Security Guard</h3>
+      <div class="service-price">From $<span style="-webkit-text-fill-color:var(--ocean);font-size:28px;font-weight:900">850</span> <span>/month</span></div>
+      <p>Your own security expert on retainer — ongoing protection, compliance, staff training, and incident response. No full-time hire needed.</p>
+      <a href="#cta" class="service-link">Learn more &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══ CTA STRIP ══ -->
+<section id="cta">
+  <h2>Find out what criminals know about you</h2>
+  <p>One $30 report. No subscription. Results in 24 hours.</p>
+  <a href="mailto:hello@cybersurf.com.au?subject=Tripwire%20Report%20Order" class="btn-white">
+    Order Your Report — $30 &rarr;
+  </a>
+  <p style="margin-top:20px;font-size:13px;opacity:.65;">
+    Or call Darryl directly on <strong>0400 000 000</strong> &nbsp;|&nbsp; Sunshine Coast, QLD
+  </p>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-brand">Cyber<span>Surf</span> Security</div>
+  <nav>
+    <a href="#what">What You Get</a>
+    <a href="#how">How It Works</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+  </nav>
+  <div class="footer-legal">
+    &copy; 2026 CyberSurf · Sunshine Coast, QLD · ABN pending &nbsp;|&nbsp;
+    Tripwire Reports are produced for the authorised account holder only. Results reflect data available in breach intelligence databases at time of search. Absence from results does not guarantee credential safety. &nbsp;|&nbsp;
+    <a href="#" style="color:rgba(252,253,242,.35)">Privacy Policy</a>
+  </div>
+</footer>
+
+</body>
+</html>

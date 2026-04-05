@@ -1,0 +1,10 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background / Sky (Pale Yellow) -->
+  <circle cx="100" cy="100" r="90" fill="#fff9c4" />
+  
+  <!-- Binary Waves (Maldives Aqua) -->
+  <path d="M10 130 Q 50 100 100 130 T 190 130 L 190 190 L 10 190 Z" fill="#00d2ff" />
+  
+  <!-- Plain Surfboard (White) -->
+  <ellipse cx="100" cy="115" rx="15" ry="45" fill="white" transform="rotate(-45 100 115)" />
+</svg>

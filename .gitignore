@@ -1,2 +1,36 @@
+# System
 .DS_Store
 Thumbs.db
+*.Zone.Identifier
+
+# Python
+*.pyc
+__pycache__/
+
+# Credentials — never commit
+config.py
+.env
+*.secret
+
+# Customer data
+reports/
+
+# Internal tools — keep private
+orchestrator.py
+breach_check.py
+refresh_pcloud_token.py
+
+# Business confidential
+RESEARCH_REPORT.md
+MARKETING/CEO_PRESENTATION*.md
+MARKETING/COLD_CALL_SCRIPT.md
+HIRING/
+
+# Internal legal & compliance
+LEGAL/LEGAL_REGISTER.md
+
+# Internal summaries
+end_of_day/
+
+# Marketing — internal only
+MARKETING/PITCH_SCRIPT.md

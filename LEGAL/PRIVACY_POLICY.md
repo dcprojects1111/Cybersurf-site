@@ -4,7 +4,7 @@
 **Last reviewed:** 6 April 2026
 **Business:** CyberSurf (sole trader)
 **Location:** Sunshine Coast, Queensland, Australia
-**Contact:** privacy@cybersurf.com.au
+**Contact:** privacy@cybersurf.au
 
 ---
 
@@ -77,7 +77,7 @@ We do **not** use your information to sell or share with third-party marketers, 
 
 **Direct marketing**
 
-We may occasionally send you information about CyberSurf services related to what you have already purchased (for example, notifying Basic Breach Check customers about our Cyber Security Guard retainer). You can opt out at any time by emailing **privacy@cybersurf.com.au** or clicking unsubscribe in any email we send. We will action all opt-out requests within 5 business days. *(APP 7)*
+We may occasionally send you information about CyberSurf services related to what you have already purchased (for example, notifying Basic Breach Check customers about our Cyber Security Guard retainer). You can opt out at any time by emailing **privacy@cybersurf.au** or clicking unsubscribe in any email we send. We will action all opt-out requests within 5 business days. *(APP 7)*
 
 ---
 
@@ -131,7 +131,7 @@ You have the right to:
 - **Correct** any information that is inaccurate, outdated, or incomplete
 - **Request deletion** of your personal information (subject to our legal obligations — for example, we must retain tax records for 7 years under ATO requirements)
 
-To make any of these requests, email us at **privacy@cybersurf.com.au** with your full name and a description of your request. We will respond within **30 days**. There is no charge for making an access or correction request.
+To make any of these requests, email us at **privacy@cybersurf.au** with your full name and a description of your request. We will respond within **30 days**. There is no charge for making an access or correction request.
 
 If we are unable to give you access to certain information — for example because doing so would affect the privacy of another person, or because we are legally required to retain it — we will explain why in writing.
 
@@ -160,7 +160,7 @@ However, for the Basic Breach Check product, we require your name, phone number,
 
 If you have a concern about how we have handled your personal information, please contact us first so we have the opportunity to resolve it:
 
-**Email:** privacy@cybersurf.com.au
+**Email:** privacy@cybersurf.au
 **Response time:** We aim to respond within 10 business days.
 
 If you are not satisfied with our response, you can lodge a complaint with the **Office of the Australian Information Commissioner (OAIC)**:

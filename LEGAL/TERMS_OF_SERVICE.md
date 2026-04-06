@@ -5,7 +5,7 @@
 **Last updated:** 6 April 2026
 
 **CyberSurf** is operated as a sole trader business by Darryl Wessling Trading As Cyber Surf, ABN 64 800 489 675, Sunshine Coast, Queensland, Australia.
-Enquiries: hello@cybersurf.com.au
+Enquiries: hello@cybersurf.au
 
 ---
 
@@ -149,7 +149,7 @@ These terms are governed by the law of Queensland, Australia. Any dispute that c
 
 **CyberSurf** — Sole Trader
 ABN: 64 800 489 675 | Sunshine Coast, QLD
-Email: hello@cybersurf.com.au | Phone: 0400 886 063
+Email: hello@cybersurf.au | Phone: 0400 886 063
 We will respond to all genuine enquiries within two (2) business days.
 
 ---

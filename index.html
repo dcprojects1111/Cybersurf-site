@@ -558,31 +558,120 @@
     /* ══════════════════════════════════════
        CTA STRIP
     ══════════════════════════════════════ */
+    /* ══════════════════════════════════════
+       ORDER FORM
+    ══════════════════════════════════════ */
     #cta {
       padding: 80px 5%;
-      background: linear-gradient(135deg, var(--aqua) 0%, var(--ocean) 100%);
+      background: linear-gradient(160deg, #0a1628 0%, #0d2240 60%, #0a3355 100%);
       text-align: center;
-      color: #fff;
     }
-
     #cta h2 {
       font-size: clamp(26px, 4vw, 40px);
-      font-weight: 900; margin-bottom: 16px;
-      color: #fff;
+      font-weight: 900; margin-bottom: 12px;
+      color: var(--sand);
     }
-    #cta p { font-size: 17px; opacity: .88; margin-bottom: 36px; }
-    .btn-white {
-      background: #fff;
-      color: var(--ocean);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700; font-size: 16px;
-      padding: 16px 40px; border-radius: 10px;
-      text-decoration: none;
-      box-shadow: 0 6px 24px rgba(0,0,0,.15);
+    #cta .cta-lead {
+      font-size: 17px; color: rgba(252,253,242,.65);
+      margin-bottom: 48px;
+    }
+    .order-card {
+      max-width: 520px; margin: 0 auto;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(0,210,255,.2);
+      border-radius: 18px;
+      padding: 44px 40px;
+      text-align: left;
+    }
+    .price-badge {
       display: inline-block;
+      background: rgba(0,210,255,.12);
+      border: 1px solid rgba(0,210,255,.35);
+      color: var(--aqua);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 12px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .order-card h3 {
+      font-size: 21px; font-weight: 800;
+      color: var(--sand); margin-bottom: 6px;
+    }
+    .order-card .card-sub {
+      font-size: 14px; color: rgba(252,253,242,.5);
+      margin-bottom: 32px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 11px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--aqua); margin-bottom: 7px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"] {
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(0,210,255,.22);
+      border-radius: 8px;
+      padding: 13px 16px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px; color: var(--sand);
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    .form-group input::placeholder { color: rgba(252,253,242,.28); }
+    .form-group input:focus {
+      border-color: var(--aqua);
+      background: rgba(0,210,255,.05);
+    }
+    .field-hint {
+      font-size: 12px; color: rgba(252,253,242,.35);
+      margin-top: 5px;
+    }
+    .form-divider {
+      border: none;
+      border-top: 1px solid rgba(0,210,255,.1);
+      margin: 26px 0;
+    }
+    .consent-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      margin-bottom: 26px;
+    }
+    .consent-row input[type="checkbox"] {
+      width: 18px; height: 18px; flex-shrink: 0;
+      margin-top: 2px; accent-color: var(--aqua); cursor: pointer;
+    }
+    .consent-row label {
+      font-size: 13px; color: rgba(252,253,242,.5);
+      line-height: 1.5; cursor: pointer;
+    }
+    .consent-row label a { color: var(--aqua); }
+    .btn-order {
+      width: 100%;
+      background: linear-gradient(135deg, var(--aqua) 0%, var(--ocean) 100%);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 16px;
+      padding: 16px 24px; border-radius: 10px;
+      border: none; cursor: pointer;
+      box-shadow: 0 6px 24px rgba(0,119,190,.35);
       transition: transform .2s, box-shadow .2s;
     }
-    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,.2); }
+    .btn-order:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,119,190,.5); }
+    .form-secure-note {
+      text-align: center; margin-top: 14px;
+      font-size: 12px; color: rgba(252,253,242,.3);
+    }
+    .cta-alt {
+      margin-top: 32px;
+      font-size: 14px; color: rgba(252,253,242,.4);
+    }
+    .cta-alt a { color: var(--aqua); text-decoration: none; }
+    .cta-alt a:hover { text-decoration: underline; }
 
     /* ══════════════════════════════════════
        FOOTER
@@ -646,7 +735,7 @@
     <span class="nav-wordmark">Cyber<span>Surf</span> Security</span>
   </a>
   <div class="nav-right">
-    <a href="#cta" class="nav-cta">Book a Free Call</a>
+    <a href="#cta" class="nav-cta">Order Now — $30</a>
   </div>
 </nav>
 
@@ -875,15 +964,74 @@
 </section>
 
 
-<!-- ══ CTA STRIP ══ -->
+<!-- ══ ORDER FORM ══ -->
 <section id="cta">
   <h2>Find out what criminals know about you</h2>
-  <p>One $30 report. No subscription. Results in 24 hours.</p>
-  <a href="mailto:hello@cybersurf.com.au?subject=Basic%20Breach%20Check%20Order" class="btn-white">
-    Order Your Report — $30 &rarr;
-  </a>
-  <p style="margin-top:20px;font-size:13px;opacity:.65;">
-    Or call Darryl directly on <strong>0400 000 000</strong> &nbsp;|&nbsp; Sunshine Coast, QLD
+  <p class="cta-lead">One $30 report. Results delivered within 24 hours.</p>
+
+  <div class="order-card">
+    <div class="price-badge">Basic Breach Check — $30</div>
+    <h3>Order your personal report</h3>
+    <p class="card-sub">We check your email addresses against known breach databases and send you a plain-English report on what was found.</p>
+
+    <!--
+    ══════════════════════════════════════
+    TALLY EMBED — swap this in when ready
+    ══════════════════════════════════════
+    Replace everything from <form> to </form> below with:
+    <iframe data-tally-src="https://tally.so/embed/YOUR_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1"
+      loading="lazy" width="100%" height="420" frameborder="0"
+      marginheight="0" marginwidth="0" title="Basic Breach Check Order"></iframe>
+    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+    ══════════════════════════════════════
+    -->
+
+    <form action="https://formspree.io/f/xeepvzzw" method="POST">
+
+      <div class="form-group">
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" name="full_name" placeholder="Jane Smith" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="04xx xxx xxx" required />
+      </div>
+
+      <hr class="form-divider" />
+
+      <div class="form-group">
+        <label for="email1">Email Address to Check</label>
+        <input type="email" id="email1" name="email_1" placeholder="you@example.com" required />
+        <p class="field-hint">We will run a breach check against this address.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="email2">Second Email Address <span style="font-weight:400;opacity:.6;">(optional)</span></label>
+        <input type="email" id="email2" name="email_2" placeholder="another@example.com" />
+        <p class="field-hint">Must belong to the same person. Both included in your $30 report.</p>
+      </div>
+
+      <hr class="form-divider" />
+
+      <div class="consent-row">
+        <input type="checkbox" id="consent" name="consent" value="yes" required />
+        <label for="consent">
+          I consent to CyberSurf collecting and processing my personal information to perform a data breach check. Data is handled in accordance with the <a href="privacy.html" target="_blank">Privacy Policy</a>.
+        </label>
+      </div>
+
+      <!-- Hidden field so Formspree knows which product this is -->
+      <input type="hidden" name="product" value="Basic Breach Check — $30" />
+
+      <button type="submit" class="btn-order">Order My Breach Check &mdash; $30 &rarr;</button>
+      <p class="form-secure-note">&#128274; Secure form &nbsp;&middot;&nbsp; Your details are never sold or shared</p>
+    </form>
+  </div>
+
+  <p class="cta-alt">
+    Prefer to talk first? Call Darryl on <strong style="color:rgba(252,253,242,.7);">0400 000 000</strong>
+    &nbsp;&middot;&nbsp; <a href="mailto:hello@cybersurf.com.au">hello@cybersurf.com.au</a>
   </p>
 </section>
 
@@ -894,7 +1042,7 @@
   <div class="footer-legal">
     &copy; 2026 CyberSurf · Sunshine Coast, QLD · ABN pending &nbsp;|&nbsp;
     Basic Breach Check reports are produced for the authorised account holder only. Results reflect data available in breach intelligence databases at time of search. Absence from results does not guarantee credential safety. &nbsp;|&nbsp;
-    <a href="#" style="color:rgba(252,253,242,.35)">Privacy Policy</a>
+    <a href="privacy.html" style="color:rgba(252,253,242,.35)">Privacy Policy</a>
   </div>
 </footer>
 

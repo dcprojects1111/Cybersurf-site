@@ -986,11 +986,11 @@
     ══════════════════════════════════════
     -->
 
-    <form action="https://formspree.io/f/xeepvzzw" method="POST">
+    <form action="https://cybersurf-webapp-basic.onrender.com/create-checkout" method="POST">
 
       <div class="form-group">
         <label for="full-name">Full Name</label>
-        <input type="text" id="full-name" name="full_name" placeholder="Jane Smith" required />
+        <input type="text" id="full-name" name="name" placeholder="Jane Smith" required />
       </div>
 
       <div class="form-group">
@@ -1002,13 +1002,13 @@
 
       <div class="form-group">
         <label for="email1">Email Address to Check</label>
-        <input type="email" id="email1" name="email_1" placeholder="you@example.com" required />
+        <input type="email" id="email1" name="email1" placeholder="you@example.com" required />
         <p class="field-hint">We will run a breach check against this address.</p>
       </div>
 
       <div class="form-group">
         <label for="email2">Second Email Address <span style="font-weight:400;opacity:.6;">(optional)</span></label>
-        <input type="email" id="email2" name="email_2" placeholder="another@example.com" />
+        <input type="email" id="email2" name="email2" placeholder="another@example.com" />
         <p class="field-hint">Must belong to the same person. Both included in your $30 report.</p>
       </div>
 
@@ -1028,11 +1028,8 @@
         </label>
       </div>
 
-      <!-- Hidden field so Formspree knows which product this is -->
-      <input type="hidden" name="product" value="Basic Breach Check — $30" />
-
       <button type="submit" class="btn-order">Order My Breach Check &mdash; $30 &rarr;</button>
-      <p class="form-secure-note">&#128274; Secure form &nbsp;&middot;&nbsp; Your details are never sold or shared</p>
+      <p class="form-secure-note">&#128274; Secure payment via Stripe &nbsp;&middot;&nbsp; Your details are never sold or shared</p>
     </form>
   </div>
 

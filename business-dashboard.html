@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberSurf — Business Offerings Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Roboto',sans-serif;background:linear-gradient(160deg,#0a1628 0%,#0d2240 100%);min-height:100vh;padding:40px 24px;color:#fcfdf2;}
+    h1,h2,h3,h4{font-family:'Montserrat',sans-serif;}
+
+    /* Layout */
+    .page{max-width:1100px;margin:0 auto;}
+    .brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:22px;color:#fff;margin-bottom:4px;}
+    .brand span{color:#00d2ff;}
+    .subtitle{font-size:13px;color:rgba(252,253,242,.4);margin-bottom:40px;}
+    .section-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(0,210,255,.6);margin-bottom:18px;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;}
+    .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:32px;}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;}
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(0,210,255,.15);border-radius:14px;padding:24px;}
+    .card-dark{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:24px;}
+    .mb-32{margin-bottom:32px;}
+    .mb-20{margin-bottom:20px;}
+
+    /* Stat pills */
+    .stat-row{display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap;}
+    .stat{flex:1;min-width:160px;background:rgba(0,210,255,.06);border:1px solid rgba(0,210,255,.2);border-radius:12px;padding:18px 20px;}
+    .stat-val{font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;color:#00d2ff;}
+    .stat-label{font-size:12px;color:rgba(252,253,242,.45);margin-top:4px;}
+
+    /* Service ladder */
+    .ladder{display:flex;flex-direction:column;gap:0;margin-bottom:32px;}
+    .rung{display:grid;grid-template-columns:180px 1fr auto;align-items:center;gap:20px;padding:18px 24px;border:1px solid rgba(0,210,255,.12);background:rgba(255,255,255,.03);position:relative;}
+    .rung:first-child{border-radius:14px 14px 0 0;}
+    .rung:last-child{border-radius:0 0 14px 14px;}
+    .rung+.rung{border-top:none;}
+    .rung.current{background:rgba(0,210,255,.08);border-color:rgba(0,210,255,.35);}
+    .rung.hot{background:rgba(255,165,0,.05);border-color:rgba(255,165,0,.3);}
+    .rung-tier{font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:#fcfdf2;}
+    .rung-tier small{display:block;font-family:'Roboto',sans-serif;font-weight:400;font-size:11px;color:rgba(252,253,242,.35);margin-top:2px;}
+    .rung-desc{font-size:13px;color:rgba(252,253,242,.6);line-height:1.6;}
+    .rung-price{font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:#00d2ff;white-space:nowrap;text-align:right;}
+    .rung-price small{display:block;font-family:'Roboto',sans-serif;font-weight:400;font-size:11px;color:rgba(252,253,242,.3);}
+    .badge-current{background:rgba(0,210,255,.2);color:#00d2ff;font-size:10px;font-weight:800;letter-spacing:1px;padding:2px 8px;border-radius:20px;text-transform:uppercase;margin-left:8px;}
+    .badge-auto{background:rgba(0,200,100,.15);color:#00c864;font-size:10px;font-weight:800;letter-spacing:1px;padding:2px 8px;border-radius:20px;text-transform:uppercase;}
+    .badge-hot{background:rgba(255,165,0,.2);color:#ffa500;font-size:10px;font-weight:800;letter-spacing:1px;padding:2px 8px;border-radius:20px;text-transform:uppercase;margin-left:8px;}
+
+    /* Automation table */
+    table{width:100%;border-collapse:collapse;font-size:13px;}
+    th{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,210,255,.6);padding:10px 14px;text-align:left;border-bottom:1px solid rgba(0,210,255,.1);}
+    td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(252,253,242,.7);vertical-align:top;}
+    tr:last-child td{border-bottom:none;}
+    .dot-auto{display:inline-block;width:8px;height:8px;border-radius:50%;background:#00c864;margin-right:6px;}
+    .dot-manual{display:inline-block;width:8px;height:8px;border-radius:50%;background:rgba(252,253,242,.2);margin-right:6px;}
+    .dot-partial{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ffa500;margin-right:6px;}
+
+    /* Charts */
+    .chart-wrap{position:relative;height:260px;display:flex;align-items:center;justify-content:center;}
+
+    /* Revenue model */
+    .rev-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+    .rev-bar-bg{flex:1;background:rgba(255,255,255,.06);border-radius:4px;height:10px;overflow:hidden;}
+    .rev-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,#00d2ff,#0077be);}
+    .rev-label{font-size:12px;color:rgba(252,253,242,.55);width:200px;}
+    .rev-val{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#00d2ff;width:80px;text-align:right;}
+
+    /* Trigger matrix */
+    .trigger-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .trigger{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:14px 16px;}
+    .trigger-condition{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(0,210,255,.5);margin-bottom:6px;}
+    .trigger-action{font-size:13px;color:rgba(252,253,242,.65);}
+    .trigger-type{font-size:11px;color:#00c864;margin-top:4px;}
+
+    /* Competitor table */
+    .comp-tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:12px;font-weight:500;}
+    .comp-tag.global{background:rgba(255,255,255,.08);color:rgba(252,253,242,.4);}
+    .comp-tag.local{background:rgba(0,210,255,.1);color:#00d2ff;}
+    .highlight-row{background:rgba(0,210,255,.06)!important;}
+    .highlight-row td{color:#fcfdf2!important;}
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="brand">Cyber<span>Surf</span> Security</div>
+  <p class="subtitle">Business Offerings Dashboard — Internal Strategy Document | April 2026</p>
+
+  <!-- Stats -->
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-val">$30</div>
+      <div class="stat-label">Current product (Basic Breach Check)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">6</div>
+      <div class="stat-label">Identified upsell opportunities</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">4</div>
+      <div class="stat-label">Automatable follow-up actions</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">$299</div>
+      <div class="stat-label">Max monthly value per SMB customer</div>
+    </div>
+  </div>
+
+  <!-- Service Ladder -->
+  <p class="section-title">Service Ladder — Customer Journey</p>
+  <div class="ladder mb-32">
+    <div class="rung current">
+      <div class="rung-tier">Basic Breach Check <span class="badge-current">Live</span><br/><small>Entry product</small></div>
+      <div class="rung-desc">Check up to 2 email addresses against Dehashed + HIBP. Exposed credentials, breach sources, risk rating. Report delivered via secure pCloud link.</div>
+      <div class="rung-price">$30 <small>one-off</small></div>
+    </div>
+    <div class="rung hot">
+      <div class="rung-tier">Dark Web Monitoring <span class="badge-hot">Quick win</span><span class="badge-auto">Automatable</span><br/><small>Recurring revenue</small></div>
+      <div class="rung-desc">Monthly automated re-check of same emails. Alert customer immediately if new breach found. Same Dehashed + HIBP APIs already in the webapp — just schedule it.</div>
+      <div class="rung-price">$15–20<small>/month</small></div>
+    </div>
+    <div class="rung">
+      <div class="rung-tier">Password Manager Setup<br/><small>One-off service</small></div>
+      <div class="rung-desc">Hands-on Bitwarden setup, import from browser/CSV, organise vault, configure autofill. Recommended for anyone with exposed passwords in their report.</div>
+      <div class="rung-price">$49–79 <small>one-off</small></div>
+    </div>
+    <div class="rung">
+      <div class="rung-tier">2FA Activation Service <span class="badge-auto">Guide auto-sent</span><br/><small>One-off service</small></div>
+      <div class="rung-desc">Set up 2FA on email, banking, social media, and any service found in their breach report. Includes Authenticator app setup (Aegis/Authy) and backup codes storage.</div>
+      <div class="rung-price">$49 <small>one-off</small></div>
+    </div>
+    <div class="rung">
+      <div class="rung-tier">Home Security Bundle<br/><small>Package deal</small></div>
+      <div class="rung-desc">Breach Check + Password Manager Setup + 2FA Service bundled. Best value for home users who need the full remediation done properly after a HIGH risk result.</div>
+      <div class="rung-price">$129 <small>bundle (save $29)</small></div>
+    </div>
+    <div class="rung hot">
+      <div class="rung-tier">Small Business Package <span class="badge-hot">High value</span><br/><small>SMB entry point</small></div>
+      <div class="rung-desc">Breach check for up to 10 staff emails + setup Bitwarden Teams for the business + 2FA on company accounts + staff security briefing (30 min video call).</div>
+      <div class="rung-price">$199 <small>one-off</small></div>
+    </div>
+    <div class="rung current">
+      <div class="rung-tier">Cyber Security Guard <span class="badge-current">Live</span><br/><small>Retainer</small></div>
+      <div class="rung-desc">Ongoing managed cybersecurity retainer. Includes monthly breach monitoring, incident response, security advice, email security checks, and quarterly security review.</div>
+      <div class="rung-price">$99–299<small>/month</small></div>
+    </div>
+  </div>
+
+  <!-- Charts row -->
+  <div class="grid-2 mb-32">
+
+    <!-- What breach reports expose -->
+    <div class="card">
+      <p class="section-title">What Comes Back in Reports</p>
+      <p style="font-size:12px;color:rgba(252,253,242,.35);margin-bottom:16px;">Data types exposed in typical Dehashed results — each one is a service trigger</p>
+      <div class="chart-wrap">
+        <canvas id="exposedChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Revenue opportunity -->
+    <div class="card">
+      <p class="section-title">Revenue Per Customer Scenario</p>
+      <p style="font-size:12px;color:rgba(252,253,242,.35);margin-bottom:20px;">Lifetime value if customer converts through the ladder</p>
+      <div style="margin-top:10px;">
+        <div class="rev-row">
+          <div class="rev-label">Breach Check only</div>
+          <div class="rev-bar-bg"><div class="rev-bar" style="width:10%"></div></div>
+          <div class="rev-val">$30</div>
+        </div>
+        <div class="rev-row">
+          <div class="rev-label">+ Password Manager Setup</div>
+          <div class="rev-bar-bg"><div class="rev-bar" style="width:26%"></div></div>
+          <div class="rev-val">$109</div>
+        </div>
+        <div class="rev-row">
+          <div class="rev-label">+ 2FA Service</div>
+          <div class="rev-bar-bg"><div class="rev-bar" style="width:37%"></div></div>
+          <div class="rev-val">$158</div>
+        </div>
+        <div class="rev-row">
+          <div class="rev-label">Home Bundle (all 3)</div>
+          <div class="rev-bar-bg"><div class="rev-bar" style="width:43%"></div></div>
+          <div class="rev-val">$129</div>
+        </div>
+        <div class="rev-row">
+          <div class="rev-label">+ Dark Web Monitoring (12mo)</div>
+          <div class="rev-bar-bg"><div class="rev-bar" style="width:72%"></div></div>
+          <div class="rev-val">$309</div>
+        </div>
+        <div class="rev-row">
+          <div class="rev-label">SMB Package</div>
+          <div class="rev-bar-bg"><div class="rev-bar" style="width:66%"></div></div>
+          <div class="rev-val">$199</div>
+        </div>
+        <div class="rev-row">
+          <div class="rev-label">SMB + Guard Retainer (12mo)</div>
+          <div class="rev-bar-bg"><div class="rev-bar" style="width:100%"></div></div>
+          <div class="rev-val">$3,787</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Automation section -->
+  <p class="section-title">Automation Opportunities</p>
+  <div class="card mb-32">
+    <table>
+      <tr>
+        <th>Trigger (what was found in report)</th>
+        <th>Automated Action</th>
+        <th>How</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>Any breach found</td>
+        <td>Email customer a personalised remediation checklist based on exposed field types</td>
+        <td>Webhook → send templated email via Resend/SendGrid with dynamic content from report data</td>
+        <td><span class="dot-partial"></span>Buildable now</td>
+      </tr>
+      <tr>
+        <td>Password or hashed_password exposed</td>
+        <td>Auto-send Bitwarden setup guide PDF + offer Password Manager Setup upsell</td>
+        <td>Add to webhook handler in app.py — check exposed_fields, trigger email template</td>
+        <td><span class="dot-auto"></span>Easy — 1–2 hrs</td>
+      </tr>
+      <tr>
+        <td>HIGH or MEDIUM risk result</td>
+        <td>Auto-send 2FA setup guide for the specific breached services (Google, LinkedIn, etc.)</td>
+        <td>Map breach sources to 2FA guide URLs, inject into email template</td>
+        <td><span class="dot-partial"></span>Buildable — needs guide library</td>
+      </tr>
+      <tr>
+        <td>Customer pays (Stripe checkout)</td>
+        <td>Auto-enrol in 30-day dark web monitoring trial, set calendar reminder for upsell call</td>
+        <td>Stripe webhook → save monitoring job → scheduler runs monthly re-check</td>
+        <td><span class="dot-partial"></span>Needs scheduler (APScheduler or Railway cron)</td>
+      </tr>
+      <tr>
+        <td>Monthly monitoring job runs</td>
+        <td>If new breach found → email alert to customer automatically</td>
+        <td>Compare current Dehashed results vs stored baseline, diff new breaches</td>
+        <td><span class="dot-partial"></span>Needs persistent storage (not /tmp)</td>
+      </tr>
+      <tr>
+        <td>Customer clicks report link</td>
+        <td>Log open event, trigger 48-hour follow-up email ("Have you changed your passwords?")</td>
+        <td>Redirect through CyberSurf before going to pCloud, log timestamp</td>
+        <td><span class="dot-manual"></span>Medium complexity</td>
+      </tr>
+    </table>
+    <p style="font-size:11px;color:rgba(252,253,242,.25);margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.05);">
+      <span class="dot-auto"></span>Fully automatable now &nbsp;&nbsp;
+      <span class="dot-partial"></span>Automatable with small additions &nbsp;&nbsp;
+      <span class="dot-manual"></span>Manual for now / higher complexity
+    </p>
+  </div>
+
+  <!-- Trigger matrix -->
+  <p class="section-title">Smart Upsell Trigger Matrix</p>
+  <div class="trigger-grid mb-32">
+    <div class="trigger">
+      <div class="trigger-condition">Password exposed in report</div>
+      <div class="trigger-action">Offer Password Manager Setup ($49). Include Bitwarden link and setup guide. Mention it prevents this happening again.</div>
+      <div class="trigger-type">Upsell — one-off</div>
+    </div>
+    <div class="trigger">
+      <div class="trigger-condition">3+ breach sources found</div>
+      <div class="trigger-action">Offer Dark Web Monitoring ($15/mo). "We found your data in 5 sources — let us watch for new ones automatically."</div>
+      <div class="trigger-type">Upsell — recurring</div>
+    </div>
+    <div class="trigger">
+      <div class="trigger-condition">Business email domain detected</div>
+      <div class="trigger-action">Offer Small Business Package ($199). "Your company email appeared — your whole team may be at risk."</div>
+      <div class="trigger-type">Upsell — SMB package</div>
+    </div>
+    <div class="trigger">
+      <div class="trigger-condition">HIGH risk result</div>
+      <div class="trigger-action">Offer Home Security Bundle ($129) — breach check already done, bundle the rest at a discount to drive conversion while urgency is high.</div>
+      <div class="trigger-type">Upsell — bundle</div>
+    </div>
+    <div class="trigger">
+      <div class="trigger-condition">Phone number exposed</div>
+      <div class="trigger-action">Warn about SIM-swap attacks. Offer 2FA setup that doesn't rely on SMS (app-based). Good reason to book a 2FA session.</div>
+      <div class="trigger-type">Upsell — 2FA service</div>
+    </div>
+    <div class="trigger">
+      <div class="trigger-condition">CLEAR result (no breaches)</div>
+      <div class="trigger-action">Offer monitoring: "You're clean today — stay that way." Dark Web Monitoring is an easy sell when the customer is relieved and engaged.</div>
+      <div class="trigger-type">Upsell — monitoring</div>
+    </div>
+  </div>
+
+  <!-- Competitor comparison -->
+  <p class="section-title">Market Comparison (What Others Charge)</p>
+  <div class="card mb-32">
+    <table>
+      <tr>
+        <th>Provider</th>
+        <th>Offering</th>
+        <th>Price (AUD approx)</th>
+        <th>Gap CyberSurf fills</th>
+      </tr>
+      <tr>
+        <td>HIBP (Troy Hunt) <span class="comp-tag global">Global</span></td>
+        <td>Free one-time email check only</td>
+        <td>Free</td>
+        <td>No report, no remediation help, no human follow-up</td>
+      </tr>
+      <tr>
+        <td>Norton LifeLock <span class="comp-tag global">Global</span></td>
+        <td>Dark web monitoring + identity protection</td>
+        <td>$15–35/mo</td>
+        <td>Generic, overseas, no personal service, no Australian focus</td>
+      </tr>
+      <tr>
+        <td>1Password Business <span class="comp-tag global">Global</span></td>
+        <td>Password manager + Watchtower breach alerts</td>
+        <td>~$7–10/user/mo</td>
+        <td>Tool only — no setup help, no breach report, no local support</td>
+      </tr>
+      <tr>
+        <td>IDCare <span class="comp-tag local">Australia</span></td>
+        <td>Identity theft response (reactive only)</td>
+        <td>Free (charity)</td>
+        <td>Reactive not proactive, no credential-level detail</td>
+      </tr>
+      <tr>
+        <td>Eftsure / Cynch <span class="comp-tag local">Australia</span></td>
+        <td>SMB cyber tools &amp; insurance</td>
+        <td>$50–200/mo</td>
+        <td>Enterprise-skewed, no personal/home tier, complex onboarding</td>
+      </tr>
+      <tr class="highlight-row">
+        <td><strong>CyberSurf</strong> <span class="comp-tag local">Sunshine Coast</span></td>
+        <td>Personal breach check + remediation + local support</td>
+        <td><strong>$30 entry / $99–299 retainer</strong></td>
+        <td><strong>Human-in-the-loop, local, plain English, home + SMB, actual credential detail</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Highest priority next builds -->
+  <p class="section-title">Priority Build Order</p>
+  <div class="grid-3">
+    <div class="card">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;color:#00d2ff;margin-bottom:10px;">1. Auto Follow-up Email</div>
+      <p style="font-size:13px;color:rgba(252,253,242,.6);line-height:1.6;">After a report is run, auto-send a personalised email to the customer with their risk level and next steps. Triggers immediate trust and opens door to upsells.</p>
+      <p style="font-size:11px;color:#00c864;margin-top:10px;">~2–3 hrs to build. Add Resend API key to env vars.</p>
+    </div>
+    <div class="card">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;color:#ffa500;margin-bottom:10px;">2. Dark Web Monitoring (recurring)</div>
+      <p style="font-size:13px;color:rgba(252,253,242,.6);line-height:1.6;">Store baseline breach hashes per customer, run monthly re-check, email alert if new breach detected. Needs persistent DB (move from /tmp to PostgreSQL or SQLite on volume).</p>
+      <p style="font-size:11px;color:#ffa500;margin-top:10px;">~1 day. Biggest recurring revenue lever.</p>
+    </div>
+    <div class="card">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;color:rgba(252,253,242,.6);margin-bottom:10px;">3. Upsell Pages on Webapp</div>
+      <p style="font-size:13px;color:rgba(252,253,242,.6);line-height:1.6;">Add service offering cards to the report page — contextual upsells based on what was found. Password Manager Setup button appears if passwords were exposed. 2FA button for phone exposure.</p>
+      <p style="font-size:11px;color:rgba(252,253,242,.3);margin-top:10px;">~half a day. Pure revenue uplift.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Exposed data types chart
+  const ctx = document.getElementById('exposedChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Passwords', 'Usernames', 'Email only', 'Phone numbers', 'Full name', 'Physical address', 'IP address', 'Hashed passwords'],
+      datasets: [{
+        data: [38, 22, 15, 10, 7, 4, 2, 2],
+        backgroundColor: [
+          'rgba(255,71,87,0.8)',
+          'rgba(0,210,255,0.7)',
+          'rgba(0,210,100,0.6)',
+          'rgba(255,165,0,0.7)',
+          'rgba(180,100,255,0.6)',
+          'rgba(255,200,0,0.6)',
+          'rgba(100,180,255,0.5)',
+          'rgba(255,120,50,0.6)',
+        ],
+        borderColor: 'rgba(10,22,40,0.8)',
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'right',
+          labels: {
+            color: 'rgba(252,253,242,0.6)',
+            font: { size: 11, family: 'Roboto' },
+            boxWidth: 12,
+            padding: 10,
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => ` ${ctx.label}: ${ctx.parsed}% of breach records`
+          }
+        }
+      },
+      cutout: '60%',
+    }
+  });
+</script>
+</body>
+</html>

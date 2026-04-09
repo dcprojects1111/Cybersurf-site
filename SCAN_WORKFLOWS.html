@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberSurf — Home Security Scan Workflows</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Roboto',sans-serif;background:linear-gradient(160deg,#0a1628 0%,#0d2240 100%);min-height:100vh;padding:40px 24px;color:#fcfdf2;}
+    .page{max-width:1050px;margin:0 auto;}
+    h1,h2,h3,h4{font-family:'Montserrat',sans-serif;}
+    .brand{font-weight:800;font-size:22px;color:#fff;margin-bottom:4px;}
+    .brand span{color:#00d2ff;}
+    .subtitle{font-size:13px;color:rgba(252,253,242,.4);margin-bottom:40px;}
+    .section-title{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(0,210,255,.6);margin-bottom:18px;margin-top:40px;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .col-header{border-radius:12px;padding:20px 24px;margin-bottom:0;}
+    .col-header.remote{background:rgba(0,210,255,.08);border:1px solid rgba(0,210,255,.3);}
+    .col-header.inperson{background:rgba(255,165,0,.07);border:1px solid rgba(255,165,0,.35);}
+    .col-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;margin-bottom:4px;}
+    .col-title.remote{color:#00d2ff;}
+    .col-title.inperson{color:#ffa500;}
+    .col-price{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:rgba(252,253,242,.5);}
+
+    /* Flow steps */
+    .flow{margin-top:0;}
+    .phase{margin-bottom:8px;}
+    .phase-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;margin:16px 0 8px;display:inline-block;border-radius:20px;}
+    .phase-label.booking{background:rgba(180,100,255,.15);color:#b464ff;}
+    .phase-label.prep{background:rgba(0,210,255,.12);color:#00d2ff;}
+    .phase-label.scan{background:rgba(255,71,87,.12);color:#ff6b7a;}
+    .phase-label.report{background:rgba(0,200,100,.12);color:#00c864;}
+    .phase-label.followup{background:rgba(255,165,0,.12);color:#ffa500;}
+
+    .step{display:flex;gap:0;margin-bottom:0;position:relative;}
+    .step-left{display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0;}
+    .step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;flex-shrink:0;z-index:1;}
+    .step-dot.remote{background:rgba(0,210,255,.2);color:#00d2ff;border:1px solid rgba(0,210,255,.4);}
+    .step-dot.inperson{background:rgba(255,165,0,.2);color:#ffa500;border:1px solid rgba(255,165,0,.4);}
+    .step-dot.both{background:rgba(252,253,242,.08);color:rgba(252,253,242,.5);border:1px solid rgba(252,253,242,.15);}
+    .step-line{width:2px;flex:1;min-height:16px;background:rgba(255,255,255,.06);margin:0 auto;}
+    .step-body{padding:0 0 20px 14px;flex:1;}
+    .step-title{font-size:14px;font-weight:500;color:#fcfdf2;margin-bottom:4px;line-height:1.4;}
+    .step-detail{font-size:12px;color:rgba(252,253,242,.5);line-height:1.6;}
+    .step-you{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-top:6px;}
+    .step-you.you{color:rgba(0,210,255,.7);}
+    .step-you.customer{color:rgba(180,100,255,.7);}
+    .step-you.both-action{color:rgba(255,165,0,.7);}
+    .tag{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;}
+    .tag-auto{background:rgba(0,200,100,.15);color:#00c864;}
+    .tag-manual{background:rgba(255,255,255,.08);color:rgba(252,253,242,.4);}
+    .tag-onsite{background:rgba(255,165,0,.15);color:#ffa500;}
+    .tag-remote{background:rgba(0,210,255,.12);color:#00d2ff;}
+
+    /* Differences callout */
+    .diff-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+    .diff-table th{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,210,255,.6);padding:10px 16px;text-align:left;border-bottom:1px solid rgba(0,210,255,.1);}
+    .diff-table td{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(252,253,242,.7);vertical-align:top;line-height:1.5;}
+    .diff-table tr:last-child td{border-bottom:none;}
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(0,210,255,.15);border-radius:14px;padding:24px 28px;margin-bottom:16px;}
+    .note-box{background:rgba(255,71,87,.06);border:1px solid rgba(255,71,87,.2);border-radius:10px;padding:14px 18px;font-size:13px;color:rgba(252,253,242,.65);line-height:1.7;margin-top:32px;}
+    .note-box strong{color:#ff6b7a;}
+    .checklist{list-style:none;padding:0;margin-top:10px;}
+    .checklist li{font-size:13px;color:rgba(252,253,242,.65);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:10px;align-items:flex-start;}
+    .checklist li:last-child{border-bottom:none;}
+    .checklist li::before{content:"☐";color:rgba(0,210,255,.5);flex-shrink:0;}
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="brand">Cyber<span>Surf</span> Security</div>
+  <p class="subtitle">Home Security Scan — Workflow Reference | Internal Use Only</p>
+
+  <!-- Comparison summary -->
+  <p class="section-title">At a Glance — Key Differences</p>
+  <div class="card">
+    <table class="diff-table">
+      <tr>
+        <th>Factor</th>
+        <th style="color:rgba(0,210,255,.7);">Remote — $79</th>
+        <th style="color:rgba(255,165,0,.7);">In-Person — $149</th>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td>Anywhere — phone/email only</td>
+        <td>Sunshine Coast only — Darryl on-site</td>
+      </tr>
+      <tr>
+        <td>Who runs the scan</td>
+        <td>Customer runs Malwarebytes themselves</td>
+        <td>Darryl runs everything, customer watches</td>
+      </tr>
+      <tr>
+        <td>Router check</td>
+        <td>Customer provides router model + ISP — Darryl checks remotely via Shodan</td>
+        <td>Darryl physically checks router on-site — login, settings, firmware, connected devices</td>
+      </tr>
+      <tr>
+        <td>Security briefing</td>
+        <td>Written summary in report</td>
+        <td>30 min in-person briefing while on-site</td>
+      </tr>
+      <tr>
+        <td>Devices</td>
+        <td>Up to 3 — add $40 for up to 6</td>
+        <td>Up to 3 — add $40 for up to 6</td>
+      </tr>
+      <tr>
+        <td>Turnaround</td>
+        <td>Within 24–48 hours of receiving scan results</td>
+        <td>Report delivered same day or within 24 hours</td>
+      </tr>
+      <tr>
+        <td>Remote access required?</td>
+        <td><span style="color:#ff6b7a;">No — customer always in control</span></td>
+        <td><span style="color:#00c864;">No — Darryl physically present</span></td>
+      </tr>
+      <tr>
+        <td>Best for</td>
+        <td>Customers outside Sunshine Coast or prefer convenience</td>
+        <td>Security-conscious customers who want the safest option</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Side by side workflows -->
+  <p class="section-title">Full Workflow — Side by Side</p>
+  <div class="grid-2">
+
+    <!-- REMOTE -->
+    <div>
+      <div class="col-header remote">
+        <div class="col-title remote">&#128187; Remote Scan</div>
+        <div class="col-price">$79 — 3 devices &nbsp;·&nbsp; +$40 up to 6 devices</div>
+      </div>
+
+      <div class="flow" style="margin-top:16px;">
+
+        <div class="phase-label booking">Booking</div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot remote">1</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Customer submits order on cybersurf.au <span class="tag tag-auto">Auto</span></div>
+            <div class="step-detail">Order form collects name, phone, email, number of devices, and consent. Payment taken via Stripe.</div>
+            <div class="step-you customer">&#8594; Customer action</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot remote">2</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Send welcome email with pre-scan instructions <span class="tag tag-manual">Manual</span></div>
+            <div class="step-detail">Email includes: how to download Malwarebytes Free, how to run a Threat Scan, how to export the results (txt or HTML). Also ask for router make/model and ISP name.</div>
+            <div class="step-you you">&#8594; Darryl action — within 2 hrs of payment</div>
+          </div>
+        </div>
+
+        <div class="phase-label prep">Preparation</div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot remote">3</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Customer downloads and runs Malwarebytes on each device</div>
+            <div class="step-detail">Free version at malwarebytes.com. Run a full Threat Scan. Export results using File → Export Scan Results. Repeat for each device (Windows, Mac, Android).</div>
+            <div class="step-you customer">&#8594; Customer action — usually takes 30–60 min per device</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot remote">4</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Customer emails scan results + router info to Darryl</div>
+            <div class="step-detail">Attach exported scan files. Include: router brand/model (e.g. Netgear Nighthawk AC1900), ISP name (e.g. Aussie Broadband), and their suburb (for context on ISP routing).</div>
+            <div class="step-you customer">&#8594; Customer action</div>
+          </div>
+        </div>
+
+        <div class="phase-label scan">Scanning & Analysis</div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot remote">5</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Run external network check via Shodan on customer's public IP <span class="tag tag-manual">Manual</span></div>
+            <div class="step-detail">Look up their public IP (customer can check at whatismyip.com and include it). Check via Shodan for: open ports, exposed services (RDP, Telnet, FTP, SMB), known CVEs on detected devices, historical breach events on that IP.</div>
+            <div class="step-you you">&#8594; Darryl action</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot remote">6</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Check router model for known vulnerabilities</div>
+            <div class="step-detail">Search router make/model on CVE databases (nvd.nist.gov) and router-specific vulnerability lists. Check if firmware is up to date. Note default credential risks if model is known for them.</div>
+            <div class="step-you you">&#8594; Darryl action</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot remote">7</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Review Malwarebytes scan results for each device</div>
+            <div class="step-detail">Check for: detected threats (malware, PUPs, adware), quarantined items, scan coverage, last update date for definitions. Note any devices with outdated OS or suspicious findings.</div>
+            <div class="step-you you">&#8594; Darryl action</div>
+          </div>
+        </div>
+
+        <div class="phase-label report">Report</div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot remote">8</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Write security summary report</div>
+            <div class="step-detail">Cover: overall risk rating, network findings, device findings per device, top 3–5 priority actions. Written in plain English — no jargon. Include affiliate recommendations where relevant (password manager, VPN).</div>
+            <div class="step-you you">&#8594; Darryl action</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot remote">9</div><div class="step-line"></div></div>
+          <div class="step-line" style="visibility:hidden;"></div>
+          <div class="step-body">
+            <div class="step-title">Deliver report via pCloud secure link <span class="tag tag-auto">Auto once built</span></div>
+            <div class="step-detail">Upload HTML report to pCloud, send customer the secure link via email or SMS. Remind them to delete after reviewing.</div>
+            <div class="step-you you">&#8594; Darryl action</div>
+          </div>
+        </div>
+
+        <div class="phase-label followup">Follow-up</div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot remote">10</div></div>
+          <div class="step-body" style="padding-bottom:0;">
+            <div class="step-title">Follow-up call or email 48 hrs later</div>
+            <div class="step-detail">Check customer actioned the priority items. Answer questions. If HIGH risk findings — pitch Cyber Security Guard retainer or Dark Web Monitoring subscription.</div>
+            <div class="step-you you">&#8594; Darryl action</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- IN-PERSON -->
+    <div>
+      <div class="col-header inperson">
+        <div class="col-title inperson">&#127968; In-Person Scan — Sunshine Coast</div>
+        <div class="col-price">$149 — 3 devices &nbsp;·&nbsp; +$40 up to 6 devices</div>
+      </div>
+
+      <div class="flow" style="margin-top:16px;">
+
+        <div class="phase-label booking">Booking</div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">1</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Customer contacts Darryl to book <span class="tag tag-manual">Manual</span></div>
+            <div class="step-detail">Phone or email enquiry. Confirm: suburb, number of devices, device types (Windows/Mac/phone/tablet), preferred day and time. Collect payment upfront via Stripe invoice or payment link.</div>
+            <div class="step-you customer">&#8594; Customer contacts — Darryl confirms</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">2</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Send booking confirmation + pre-visit checklist</div>
+            <div class="step-detail">Email: confirmed date/time, what to have ready (see checklist below), what to expect on the day. Remind them: Darryl will never ask for passwords — they stay in control at all times.</div>
+            <div class="step-you you">&#8594; Darryl action — within 2 hrs of booking</div>
+          </div>
+        </div>
+
+        <div class="phase-label prep">Day Before</div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">3</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Customer prepares devices</div>
+            <div class="step-detail">All devices charged and switched on. Router admin login available (or customer knows where to find it — usually on the router label). Any device they want checked is accessible.</div>
+            <div class="step-you customer">&#8594; Customer action</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">4</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Darryl prepares kit and confirms appointment</div>
+            <div class="step-detail">Laptop with Malwarebytes installer (USB or download). Shodan account ready. Note-taking template. Confirmation SMS to customer the morning of the visit.</div>
+            <div class="step-you you">&#8594; Darryl action</div>
+          </div>
+        </div>
+
+        <div class="phase-label scan">On-Site</div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">5</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Arrive, introduce the process <span class="tag tag-onsite">On-site</span></div>
+            <div class="step-detail">5 min intro — explain what you'll do and what you won't do. Reinforce: "I will never ask for your passwords. You type everything yourself. You are in control." Sets the tone and builds trust immediately.</div>
+            <div class="step-you you">&#8594; Darryl action</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">6</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Router check <span class="tag tag-onsite">On-site</span></div>
+            <div class="step-detail">Customer logs into router admin (Darryl guides, customer types). Check: firmware version vs latest, default admin credentials changed, WiFi password strength, guest network status, UPnP enabled/disabled, connected devices list (look for unknowns), remote management off.</div>
+            <div class="step-you both-action">&#8594; Darryl guides — customer types</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">7</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">External network check via Shodan <span class="tag tag-onsite">On-site</span></div>
+            <div class="step-detail">Check their public IP from Shodan while on their network. Confirms what their home network looks like from the outside — open ports, exposed services, ISP metadata.</div>
+            <div class="step-you you">&#8594; Darryl action — on his own laptop</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">8</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Malwarebytes scan — each device <span class="tag tag-onsite">On-site</span></div>
+            <div class="step-detail">Install Malwarebytes Free on each device (customer watches). Run Threat Scan. Customer sees the results in real time. Export results for the report. Repeat for each device. Note: customer types their login password to unlock devices — Darryl never touches the keyboard for credentials.</div>
+            <div class="step-you both-action">&#8594; Darryl installs/runs — customer unlocks devices</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">9</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">30 min security briefing <span class="tag tag-onsite">On-site</span></div>
+            <div class="step-detail">Plain English walkthrough of findings while still on-site. Cover: what was found, what it means, the top 3 things to do this week. Recommend password manager setup if not already in use. Answer all questions in person.</div>
+            <div class="step-you you">&#8594; Darryl leads</div>
+          </div>
+        </div>
+
+        <div class="phase-label report">Report</div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">10</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <div class="step-title">Write and deliver security report</div>
+            <div class="step-detail">Same day or within 24 hours. Covers: router findings, per-device scan results, network exposure summary, priority action list. Delivered via pCloud secure link via email or SMS.</div>
+            <div class="step-you you">&#8594; Darryl action</div>
+          </div>
+        </div>
+
+        <div class="phase-label followup">Follow-up</div>
+
+        <div class="step">
+          <div class="step-left"><div class="step-dot inperson">11</div></div>
+          <div class="step-body" style="padding-bottom:0;">
+            <div class="step-title">Follow-up call 48 hrs later</div>
+            <div class="step-detail">Check priority items actioned. Answer any questions from the report. If serious findings — pitch Dark Web Monitoring or Cyber Security Guard retainer.</div>
+            <div class="step-you you">&#8594; Darryl action</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Pre-visit checklist -->
+  <p class="section-title" style="margin-top:40px;">In-Person Pre-Visit Checklist — Send to Customer</p>
+  <div class="card">
+    <p style="font-size:13px;color:rgba(252,253,242,.55);margin-bottom:16px;">Include this in the booking confirmation email so the customer is prepared when Darryl arrives.</p>
+    <ul class="checklist">
+      <li>All devices you want scanned are charged and switched on</li>
+      <li>You know the WiFi password for your home network</li>
+      <li>You have access to your router admin page (usually 192.168.0.1 or 192.168.1.1) — login details are often on the router label</li>
+      <li>If you have more than 3 devices and want them all checked, let Darryl know in advance (add-on applies)</li>
+      <li>If any device has a PIN or password lock, you'll need to unlock it yourself — Darryl will never ask for your passwords</li>
+      <li>Set aside about 2 hours — 30 min per device scan + briefing time</li>
+      <li>Have a pen and paper handy — you may want to take notes during the briefing</li>
+    </ul>
+  </div>
+
+  <!-- Tools Darryl needs -->
+  <p class="section-title">Darryl's Kit — What to Bring / Have Ready</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
+    <div class="card">
+      <h4 style="font-size:13px;color:#00d2ff;margin-bottom:12px;">In-Person Visit</h4>
+      <ul class="checklist">
+        <li>Laptop with Malwarebytes installer saved (USB backup in case no WiFi)</li>
+        <li>Shodan account logged in and ready (shodan.io)</li>
+        <li>CVE lookup bookmarked (nvd.nist.gov)</li>
+        <li>Report template open and ready to fill</li>
+        <li>CyberSurf business cards</li>
+        <li>Confirmation of customer address + contact number</li>
+        <li>Payment confirmed before arriving</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="font-size:13px;color:#00d2ff;margin-bottom:12px;">Remote Scan</h4>
+      <ul class="checklist">
+        <li>Shodan account logged in (shodan.io)</li>
+        <li>CVE lookup bookmarked (nvd.nist.gov)</li>
+        <li>Router vulnerability database bookmarked (routersecurity.org)</li>
+        <li>Customer's scan export files received by email</li>
+        <li>Customer's router make/model and ISP confirmed</li>
+        <li>Customer's public IP confirmed (whatismyip.com)</li>
+        <li>Report template ready to fill</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Remote access disclaimer -->
+  <div class="note-box">
+    <strong>&#9888; Remote Access Policy — Reinforce This With Every Customer</strong><br/><br/>
+    As a general cybersecurity rule, you should never grant remote access to your computer to someone you don't know personally — even if they claim to be from a legitimate company. This is one of the most common methods used in tech support scams.<br/><br/>
+    CyberSurf's remote scan service is designed so the customer is always in control. We do not use TeamViewer, AnyDesk, or any remote desktop software. The customer runs the scan on their own device and sends us the results. We analyse from our end.<br/><br/>
+    For the in-person service, Darryl is physically present — there is no remote connection involved at any point.<br/><br/>
+    <strong style="color:#fcfdf2;">This policy is a marketing differentiator — use it. Most IT companies ask for remote access without a second thought. We don't.</strong>
+  </div>
+
+</div>
+</body>
+</html>

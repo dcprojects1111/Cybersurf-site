@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberSurf — Command Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Roboto',sans-serif;background:#0a1628;min-height:100vh;color:#fcfdf2;display:flex;flex-direction:column;}
+    a{color:#00d2ff;text-decoration:none;}
+
+    /* ── Top bar ── */
+    .topbar{background:rgba(0,0,0,.4);border-bottom:1px solid rgba(0,210,255,.15);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:#fff;}
+    .brand span{color:#00d2ff;}
+    .topbar-meta{font-size:12px;color:rgba(252,253,242,.35);}
+    .topbar-stats{display:flex;gap:20px;}
+    .tstat{text-align:right;}
+    .tstat-val{font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;color:#00d2ff;}
+    .tstat-label{font-size:10px;color:rgba(252,253,242,.35);}
+
+    /* ── Layout ── */
+    .layout{display:flex;flex:1;overflow:hidden;height:calc(100vh - 55px);}
+
+    /* ── Left sidebar ── */
+    .sidebar{width:260px;flex-shrink:0;background:rgba(0,0,0,.25);border-right:1px solid rgba(0,210,255,.1);overflow-y:auto;padding:16px 0;}
+    .sidebar-section{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(0,210,255,.4);padding:12px 18px 6px;}
+    .task-item{padding:10px 18px;cursor:pointer;border-left:3px solid transparent;transition:all .15s;}
+    .task-item:hover{background:rgba(0,210,255,.06);border-left-color:rgba(0,210,255,.3);}
+    .task-item.active{background:rgba(0,210,255,.1);border-left-color:#00d2ff;}
+    .task-name{font-size:13px;font-weight:500;color:rgba(252,253,242,.85);margin-bottom:4px;}
+    .task-status{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 8px;border-radius:10px;}
+    .s-live{background:rgba(0,200,100,.15);color:#00c864;}
+    .s-build{background:rgba(0,210,255,.12);color:#00d2ff;}
+    .s-todo{background:rgba(255,255,255,.07);color:rgba(252,253,242,.4);}
+    .s-lodged{background:rgba(255,165,0,.15);color:#ffa500;}
+    .s-waiting{background:rgba(180,100,255,.15);color:#b464ff;}
+    .s-approved{background:rgba(0,200,100,.15);color:#00c864;}
+    .s-priority{background:rgba(255,71,87,.15);color:#ff6b7a;}
+    .s-planning{background:rgba(255,210,0,.12);color:#ffd200;}
+
+    /* ── Main panel ── */
+    .main{flex:1;overflow-y:auto;padding:28px 32px;}
+    .panel{display:none;}
+    .panel.active{display:block;}
+    .panel-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#fcfdf2;margin-bottom:6px;}
+    .panel-sub{font-size:13px;color:rgba(252,253,242,.45);margin-bottom:28px;}
+    .section-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(0,210,255,.6);margin:24px 0 12px;}
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(0,210,255,.15);border-radius:12px;padding:20px 24px;margin-bottom:14px;}
+    .card-orange{background:rgba(255,165,0,.05);border:1px solid rgba(255,165,0,.3);border-radius:12px;padding:20px 24px;margin-bottom:14px;}
+    .card-green{background:rgba(0,200,100,.05);border:1px solid rgba(0,200,100,.25);border-radius:12px;padding:20px 24px;margin-bottom:14px;}
+    .card-red{background:rgba(255,71,87,.05);border:1px solid rgba(255,71,87,.25);border-radius:12px;padding:20px 24px;margin-bottom:14px;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+
+    /* ── Tables ── */
+    table{width:100%;border-collapse:collapse;font-size:13px;}
+    th{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(0,210,255,.6);padding:9px 14px;text-align:left;border-bottom:1px solid rgba(0,210,255,.1);}
+    td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(252,253,242,.75);vertical-align:top;line-height:1.5;}
+    tr:last-child td{border-bottom:none;}
+
+    /* ── Steps ── */
+    .step{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
+    .step-num{background:rgba(0,210,255,.15);color:#00d2ff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    .step-body{font-size:13px;color:rgba(252,253,242,.7);line-height:1.6;}
+    .step-title{font-weight:500;color:#fcfdf2;margin-bottom:2px;}
+
+    /* ── Affiliate rows ── */
+    .aff-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+    .aff-row:last-child{border-bottom:none;}
+    .aff-name{font-weight:500;font-size:14px;color:#fcfdf2;width:160px;flex-shrink:0;}
+    .aff-desc{font-size:12px;color:rgba(252,253,242,.45);flex:1;}
+    .aff-status-wrap{width:120px;flex-shrink:0;}
+    .aff-link{font-size:12px;}
+    select.status-select{background:rgba(0,0,0,.3);border:1px solid rgba(0,210,255,.2);border-radius:8px;color:#fcfdf2;padding:4px 8px;font-size:12px;font-family:'Roboto',sans-serif;cursor:pointer;width:100%;}
+
+    /* ── Progress bar ── */
+    .prog-wrap{background:rgba(255,255,255,.06);border-radius:4px;height:6px;margin-top:8px;}
+    .prog-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,#00d2ff,#0077be);}
+
+    /* ── Social channel cards ── */
+    .channel{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px 18px;margin-bottom:12px;}
+    .channel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+    .channel-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:#fcfdf2;}
+    .channel-body{font-size:13px;color:rgba(252,253,242,.6);line-height:1.6;}
+    .content-idea{background:rgba(0,0,0,.2);border-radius:6px;padding:6px 10px;font-size:12px;color:rgba(252,253,242,.6);margin-top:4px;}
+
+    /* ── 90 day roadmap ── */
+    .month-block{border-left:3px solid rgba(0,210,255,.3);padding-left:20px;margin-bottom:24px;}
+    .month-label{font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:#00d2ff;margin-bottom:10px;}
+    .week-item{display:flex;gap:10px;margin-bottom:8px;font-size:13px;color:rgba(252,253,242,.7);line-height:1.5;}
+    .week-num{font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;color:rgba(0,210,255,.5);width:50px;flex-shrink:0;padding-top:1px;}
+
+    /* ── Revenue table ── */
+    .rev-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+    .rev-label{font-size:12px;color:rgba(252,253,242,.55);width:220px;flex-shrink:0;}
+    .rev-bar-bg{flex:1;background:rgba(255,255,255,.06);border-radius:4px;height:8px;}
+    .rev-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,#00d2ff,#0077be);}
+    .rev-val{font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;color:#00d2ff;width:70px;text-align:right;}
+  </style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div>
+    <div class="brand">Cyber<span>Surf</span> <span style="font-weight:400;color:rgba(252,253,242,.4);font-size:14px;">Command Dashboard</span></div>
+    <div class="topbar-meta">Last updated: April 2026 &nbsp;·&nbsp; One-person operation — Sunshine Coast QLD</div>
+  </div>
+  <div class="topbar-stats">
+    <div class="tstat"><div class="tstat-val">2</div><div class="tstat-label">Live Products</div></div>
+    <div class="tstat"><div class="tstat-val">7</div><div class="tstat-label">Products to Launch</div></div>
+    <div class="tstat"><div class="tstat-val">8</div><div class="tstat-label">Affiliates to Apply</div></div>
+    <div class="tstat"><div class="tstat-val">$2,250</div><div class="tstat-label">Month 3 Target</div></div>
+  </div>
+</div>
+
+<!-- Layout -->
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-section">Products</div>
+    <div class="task-item active" onclick="show('offerings')">
+      <div class="task-name">Offerings Pipeline</div>
+      <span class="task-status s-priority">7 to launch</span>
+    </div>
+    <div class="task-item" onclick="show('roadmap')">
+      <div class="task-name">90-Day Launch Roadmap</div>
+      <span class="task-status s-build">In planning</span>
+    </div>
+
+    <div class="sidebar-section">Affiliates</div>
+    <div class="task-item" onclick="show('affiliates')">
+      <div class="task-name">Affiliate Tracker</div>
+      <span class="task-status s-todo">8 to apply</span>
+    </div>
+
+    <div class="sidebar-section">Marketing</div>
+    <div class="task-item" onclick="show('social')">
+      <div class="task-name">Social Media Setup</div>
+      <span class="task-status s-planning">Planning</span>
+    </div>
+    <div class="task-item" onclick="show('upsell')">
+      <div class="task-name">Upsell Strategy</div>
+      <span class="task-status s-build">From Sales Mgr</span>
+    </div>
+
+    <div class="sidebar-section">Reference</div>
+    <div class="task-item" onclick="show('revenue')">
+      <div class="task-name">Revenue Projections</div>
+      <span class="task-status s-planning">90-day forecast</span>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- ── OFFERINGS PIPELINE ── -->
+    <div class="panel active" id="panel-offerings">
+      <div class="panel-title">Offerings Pipeline</div>
+      <div class="panel-sub">Ranked by priority — Sales & Marketing Executive recommendation. Build in this order.</div>
+
+      <div class="section-title">Currently Live</div>
+      <div class="grid-2">
+        <div class="card-green">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Basic Breach Check</div>
+            <span class="task-status s-live">Live</span>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$30 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">one-off</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Stripe ✓ &nbsp;·&nbsp; cybersurf.au ✓ &nbsp;·&nbsp; pCloud delivery ✓ &nbsp;·&nbsp; Consent capture ✓</div>
+        </div>
+        <div class="card-green">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Cyber Security Guard</div>
+            <span class="task-status s-live">Live</span>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$99–299 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">/month</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Ongoing managed retainer. Protect and grow existing clients.</div>
+        </div>
+      </div>
+
+      <div class="section-title">Build Queue — In Priority Order</div>
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>What's Needed to Go Live</th>
+          <th>Manual Test First?</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td style="color:#00d2ff;font-weight:700;">1</td>
+          <td><strong>Dark Web Monitoring</strong></td>
+          <td>$15–20/mo</td>
+          <td>Stripe subscription product · Website section · Monthly Dehashed re-check · Subscriber ToS clause</td>
+          <td>Yes — manual monthly lookup until 10+ subscribers</td>
+          <td><span class="task-status s-priority">Build first</span></td>
+        </tr>
+        <tr>
+          <td style="color:#00d2ff;font-weight:700;">2</td>
+          <td><strong>Home Security Bundle</strong></td>
+          <td>$129 one-off</td>
+          <td>Stripe bundle product · Website bundle section · Deliver Breach Check + PM Setup + 2FA in sequence</td>
+          <td>Yes — don't launch until PM Setup and 2FA are defined</td>
+          <td><span class="task-status s-todo">After #3 & #4</span></td>
+        </tr>
+        <tr>
+          <td style="color:#00d2ff;font-weight:700;">3</td>
+          <td><strong>2FA Activation Service</strong></td>
+          <td>$49 one-off</td>
+          <td>Stripe product · Website section · Calendly 60-min booking · Zoom or in-person delivery</td>
+          <td>Yes — test on 1–2 people first</td>
+          <td><span class="task-status s-todo">Month 1 Wk 3</span></td>
+        </tr>
+        <tr>
+          <td style="color:#00d2ff;font-weight:700;">4</td>
+          <td><strong>Password Manager Setup</strong></td>
+          <td>$49–79 one-off</td>
+          <td>Stripe (2 price points) · Website section · Calendly 90-min booking · Bitwarden walkthrough</td>
+          <td>Yes — test on friends first</td>
+          <td><span class="task-status s-todo">Month 1 Wk 3</span></td>
+        </tr>
+        <tr>
+          <td style="color:#00d2ff;font-weight:700;">5</td>
+          <td><strong>Small Business Package</strong></td>
+          <td>$199 one-off</td>
+          <td>Stripe product · Website page · Tally.so intake form · Calendly briefing call · Batch 10 breach checks</td>
+          <td>Yes — direct outreach to 10 local businesses first</td>
+          <td><span class="task-status s-todo">Month 2</span></td>
+        </tr>
+        <tr>
+          <td style="color:#00d2ff;font-weight:700;">6</td>
+          <td><strong>Home Security Scan — Remote</strong></td>
+          <td>$79 / +$40 up to 6 devices</td>
+          <td>Stripe products · Website section · Calendly 90-min · Customer scan checklist · Shodan access</td>
+          <td>Yes — write delivery SOP first</td>
+          <td><span class="task-status s-todo">Month 3</span></td>
+        </tr>
+        <tr>
+          <td style="color:#00d2ff;font-weight:700;">7</td>
+          <td><strong>Home Security Scan — In-Person</strong></td>
+          <td>$149 / +$40 up to 6 devices</td>
+          <td>Stripe products · Website section · Calendly with suburb field · Define postcode travel zone</td>
+          <td>N/A — just show up with the checklist</td>
+          <td><span class="task-status s-todo">Month 3</span></td>
+        </tr>
+      </table>
+
+      <div class="section-title">Key Rule from Sales Manager</div>
+      <div class="card-orange">
+        <div style="font-size:14px;color:#ffa500;font-weight:500;margin-bottom:6px;">&#9888; Never build before you sell.</div>
+        <div style="font-size:13px;color:rgba(252,253,242,.65);line-height:1.7;">Every product above can be sold and delivered manually first. Do not invest in automation until you have sold it manually at least 5 times. The manual version teaches you what customers actually need — then you automate what you know works.</div>
+      </div>
+    </div>
+
+    <!-- ── 90 DAY ROADMAP ── -->
+    <div class="panel" id="panel-roadmap">
+      <div class="panel-title">90-Day Launch Roadmap</div>
+      <div class="panel-sub">Sales & Marketing Executive recommendation — April to June 2026</div>
+
+      <div class="month-block">
+        <div class="month-label">Month 1 — April 2026 · Quick Wins & Recurring Revenue</div>
+        <div class="week-item"><div class="week-num">Wk 1–2</div><div>Launch <strong>Dark Web Monitoring</strong> as a Stripe subscription (manual delivery). Add monitoring upsell copy to the Breach Check report and post-purchase email. Create Calendly booking link for 2FA + Password Manager sessions.</div></div>
+        <div class="week-item"><div class="week-num">Wk 3–4</div><div>Add <strong>2FA Activation</strong> and <strong>Password Manager Setup</strong> to the website and Stripe. Write delivery SOPs for both (one A4 page each). Test on 1–2 friends before selling at full price.</div></div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(0,200,100,.07);border:1px solid rgba(0,200,100,.2);border-radius:8px;font-size:13px;color:rgba(252,253,242,.65);">
+          <strong style="color:#00c864;">Month 1 Target:</strong> 5 Dark Web Monitoring subscribers + 2 service bookings (~$325 revenue)
+        </div>
+      </div>
+
+      <div class="month-block">
+        <div class="month-label">Month 2 — May 2026 · Bundle & Business</div>
+        <div class="week-item"><div class="week-num">Wk 5–6</div><div>Create <strong>Home Security Bundle</strong> as a Stripe product. Add bundle section to website. Set up 3-email post-purchase sequence for Breach Check buyers (Day 1: monitoring, Day 3: password manager, Day 7: bundle).</div></div>
+        <div class="week-item"><div class="week-num">Wk 7–8</div><div>Launch <strong>Small Business Package</strong>. Direct outreach to 10 local Sunshine Coast businesses via LinkedIn and local Facebook groups. Add Tally.so intake form to purchase flow.</div></div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(0,200,100,.07);border:1px solid rgba(0,200,100,.2);border-radius:8px;font-size:13px;color:rgba(252,253,242,.65);">
+          <strong style="color:#00c864;">Month 2 Target:</strong> 10 monitoring subscribers + 1–2 Small Business sales + first new retainer (~$1,100 revenue)
+        </div>
+      </div>
+
+      <div class="month-block">
+        <div class="month-label">Month 3 — June 2026 · Scans & Consolidation</div>
+        <div class="week-item"><div class="week-num">Wk 9–10</div><div>Define <strong>Home Security Scan</strong> checklist. Launch Remote version with Calendly booking. Price anchor against in-person on the website.</div></div>
+        <div class="week-item"><div class="week-num">Wk 11–12</div><div>Launch <strong>In-Person Scan</strong> (Sunshine Coast postcode zone defined). Review what sold — drop or reprice anything with zero traction. Begin automating Dark Web Monitoring if 10+ subscribers.</div></div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(0,200,100,.07);border:1px solid rgba(0,200,100,.2);border-radius:8px;font-size:13px;color:rgba(252,253,242,.65);">
+          <strong style="color:#00c864;">Month 3 Target:</strong> 20 monitoring subscribers + 3+ scan bookings + second retainer (~$2,250 revenue)
+        </div>
+      </div>
+    </div>
+
+    <!-- ── AFFILIATES ── -->
+    <div class="panel" id="panel-affiliates">
+      <div class="panel-title">Affiliate Application Tracker</div>
+      <div class="panel-sub">Track every program — from not yet applied through to approved and earning.</div>
+
+      <div class="section-title">Applications</div>
+      <div class="card">
+        <div class="aff-row">
+          <div class="aff-name">NordVPN</div>
+          <div class="aff-desc">~40% per sale + recurring · Easiest approval · Most recognisable brand</div>
+          <div class="aff-status-wrap">
+            <select class="status-select" onchange="saveStatus('nordvpn',this.value)">
+              <option value="todo" selected>Not Applied</option>
+              <option value="lodged">Lodged</option>
+              <option value="waiting">Waiting — Reply</option>
+              <option value="approved">Approved ✓</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="aff-link"><a href="https://nordvpn.com/affiliate/" target="_blank">Apply ↗</a></div>
+        </div>
+        <div class="aff-row">
+          <div class="aff-name">Surfshark</div>
+          <div class="aff-desc">~40% per sale · VPN + antivirus + breach monitoring bundle · Easy approval</div>
+          <div class="aff-status-wrap">
+            <select class="status-select" onchange="saveStatus('surfshark',this.value)">
+              <option value="todo" selected>Not Applied</option>
+              <option value="lodged">Lodged</option>
+              <option value="waiting">Waiting — Reply</option>
+              <option value="approved">Approved ✓</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="aff-link"><a href="https://surfshark.com/affiliates" target="_blank">Apply ↗</a></div>
+        </div>
+        <div class="aff-row">
+          <div class="aff-name">Proton</div>
+          <div class="aff-desc">~30–100% first month · VPN + Mail + Drive bundle · Privacy-focused</div>
+          <div class="aff-status-wrap">
+            <select class="status-select" onchange="saveStatus('proton',this.value)">
+              <option value="todo" selected>Not Applied</option>
+              <option value="lodged">Lodged</option>
+              <option value="waiting">Waiting — Reply</option>
+              <option value="approved">Approved ✓</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="aff-link"><a href="https://proton.me/partner-program" target="_blank">Apply ↗</a></div>
+        </div>
+        <div class="aff-row">
+          <div class="aff-name">1Password</div>
+          <div class="aff-desc">~25% · Premium password manager · B2B partner program — apply via Impact.com</div>
+          <div class="aff-status-wrap">
+            <select class="status-select" onchange="saveStatus('1password',this.value)">
+              <option value="todo" selected>Not Applied</option>
+              <option value="lodged">Lodged</option>
+              <option value="waiting">Waiting — Reply</option>
+              <option value="approved">Approved ✓</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="aff-link"><a href="https://www.1password.com/partners/" target="_blank">Apply ↗</a></div>
+        </div>
+        <div class="aff-row">
+          <div class="aff-name">Bitwarden</div>
+          <div class="aff-desc">~15–20% · Free password manager — recommended in every report already</div>
+          <div class="aff-status-wrap">
+            <select class="status-select" onchange="saveStatus('bitwarden',this.value)">
+              <option value="todo" selected>Not Applied</option>
+              <option value="lodged">Lodged</option>
+              <option value="waiting">Waiting — Reply</option>
+              <option value="approved">Approved ✓</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="aff-link"><a href="https://bitwarden.com/partners/become-a-partner/" target="_blank">Apply ↗</a></div>
+        </div>
+        <div class="aff-row">
+          <div class="aff-name">Malwarebytes</div>
+          <div class="aff-desc">Apply via CJ Affiliate · Antivirus + malware protection · Used in scan services</div>
+          <div class="aff-status-wrap">
+            <select class="status-select" onchange="saveStatus('malwarebytes',this.value)">
+              <option value="todo" selected>Not Applied</option>
+              <option value="lodged">Lodged</option>
+              <option value="waiting">Waiting — Reply</option>
+              <option value="approved">Approved ✓</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="aff-link"><a href="https://www.cj.com" target="_blank">Apply via CJ ↗</a></div>
+        </div>
+        <div class="aff-row">
+          <div class="aff-name">Norton 360</div>
+          <div class="aff-desc">Apply via CJ Affiliate · Well-known AU brand · Good for less tech-savvy customers</div>
+          <div class="aff-status-wrap">
+            <select class="status-select" onchange="saveStatus('norton',this.value)">
+              <option value="todo" selected>Not Applied</option>
+              <option value="lodged">Lodged</option>
+              <option value="waiting">Waiting — Reply</option>
+              <option value="approved">Approved ✓</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="aff-link"><a href="https://www.cj.com" target="_blank">Apply via CJ ↗</a></div>
+        </div>
+        <div class="aff-row">
+          <div class="aff-name">YubiKey (Yubico)</div>
+          <div class="aff-desc">Reseller model · Hardware 2FA key · ~10–15% · Best for business clients</div>
+          <div class="aff-status-wrap">
+            <select class="status-select" onchange="saveStatus('yubico',this.value)">
+              <option value="todo" selected>Not Applied</option>
+              <option value="lodged">Lodged</option>
+              <option value="waiting">Waiting — Reply</option>
+              <option value="approved">Approved ✓</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="aff-link"><a href="https://www.yubico.com/why-yubico/channel-partner-program/" target="_blank">Apply ↗</a></div>
+        </div>
+      </div>
+
+      <div class="section-title">Start Here — Easiest Approvals First</div>
+      <div class="card-orange">
+        <div style="font-size:13px;color:rgba(252,253,242,.7);line-height:1.8;">
+          <strong style="color:#ffa500;">1.</strong> Apply to <strong>NordVPN</strong> and <strong>Surfshark</strong> first — both approve almost any legitimate website. 5 minutes each.<br/>
+          <strong style="color:#ffa500;">2.</strong> Create one account at <a href="https://www.cj.com" target="_blank">cj.com</a> — this gets you Norton and Malwarebytes through one platform.<br/>
+          <strong style="color:#ffa500;">3.</strong> Apply to <strong>Proton</strong> — good fit, moderate approval bar.<br/>
+          <strong style="color:#ffa500;">4.</strong> Apply to <strong>1Password</strong> and <strong>Bitwarden</strong> — more B2B focused, frame yourself as a managed service provider.
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SOCIAL MEDIA ── -->
+    <div class="panel" id="panel-social">
+      <div class="panel-title">Social Media Setup</div>
+      <div class="panel-sub">Social Media Expert guidance — channels, content strategy, brand voice, and 30-day posting schedule.</div>
+
+      <div class="section-title">Priority Channels</div>
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">&#128101; Facebook <span style="font-size:11px;font-weight:400;color:rgba(252,253,242,.4);margin-left:8px;">Business Page + Local Groups</span></div>
+          <span class="task-status s-priority">Start Here — #1 Priority</span>
+        </div>
+        <div class="channel-body">
+          <strong style="color:#fcfdf2;">Why:</strong> Sunshine Coast community is highly active on Facebook. Local groups (Sunshine Coast Buy/Sell, local business groups) are where your customers are. Best for local trust-building and word of mouth.<br/><br/>
+          <strong style="color:#fcfdf2;">Audience:</strong> Home owners 35–65, local small business owners, community members who've heard about scams<br/><br/>
+          <strong style="color:#fcfdf2;">Post 4–5x per week. Content ideas:</strong>
+          <div class="content-idea">&#9888; "Scam alert" posts — share real local scam reports from ACCC Scamwatch (cite source)</div>
+          <div class="content-idea">&#128272; "Did you know your email might be in a data breach? Here's how to check for free" — drives traffic to site</div>
+          <div class="content-idea">&#10003; Before/after posts — "A customer came to us with 47 breaches. Here's what we found and fixed." (anonymised)</div>
+          <div class="content-idea">&#128100; Behind the scenes — "A day in the life of a cybersecurity consultant on the Sunshine Coast"</div>
+          <div class="content-idea">&#10067; Weekly Q&amp;A — "Ask me anything about keeping your accounts safe"</div>
+          <br/><strong style="color:#ffa500;">Key rule:</strong> Join 5 local Sunshine Coast Facebook groups and participate as a helpful expert — don't just post ads. Answer questions. Build trust first.
+        </div>
+      </div>
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">&#128241; Instagram</div>
+          <span class="task-status s-build">Priority #2</span>
+        </div>
+        <div class="channel-body">
+          <strong style="color:#fcfdf2;">Why:</strong> Visual platform — great for tip graphics, breach stats, and brand awareness. Younger demographic but growing 35–50 segment. Reels reach is strong.<br/><br/>
+          <strong style="color:#fcfdf2;">Post 3–4x per week. Content ideas:</strong>
+          <div class="content-idea">Carousel: "5 signs your email has been hacked" — shareable, saves well</div>
+          <div class="content-idea">Reel: 30-second "check if you've been breached right now" tutorial</div>
+          <div class="content-idea">Graphic: Breach stats — "X million Australians had their passwords exposed last year"</div>
+          <div class="content-idea">Story polls: "Have you ever checked if your email has been in a data breach?" (drives engagement)</div>
+          <div class="content-idea">Reel: "The one thing you should do today to protect your accounts" — 2FA setup tip</div>
+          <br/><strong style="color:#ffa500;">Key rule:</strong> Use Canva (free) for all graphics — consistent brand colours (navy #0a1628, cyan #00d2ff). Every post should have a clear single message.
+        </div>
+      </div>
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">&#128188; LinkedIn</div>
+          <span class="task-status s-build">Priority #3 — SMB focus</span>
+        </div>
+        <div class="channel-body">
+          <strong style="color:#fcfdf2;">Why:</strong> Direct access to business owners and decision-makers. Best channel for the $199 Small Business Package and retainer clients. Sunshine Coast has an active local business community on LinkedIn.<br/><br/>
+          <strong style="color:#fcfdf2;">Post 3x per week. Content ideas:</strong>
+          <div class="content-idea">Article: "The Notifiable Data Breaches Scheme — what every QLD small business owner needs to know"</div>
+          <div class="content-idea">Post: "I checked 10 local business email domains this week. Here's what I found." (anonymised stats)</div>
+          <div class="content-idea">Post: Case study — problem/solution/result format for a business package client</div>
+          <div class="content-idea">Tip post: "3 things every small business should do before end of financial year to protect customer data"</div>
+          <div class="content-idea">Connection outreach: Personalised message to local business owners — no pitch, just value first</div>
+          <br/><strong style="color:#ffa500;">Key rule:</strong> Post as Darryl Wessling (personal profile) not just the company page — people buy from people, especially for a personal service business.
+        </div>
+      </div>
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">&#127910; YouTube</div>
+          <span class="task-status s-lodged">Secondary — Start Month 2</span>
+        </div>
+        <div class="channel-body">
+          <strong style="color:#fcfdf2;">Why:</strong> Builds long-term authority and SEO. Search-driven — people Google "how to check if I've been hacked" and find your videos. High trust medium.<br/><br/>
+          <strong style="color:#fcfdf2;">Post 1x per week once started. Content ideas:</strong>
+          <div class="content-idea">Tutorial: "How to check if your email has been in a data breach (free, 2 minutes)"</div>
+          <div class="content-idea">Tutorial: "How to set up Bitwarden — free password manager setup guide"</div>
+          <div class="content-idea">Explainer: "What is a data breach and why should you care?"</div>
+          <div class="content-idea">Tutorial: "How to set up 2-factor authentication on Gmail, Facebook, and your bank"</div>
+          <div class="content-idea">Local: "Cybersecurity for Sunshine Coast small businesses — what you need to know in 2026"</div>
+          <br/><strong style="color:#ffa500;">Key rule:</strong> Optimise video titles for search — what would someone type into Google? Start every video with the answer, not the intro.
+        </div>
+      </div>
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">&#128248; TikTok</div>
+          <span class="task-status s-todo">Secondary — Month 3</span>
+        </div>
+        <div class="channel-body">
+          <strong style="color:#fcfdf2;">Why:</strong> Fastest organic reach of any platform. Cybersecurity content does extremely well — "hacking tips" and "scam awareness" go viral regularly. Younger audience but expanding.<br/><br/>
+          <strong style="color:#fcfdf2;">Post 3–5x per week once started. Short-form video only (30–60 seconds).</strong>
+          <div class="content-idea">"I checked if my email was hacked and found THIS" — reaction/reveal format</div>
+          <div class="content-idea">"3 scams targeting Australians RIGHT NOW" — fast-cut educational</div>
+          <div class="content-idea">"Reply to @user: yes your passwords can be bought online — here's proof"</div>
+          <div class="content-idea">Day in the life — in-person security scan visit (with client permission)</div>
+          <div class="content-idea">Duet/stitch with scam news coverage — add your expert commentary</div>
+          <br/><strong style="color:#ffa500;">Key rule:</strong> Hook in the first 2 seconds. No long intros. Start mid-action or mid-revelation.
+        </div>
+      </div>
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">&#120143; X (Twitter)</div>
+          <span class="task-status s-todo">Skip for now</span>
+        </div>
+        <div class="channel-body" style="color:rgba(252,253,242,.45);">
+          Platform engagement has declined significantly for small local businesses. Cybersecurity professionals use it but it drives minimal local customer traffic. Revisit after 6 months when other channels are established. Not worth the time investment at this stage.
+        </div>
+      </div>
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">Truth Social</div>
+          <span class="task-status s-todo">Skip for now</span>
+        </div>
+        <div class="channel-body" style="color:rgba(252,253,242,.45);">
+          Very limited Australian user base. Not a relevant platform for CyberSurf's target market (Sunshine Coast home users and small businesses). Not worth setting up at this stage.
+        </div>
+      </div>
+
+      <div class="section-title">Brand Voice Guidelines</div>
+      <div class="grid-2">
+        <div class="card">
+          <div style="font-size:13px;color:#00c864;font-weight:700;margin-bottom:10px;">&#10003; Words & Tone to USE</div>
+          <div style="font-size:13px;color:rgba(252,253,242,.65);line-height:1.9;">
+            Plain English · "Your data" not "credentials" · "Protect yourself" not "implement security" · Local and personal (mention Sunshine Coast) · Calm and reassuring · "We found..." · "Here's what to do" · "Simple steps" · "No jargon" · Direct and practical
+          </div>
+        </div>
+        <div class="card">
+          <div style="font-size:13px;color:#ff6b7a;font-weight:700;margin-bottom:10px;">&#10007; Words & Tone to AVOID</div>
+          <div style="font-size:13px;color:rgba(252,253,242,.65);line-height:1.9;">
+            Fear-mongering or panic · Technical jargon (CVE, threat vector, endpoint) · Corporate speak · Competitor names · Overpromising ("100% safe") · ALL CAPS urgency · Vague claims without specifics · "Synergy" / "solutions" / "leverage"
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">30-Day Posting Schedule — First Month</div>
+      <div class="card">
+        <table>
+          <tr><th>Week</th><th>Facebook</th><th>Instagram</th><th>LinkedIn</th></tr>
+          <tr>
+            <td><strong>Week 1</strong><br/><span style="font-size:11px;color:rgba(252,253,242,.35);">Setup + launch</span></td>
+            <td>Set up Business Page. Introduction post: who you are, what CyberSurf does, why you started it. Join 5 local groups.</td>
+            <td>Set up profile. First post: "Is your email in a data breach? Here's how to check in 2 minutes." Link in bio to cybersurf.au</td>
+            <td>Update personal profile. Post: "Why I started CyberSurf Security on the Sunshine Coast." Authentic story.</td>
+          </tr>
+          <tr>
+            <td><strong>Week 2</strong><br/><span style="font-size:11px;color:rgba(252,253,242,.35);">Education</span></td>
+            <td>3 x scam awareness posts (Scamwatch source). 1 x "did you know" breach stat post. Engage in 2 local groups.</td>
+            <td>2 x tip carousels. 1 x Reel (60 sec breach check tutorial). 2 x Stories with polls.</td>
+            <td>2 x educational posts (Notifiable Data Breaches, password tips). Connect with 20 local business owners.</td>
+          </tr>
+          <tr>
+            <td><strong>Week 3</strong><br/><span style="font-size:11px;color:rgba(252,253,242,.35);">Social proof</span></td>
+            <td>Post about what the $30 breach check reveals (anonymised). Share a customer win. 1 x limited time offer post.</td>
+            <td>2 x before/after style posts. 1 x Reel "what a breach report looks like". Story: poll on biggest security fear.</td>
+            <td>Post: "I ran a breach check on a local business this week — here's what we found." (anonymised). Direct message 5 business owners.</td>
+          </tr>
+          <tr>
+            <td><strong>Week 4</strong><br/><span style="font-size:11px;color:rgba(252,253,242,.35);">Conversion</span></td>
+            <td>Clear CTA post: "Get your $30 Breach Check — link below." Share in 3 local groups (check rules first). Boost best-performing post.</td>
+            <td>2 x posts with direct CTA. 1 x Reel with "link in bio" CTA. Story countdown to end of month offer.</td>
+            <td>Post: small business package announcement. Personalised DM to warm connections. Request 2 LinkedIn recommendations.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── UPSELL STRATEGY ── -->
+    <div class="panel" id="panel-upsell">
+      <div class="panel-title">Upsell Strategy</div>
+      <div class="panel-sub">The $30 Breach Check is the front door. Every upsell should feel like the obvious next step.</div>
+
+      <div class="section-title">Upsell Sequence</div>
+      <div class="card">
+        <div style="font-family:monospace;font-size:13px;color:rgba(252,253,242,.7);line-height:2.2;">
+          Basic Breach Check ($30)<br/>
+          &nbsp;&nbsp;↓ <span style="color:#00d2ff;">Same session</span> — Dark Web Monitoring ($15–20/mo) <span style="font-size:11px;color:rgba(252,253,242,.35);">"Your email appeared in 3 breaches — want us to watch for new ones automatically?"</span><br/>
+          &nbsp;&nbsp;↓ <span style="color:#00d2ff;">Same session</span> — 2FA Activation ($49) <span style="font-size:11px;color:rgba(252,253,242,.35);">"Fastest way to protect the breached account right now"</span><br/>
+          &nbsp;&nbsp;↓ <span style="color:#b464ff;">Day 3 email</span> — Password Manager Setup ($49–79) <span style="font-size:11px;color:rgba(252,253,242,.35);">"If your password was exposed, it's likely used on other sites too"</span><br/>
+          &nbsp;&nbsp;↓ <span style="color:#b464ff;">Day 7 email</span> — Home Security Bundle ($129) <span style="font-size:11px;color:rgba(252,253,242,.35);">"Get everything done at once — save $29 on the bundle"</span><br/>
+          &nbsp;&nbsp;↓ <span style="color:#ffa500;">If business owner</span> — Small Business Package ($199) <span style="font-size:11px;color:rgba(252,253,242,.35);">"Are your staff emails protected too?"</span><br/>
+          &nbsp;&nbsp;↓ <span style="color:#ffa500;">Month 2+</span> — Cyber Security Guard ($99–299/mo) <span style="font-size:11px;color:rgba(252,253,242,.35);">"Let us handle this ongoing"</span>
+        </div>
+      </div>
+
+      <div class="section-title">Highest Priority — Build the Post-Purchase Email Sequence</div>
+      <div class="card-orange">
+        <div style="font-size:13px;color:rgba(252,253,242,.7);line-height:1.7;">
+          The post-purchase email sequence is the most valuable asset CyberSurf doesn't have yet. One breach check buyer receiving the right follow-up emails at the right time is worth 3 cold leads. This should be built in Month 1, Week 2 alongside Dark Web Monitoring.<br/><br/>
+          <strong style="color:#ffa500;">3-email sequence:</strong><br/>
+          Email 1 (Day 1): Report delivered + Dark Web Monitoring upsell while urgency is highest<br/>
+          Email 2 (Day 3): Password manager recommendation + 2FA setup guide<br/>
+          Email 3 (Day 7): Bundle offer — "Still haven't set up your password manager? Here's the easy way to get it all done."
+        </div>
+      </div>
+    </div>
+
+    <!-- ── REVENUE PROJECTIONS ── -->
+    <div class="panel" id="panel-revenue">
+      <div class="panel-title">Revenue Projections</div>
+      <div class="panel-sub">Conservative 90-day forecast — Sales & Marketing Executive analysis</div>
+
+      <div class="section-title">Month-by-Month Forecast</div>
+      <div class="grid-3">
+        <div class="card">
+          <div style="font-size:11px;color:rgba(252,253,242,.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Month 1 — April</div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;color:#00d2ff;margin-bottom:12px;">~$325</div>
+          <div class="rev-row"><div class="rev-label">Breach Checks (5 × $30)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:46%"></div></div><div class="rev-val">$150</div></div>
+          <div class="rev-row"><div class="rev-label">Dark Web Mon. (5 × $15)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:23%"></div></div><div class="rev-val">$75</div></div>
+          <div class="rev-row"><div class="rev-label">2FA + PM Setup (2 sessions)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:31%"></div></div><div class="rev-val">$100</div></div>
+        </div>
+        <div class="card">
+          <div style="font-size:11px;color:rgba(252,253,242,.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Month 2 — May</div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;color:#00d2ff;margin-bottom:12px;">~$1,100</div>
+          <div class="rev-row"><div class="rev-label">Breach Checks (10 × $30)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:27%"></div></div><div class="rev-val">$300</div></div>
+          <div class="rev-row"><div class="rev-label">Dark Web Mon. (10 × $15)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:14%"></div></div><div class="rev-val">$150</div></div>
+          <div class="rev-row"><div class="rev-label">Services (4 sessions)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:23%"></div></div><div class="rev-val">$250</div></div>
+          <div class="rev-row"><div class="rev-label">SMB Package (2 × $199)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:36%"></div></div><div class="rev-val">$400</div></div>
+        </div>
+        <div class="card">
+          <div style="font-size:11px;color:rgba(252,253,242,.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Month 3 — June</div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;color:#00d2ff;margin-bottom:12px;">~$2,250</div>
+          <div class="rev-row"><div class="rev-label">Breach Checks (15 × $30)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:20%"></div></div><div class="rev-val">$450</div></div>
+          <div class="rev-row"><div class="rev-label">Dark Web Mon. (20 × $15)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:13%"></div></div><div class="rev-val">$300</div></div>
+          <div class="rev-row"><div class="rev-label">Services (5 sessions)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:13%"></div></div><div class="rev-val">$300</div></div>
+          <div class="rev-row"><div class="rev-label">SMB Package (3 × $199)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:27%"></div></div><div class="rev-val">$600</div></div>
+          <div class="rev-row"><div class="rev-label">Security Scans (4 scans)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:18%"></div></div><div class="rev-val">$400</div></div>
+          <div class="rev-row"><div class="rev-label">New Retainer (+$199/mo)</div><div class="rev-bar-bg"><div class="rev-bar" style="width:9%"></div></div><div class="rev-val">$199</div></div>
+        </div>
+      </div>
+
+      <div class="section-title">Revenue Ranking — Best Opportunities in First 6 Months</div>
+      <table>
+        <tr><th>#</th><th>Product</th><th>Why it ranks here</th></tr>
+        <tr><td style="color:#00d2ff;font-weight:700;">1</td><td><strong>Dark Web Monitoring</strong></td><td>Recurring — 30 subscribers = $450–600/mo compounding. Lowest friction upsell from entry product.</td></tr>
+        <tr><td style="color:#00d2ff;font-weight:700;">2</td><td><strong>Small Business Package</strong></td><td>One sale = 6.6× the Breach Check. 28,000+ Sunshine Coast SMEs. Even 1 per week = $800/mo.</td></tr>
+        <tr><td style="color:#00d2ff;font-weight:700;">3</td><td><strong>Home Security Bundle</strong></td><td>Warm audience — already bought the Breach Check. Pre-sold on the concept.</td></tr>
+        <tr><td style="color:#00d2ff;font-weight:700;">4</td><td><strong>Cyber Security Guard</strong></td><td>Already live. 3 retainer clients at $199/mo = $597/mo baseline — protect this.</td></tr>
+        <tr><td style="color:#00d2ff;font-weight:700;">5</td><td><strong>Password Manager Setup</strong></td><td>High demand once breach awareness triggered. Best value as bundle component.</td></tr>
+        <tr><td style="color:#00d2ff;font-weight:700;">6</td><td><strong>2FA Activation</strong></td><td>Fast to deliver, strong upsell trigger. Best bundled with PM Setup.</td></tr>
+        <tr><td style="color:#00d2ff;font-weight:700;">7</td><td><strong>Home Security Scans</strong></td><td>Good margin. Time-limited solo — valuable for brand-building, not a volume play.</td></tr>
+      </table>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<script>
+  // Navigation
+  function show(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.task-item').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // Persist affiliate status in localStorage
+  function saveStatus(affiliate, value) {
+    localStorage.setItem('aff_' + affiliate, value);
+    updateAffCount();
+  }
+
+  function loadStatuses() {
+    document.querySelectorAll('.status-select').forEach(sel => {
+      const key = sel.getAttribute('onchange').match(/'([^']+)'/)[1];
+      const saved = localStorage.getItem('aff_' + key);
+      if (saved) sel.value = saved;
+    });
+    updateAffCount();
+  }
+
+  function updateAffCount() {
+    const selects = document.querySelectorAll('.status-select');
+    let todo = 0, lodged = 0, waiting = 0, approved = 0;
+    selects.forEach(s => {
+      if (s.value === 'todo') todo++;
+      else if (s.value === 'lodged') lodged++;
+      else if (s.value === 'waiting') waiting++;
+      else if (s.value === 'approved') approved++;
+    });
+    // Update sidebar label
+    const affTask = document.querySelector('[onclick="show(\'affiliates\')"] .task-status');
+    if (approved > 0) {
+      affTask.textContent = approved + ' approved';
+      affTask.className = 'task-status s-approved';
+    } else if (waiting > 0) {
+      affTask.textContent = waiting + ' waiting';
+      affTask.className = 'task-status s-waiting';
+    } else if (lodged > 0) {
+      affTask.textContent = lodged + ' lodged';
+      affTask.className = 'task-status s-lodged';
+    } else {
+      affTask.textContent = todo + ' to apply';
+      affTask.className = 'task-status s-todo';
+    }
+  }
+
+  loadStatuses();
+</script>
+</body>
+</html>

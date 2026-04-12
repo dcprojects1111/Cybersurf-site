@@ -11,6 +11,7 @@ __pycache__/
 config.py
 .env
 *.secret
+CALCOM_API.txt
 
 # Customer data
 reports/

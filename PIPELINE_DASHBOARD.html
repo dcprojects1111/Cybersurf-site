@@ -124,11 +124,11 @@
     <div class="sidebar-section">Products</div>
     <div class="task-item active" onclick="show('offerings')">
       <div class="task-name">Offerings Pipeline</div>
-      <span class="task-status s-priority">7 to launch</span>
+      <span class="task-status s-live">2 Live · 5 to build</span>
     </div>
     <div class="task-item" onclick="show('roadmap')">
       <div class="task-name">90-Day Launch Roadmap</div>
-      <span class="task-status s-build">In planning</span>
+      <span class="task-status s-live">In progress</span>
     </div>
 
     <div class="sidebar-section">Affiliates</div>
@@ -162,6 +162,13 @@
       <div class="panel-title">Offerings Pipeline</div>
       <div class="panel-sub">Ranked by priority — Sales & Marketing Executive recommendation. Build in this order.</div>
 
+      <div class="section-title">Infrastructure — Completed ✓</div>
+      <div style="background:rgba(0,210,100,.05);border:1px solid rgba(0,210,100,.2);border-radius:12px;padding:16px 20px;margin-bottom:24px;font-size:12px;color:rgba(252,253,242,.6);line-height:2;">
+        ✓ Render web app — deployed &nbsp;·&nbsp; ✓ PostgreSQL database — live &nbsp;·&nbsp; ✓ Stripe — connected &nbsp;·&nbsp; ✓ pCloud delivery — working<br/>
+        ✓ cybersurf.au domain — live &nbsp;·&nbsp; ✓ ProtonMail (darryl@cybersurf.au) — receiving emails &nbsp;·&nbsp; ✓ Gmail SMTP (cybersurfau@gmail.com) — sending alerts<br/>
+        ✓ Cal.com — 9 booking types live &nbsp;·&nbsp; ✓ Privacy Policy — published &nbsp;·&nbsp; ✓ Terms of Service — published &nbsp;·&nbsp; ✓ ABN — registered
+      </div>
+
       <div class="section-title">Currently Live</div>
       <div class="grid-2">
         <div class="card-green">
@@ -174,11 +181,23 @@
         </div>
         <div class="card-green">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
-            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Cyber Security Guard</div>
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Dark Web Monitoring</div>
             <span class="task-status s-live">Live</span>
           </div>
-          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$99–299 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">/month</span></div>
-          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Ongoing managed retainer. Protect and grow existing clients.</div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$15<span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">/mo</span> &nbsp;·&nbsp; $30<span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">/2mo</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Stripe subscription ✓ &nbsp;·&nbsp; 2-month pack ✓ &nbsp;·&nbsp; Day 55/60 renewal emails ✓ &nbsp;·&nbsp; cybersurf.au ✓ &nbsp;·&nbsp; ToS ✓</div>
+        </div>
+      </div>
+
+      <div class="section-title">Coming Soon</div>
+      <div class="grid-2">
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px 20px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Cyber Security Guard</div>
+            <span class="task-status s-build">In Planning</span>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">From $850 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">/month</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Ongoing managed retainer. Engagement letter needed before first client.</div>
         </div>
       </div>
 
@@ -194,23 +213,6 @@
         </tr>
         <tr>
           <td style="color:#00d2ff;font-weight:700;">1</td>
-          <td>
-            <strong>Dark Web Monitoring</strong>
-            <div style="margin-top:6px;font-size:11px;color:rgba(252,253,242,.4);line-height:1.9;">
-              Includes:<br/>
-              ✓ Monthly automated re-check (Dehashed + HIBP)<br/>
-              ✓ Email alert if new breach found<br/>
-              ✓ Covers up to 2 email addresses<br/>
-              ✓ Cancel anytime
-            </div>
-          </td>
-          <td>$15–20/mo</td>
-          <td>Stripe subscription product · Website section · Monthly Dehashed re-check · Subscriber ToS clause</td>
-          <td>Yes — manual monthly lookup until 10+ subscribers</td>
-          <td><span class="task-status s-priority">Build first</span></td>
-        </tr>
-        <tr>
-          <td style="color:#00d2ff;font-weight:700;">2</td>
           <td>
             <strong>Home Security Bundle</strong>
             <div style="margin-top:6px;font-size:11px;color:rgba(252,253,242,.4);line-height:1.9;">
@@ -316,6 +318,26 @@
           <td>N/A — just show up with the checklist</td>
           <td><span class="task-status s-todo">Month 3</span></td>
         </tr>
+        <tr style="background:rgba(0,210,255,.04);border-top:2px solid rgba(0,210,255,.2);">
+          <td style="color:#00d2ff;font-weight:700;">8</td>
+          <td>
+            <strong>Home Security Scan Bundle</strong>
+            <div style="display:inline-block;background:rgba(0,210,255,.12);color:#00d2ff;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin:4px 0 6px;">Bundle — #2 + #7</div>
+            <div style="font-size:11px;color:rgba(252,253,242,.4);line-height:1.9;">
+              Includes everything in Home Security Bundle (#2) PLUS In-Person Scan (#7):<br/>
+              ✓ Basic Breach Check &nbsp;<span style="color:rgba(0,210,255,.6);">$30</span><br/>
+              ✓ Password Manager Setup &nbsp;<span style="color:rgba(0,210,255,.6);">$79</span><br/>
+              ✓ 2FA Activation Service &nbsp;<span style="color:rgba(0,210,255,.6);">$49</span><br/>
+              ✓ Home Security Scan — In-Person (3 devices) &nbsp;<span style="color:rgba(0,210,255,.6);">$149</span><br/>
+              ✓ Everything done in one visit — no multiple bookings<br/>
+              <span style="color:rgba(252,253,242,.25);">Total if bought separately: $307</span>
+            </div>
+          </td>
+          <td>$249 one-off<br/><span style="font-size:11px;color:#00c864;">Save $58</span></td>
+          <td>Stripe bundle product · Website bundle section · Calendly with suburb field · Deliver Breach Check + PM Setup + 2FA + In-Person Scan in sequence</td>
+          <td>Yes — don't launch until #2 and #7 are both defined and tested</td>
+          <td><span class="task-status s-todo">Month 3</span></td>
+        </tr>
       </table>
 
       <div class="section-title">Key Rule from Sales Manager</div>
@@ -327,33 +349,62 @@
 
     <!-- ── 90 DAY ROADMAP ── -->
     <div class="panel" id="panel-roadmap">
-      <div class="panel-title">90-Day Launch Roadmap</div>
-      <div class="panel-sub">Sales & Marketing Executive recommendation — April to June 2026</div>
+      <div class="panel-title">Accelerated Launch Roadmap</div>
+      <div class="panel-sub">Sprint-based — full product suite live within 30 days. Every product to market in under a week.</div>
+
+      <div style="margin-bottom:24px;padding:14px 18px;background:rgba(0,210,255,.06);border:1px solid rgba(0,210,255,.25);border-radius:10px;font-size:13px;color:rgba(252,253,242,.75);line-height:1.7;">
+        <strong style="color:#00d2ff;">Sprint Model:</strong> Each product gets a dedicated 3–5 day build sprint. Ship it, sell it, move to the next. No waiting for the next month to start — as soon as one product is live, the next sprint begins.
+      </div>
 
       <div class="month-block">
-        <div class="month-label">Month 1 — April 2026 · Quick Wins & Recurring Revenue</div>
-        <div class="week-item"><div class="week-num">Wk 1–2</div><div>Launch <strong>Dark Web Monitoring</strong> as a Stripe subscription (manual delivery). Add monitoring upsell copy to the Breach Check report and post-purchase email. Create Calendly booking link for 2FA + Password Manager sessions.</div></div>
-        <div class="week-item"><div class="week-num">Wk 3–4</div><div>Add <strong>2FA Activation</strong> and <strong>Password Manager Setup</strong> to the website and Stripe. Write delivery SOPs for both (one A4 page each). Test on 1–2 friends before selling at full price.</div></div>
+        <div class="month-label">Pre-Launch Infrastructure — Completed ✓</div>
+        <div class="week-item"><div class="week-num" style="color:#00c864;">✓ Done</div><div><strong>Render PostgreSQL database</strong> — connected, verified live via <code>/health</code> endpoint. Orders table created. App and DB both returning OK. <span style="color:rgba(252,253,242,.4);font-size:12px;">Confirmed 12 Apr 2026</span></div></div>
+        <div class="week-item"><div class="week-num" style="color:#00c864;">✓ Done</div><div><strong>Render web app</strong> — deployed at cybersurf-webapp-basic.onrender.com. Stripe, Dehashed, pCloud env vars set. HTML breach report live.</div></div>
+      </div>
+
+      <div class="month-block">
+        <div class="month-label">Week 1 — April 2026 · Core Products Live</div>
+        <div class="week-item"><div class="week-num">Day 1–2</div><div>Launch <strong>Dark Web Monitoring</strong> — Stripe subscription product live, upsell copy added to Breach Check report and post-purchase email. Manual delivery until 10+ subscribers.</div></div>
+        <div class="week-item"><div class="week-num">Day 3–4</div><div>Launch <strong>2FA Activation Service</strong> — Stripe product, Calendly 60-min booking, one-page delivery SOP written. First booking accepted.</div></div>
+        <div class="week-item"><div class="week-num">Day 5–7</div><div>Launch <strong>Password Manager Setup</strong> — Stripe (2 price points), Calendly 90-min, Bitwarden walkthrough doc done. Both service pages live on cybersurf.au.</div></div>
         <div style="margin-top:12px;padding:10px 14px;background:rgba(0,200,100,.07);border:1px solid rgba(0,200,100,.2);border-radius:8px;font-size:13px;color:rgba(252,253,242,.65);">
-          <strong style="color:#00c864;">Month 1 Target:</strong> 5 Dark Web Monitoring subscribers + 2 service bookings (~$325 revenue)
+          <strong style="color:#00c864;">Week 1 Target:</strong> 3 core products live · First bookings open · Dark Web Monitoring upsell running
         </div>
       </div>
 
       <div class="month-block">
-        <div class="month-label">Month 2 — May 2026 · Bundle & Business</div>
-        <div class="week-item"><div class="week-num">Wk 5–6</div><div>Create <strong>Home Security Bundle</strong> as a Stripe product. Add bundle section to website. Set up 3-email post-purchase sequence for Breach Check buyers (Day 1: monitoring, Day 3: password manager, Day 7: bundle).</div></div>
-        <div class="week-item"><div class="week-num">Wk 7–8</div><div>Launch <strong>Small Business Package</strong>. Direct outreach to 10 local Sunshine Coast businesses via LinkedIn and local Facebook groups. Add Tally.so intake form to purchase flow.</div></div>
+        <div class="month-label">Week 2 — April 2026 · Bundles & Business Package</div>
+        <div class="week-item"><div class="week-num">Day 8–10</div><div>Launch <strong>Home Security Bundle (#2)</strong> — Stripe bundle product, website bundle section live. Set up 3-email post-purchase sequence for Breach Check buyers (Day 1: monitoring, Day 3: password manager, Day 7: bundle).</div></div>
+        <div class="week-item"><div class="week-num">Day 11–14</div><div>Launch <strong>Small Business Package</strong> — Stripe product, Tally.so intake form, Calendly briefing call. Direct outreach begins to 10 local Sunshine Coast businesses via LinkedIn and local Facebook groups.</div></div>
         <div style="margin-top:12px;padding:10px 14px;background:rgba(0,200,100,.07);border:1px solid rgba(0,200,100,.2);border-radius:8px;font-size:13px;color:rgba(252,253,242,.65);">
-          <strong style="color:#00c864;">Month 2 Target:</strong> 10 monitoring subscribers + 1–2 Small Business sales + first new retainer (~$1,100 revenue)
+          <strong style="color:#00c864;">Week 2 Target:</strong> Bundle live · Small Business outreach underway · First retainer conversation started (~$600+ pipeline)
         </div>
       </div>
 
       <div class="month-block">
-        <div class="month-label">Month 3 — June 2026 · Scans & Consolidation</div>
-        <div class="week-item"><div class="week-num">Wk 9–10</div><div>Define <strong>Home Security Scan</strong> checklist. Launch Remote version with Calendly booking. Price anchor against in-person on the website.</div></div>
-        <div class="week-item"><div class="week-num">Wk 11–12</div><div>Launch <strong>In-Person Scan</strong> (Sunshine Coast postcode zone defined). Review what sold — drop or reprice anything with zero traction. Begin automating Dark Web Monitoring if 10+ subscribers.</div></div>
+        <div class="month-label">Week 3 — April 2026 · Scans Live</div>
+        <div class="week-item"><div class="week-num">Day 15–17</div><div>Launch <strong>Home Security Scan — Remote (#6)</strong> — delivery SOP written, Shodan access confirmed, Calendly 90-min live, price-anchored against in-person on website.</div></div>
+        <div class="week-item"><div class="week-num">Day 18–21</div><div>Launch <strong>Home Security Scan — In-Person (#7)</strong> — Calendly with suburb field, postcode travel zone defined. First in-person booking accepted.</div></div>
         <div style="margin-top:12px;padding:10px 14px;background:rgba(0,200,100,.07);border:1px solid rgba(0,200,100,.2);border-radius:8px;font-size:13px;color:rgba(252,253,242,.65);">
-          <strong style="color:#00c864;">Month 3 Target:</strong> 20 monitoring subscribers + 3+ scan bookings + second retainer (~$2,250 revenue)
+          <strong style="color:#00c864;">Week 3 Target:</strong> All scan products live · Full product suite available to market
+        </div>
+      </div>
+
+      <div class="month-block">
+        <div class="month-label">Week 4 — April 2026 · Scan Bundle + Consolidation</div>
+        <div class="week-item"><div class="week-num">Day 22–25</div><div>Launch <strong>Home Security Scan Bundle (#8)</strong> — Stripe bundle product combining #2 + #7. Website section live. $249 offer with $58 savings anchor.</div></div>
+        <div class="week-item"><div class="week-num">Day 26–30</div><div>Review what sold — drop or reprice anything with zero traction. Begin automating Dark Web Monitoring if 10+ subscribers. Start Month 2 retainer push.</div></div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(0,200,100,.07);border:1px solid rgba(0,200,100,.2);border-radius:8px;font-size:13px;color:rgba(252,253,242,.65);">
+          <strong style="color:#00c864;">Week 4 / Month 1 Target:</strong> All 8 products live · 5+ Dark Web Monitoring subscribers · 2+ service bookings · (~$500–800 revenue)
+        </div>
+      </div>
+
+      <div class="month-block">
+        <div class="month-label">Month 2–3 — May–June 2026 · Scale What Works</div>
+        <div class="week-item"><div class="week-num">May</div><div>Double down on the top 2 performing products. Automate monitoring delivery. First Fractional Security Officer retainer pitch. Target 10+ Dark Web Monitoring subscribers.</div></div>
+        <div class="week-item"><div class="week-num">June</div><div>Begin automating Dark Web Monitoring at 10+ subscribers. Second retainer. LinkedIn content cadence driving inbound. Review and drop underperformers.</div></div>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(0,200,100,.07);border:1px solid rgba(0,200,100,.2);border-radius:8px;font-size:13px;color:rgba(252,253,242,.65);">
+          <strong style="color:#00c864;">Month 2–3 Target:</strong> 20 monitoring subscribers + 2 retainers + ongoing scan bookings (~$2,500–3,500/mo revenue run rate)
         </div>
       </div>
     </div>

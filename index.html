@@ -967,65 +967,12 @@
 </section>
 
 
-<!-- ══ ORDER FORM ══ -->
+<!-- ══ CTA ══ -->
 <section id="cta">
   <h2>Find out what criminals know about you</h2>
   <p class="cta-lead">One $30 report. Results delivered within 24 hours.</p>
 
-  <div class="order-card">
-    <div class="price-badge">Basic Breach Check — $30</div>
-
-    <!--
-    ══════════════════════════════════════
-    TALLY EMBED — swap this in when ready
-    ══════════════════════════════════════
-    Replace everything from <form> to </form> below with:
-    <iframe data-tally-src="https://tally.so/embed/YOUR_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1"
-      loading="lazy" width="100%" height="420" frameborder="0"
-      marginheight="0" marginwidth="0" title="Basic Breach Check Order"></iframe>
-    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-    ══════════════════════════════════════
-    -->
-
-    <form action="https://cybersurf-webapp-basic.onrender.com/create-checkout" method="POST">
-
-      <div class="form-group">
-        <label for="full-name">Full Name</label>
-        <input type="text" id="full-name" name="name" placeholder="Jane Smith" required />
-      </div>
-
-      <div class="form-group">
-        <label for="email1">Email Address to Check</label>
-        <input type="email" id="email1" name="email1" placeholder="you@example.com" required />
-        <p class="field-hint">We will run a breach check against this address.</p>
-      </div>
-
-      <div class="form-group">
-        <label for="email2">Second Email Address <span style="font-weight:400;opacity:.6;">(optional)</span></label>
-        <input type="email" id="email2" name="email2" placeholder="another@example.com" />
-        <p class="field-hint">Must belong to the same person. Both included in your $30 report.</p>
-      </div>
-
-      <hr class="form-divider" />
-
-      <div class="consent-row">
-        <input type="checkbox" id="consent" name="consent" value="yes" required />
-        <label for="consent">
-          I consent to CyberSurf collecting and processing my personal information to perform a data breach check. Data is handled in accordance with the <a href="privacy.html" target="_blank">Privacy Policy</a>.
-        </label>
-      </div>
-
-      <div class="consent-row">
-        <input type="checkbox" id="consent_passwords" name="consent_passwords" value="yes" required />
-        <label for="consent_passwords">
-          I understand my report may contain exposed passwords and credentials found in data breaches linked to my email address. I consent to receiving this information and accept that I am the authorised account holder for all email addresses submitted. I have read and agree to the <a href="terms.html" target="_blank">Terms of Service</a>.
-        </label>
-      </div>
-
-      <button type="submit" class="btn-order">Order My Breach Check &mdash; $30 &rarr;</button>
-      <p class="form-secure-note">&#128274; Secure payment via Stripe &nbsp;&middot;&nbsp; Your details are never sold or shared</p>
-    </form>
-  </div>
+  <a href="breach-check.html" class="btn-primary" style="font-size:17px;padding:18px 44px;display:inline-block;margin-bottom:32px;">Check My Credentials — $30 &rarr;</a>
 
   <p class="cta-alt">
     Prefer to talk first? <a href="https://cal.com/cybersurf/free-call" target="_blank">Book a free call</a>

@@ -33,9 +33,32 @@ Do not try to find it yourself. They hand it to you as part of the process.
 
 ---
 
+## TOOL SETUP — KALI LINUX
+
+Both tools run natively in Kali Linux.
+
+**Nmap** is pre-installed. No setup needed — open a terminal and run.
+
+**Shodan CLI** — one-time setup:
+```bash
+pip install shodan
+shodan init <your-api-key>
+```
+
+Get your API key from `account.shodan.io`. Free tier covers basic host lookups. The $49 USD one-time paid membership unlocks full results, historical data, and CVE listings — worth it once you're running this as a paid service regularly.
+
+Once set up, query from terminal:
+```bash
+shodan host <client_ip>
+```
+
+Or just use the website — `shodan.io` — search the IP in the browser and screenshot the results. The CLI is faster once you're doing it at volume.
+
+---
+
 ## STEP 2 — SHODAN (Passive — run first, no traffic sent to client)
 
-Go to `shodan.io` and search their IP address.
+Go to `shodan.io` and search their IP address (or run `shodan host <ip>` in Kali terminal).
 
 **What to look for:**
 

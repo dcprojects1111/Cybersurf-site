@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check Your Credentials — CyberSurf Security</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --aqua:    #00d2ff;
+      --ocean:   #0077be;
+      --sand:    #fcfdf2;
+      --charcoal:#2d3436;
+      --red:     #ff4757;
+      --navy:    #0a1628;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(160deg, var(--navy) 0%, #0d2240 100%);
+      min-height: 100vh;
+      color: var(--sand);
+    }
+
+    /* ── Minimal header ── */
+    .header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(0,210,255,.1);
+      text-align: center;
+    }
+    .brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .brand span { color: var(--aqua); }
+
+    /* ── Page layout ── */
+    .page {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+
+    /* ── Badge ── */
+    .badge {
+      display: inline-block;
+      background: rgba(255,200,0,.12);
+      border: 1px solid rgba(255,200,0,.35);
+      color: #ffd200;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* ── Headline ── */
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      line-height: 1.2;
+      color: var(--sand);
+      margin-bottom: 12px;
+    }
+    h1 .highlight {
+      color: var(--aqua);
+    }
+    .sub {
+      font-size: 15px;
+      color: rgba(252,253,242,.6);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .money-line {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--sand);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    /* ── Trust strip ── */
+    .trust-strip {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      padding: 14px 18px;
+      background: rgba(0,210,255,.05);
+      border: 1px solid rgba(0,210,255,.15);
+      border-radius: 10px;
+      font-size: 12px;
+      color: rgba(252,253,242,.55);
+    }
+    .trust-item { display: flex; align-items: center; gap: 6px; }
+    .trust-item::before { content: "✓"; color: var(--aqua); font-weight: 700; }
+
+    /* ── Form card ── */
+    .form-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(0,210,255,.2);
+      border-radius: 18px;
+      padding: 32px;
+    }
+    .price-badge {
+      display: inline-block;
+      background: rgba(0,210,255,.12);
+      border: 1px solid rgba(0,210,255,.35);
+      color: var(--aqua);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .form-group { margin-bottom: 16px; }
+    label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--aqua);
+      margin-bottom: 7px;
+    }
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(0,210,255,.22);
+      border-radius: 8px;
+      padding: 13px 16px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 15px;
+      color: var(--sand);
+      outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    input::placeholder { color: rgba(252,253,242,.28); }
+    input:focus {
+      border-color: var(--aqua);
+      background: rgba(0,210,255,.05);
+    }
+    .field-hint {
+      font-size: 12px;
+      color: rgba(252,253,242,.35);
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(0,210,255,.1);
+      margin: 18px 0;
+    }
+
+    /* ── Consent ── */
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .consent-row input[type="checkbox"] {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--aqua);
+      cursor: pointer;
+    }
+    .consent-row label {
+      font-family: 'Roboto', sans-serif;
+      font-size: 13px;
+      color: rgba(252,253,242,.55);
+      line-height: 1.55;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 400;
+      cursor: pointer;
+    }
+    .consent-row label a { color: var(--aqua); }
+
+    /* ── Button ── */
+    .btn-order {
+      width: 100%;
+      background: linear-gradient(135deg, var(--aqua) 0%, var(--ocean) 100%);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 17px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      margin-top: 6px;
+      letter-spacing: .3px;
+    }
+    .btn-order:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0,119,190,.4);
+    }
+    .secure-note {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(252,253,242,.3);
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── Back link ── */
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 28px;
+      font-size: 13px;
+      color: rgba(252,253,242,.3);
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--aqua); }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 24px; }
+      .form-card { padding: 24px 20px; }
+      .trust-strip { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Minimal header — no nav links, no exit paths -->
+  <div class="header">
+    <a href="/" class="brand">Cyber<span>Surf</span> Security</a>
+  </div>
+
+  <div class="page">
+
+    <div class="badge">⚠ Basic Breach Check — Sunshine Coast</div>
+
+    <h1>Find out if your password<br>has been <span class="highlight">stolen and sold.</span></h1>
+
+    <p class="sub">We search the same criminal databases that hackers use.</p>
+    <p class="money-line">For most people, it's already happened.<br>Most just don't know yet.</p>
+
+    <!-- Trust strip -->
+    <div class="trust-strip">
+      <div class="trust-item">14 billion+ records searched</div>
+      <div class="trust-item">Results within 24 hours</div>
+      <div class="trust-item">Data deleted after delivery</div>
+      <div class="trust-item">Sunshine Coast based</div>
+    </div>
+
+    <!-- Form card -->
+    <div class="form-card">
+      <div class="price-badge">Basic Breach Check — $30</div>
+
+      <form action="https://cybersurf-webapp-basic.onrender.com/create-checkout" method="POST">
+
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+        </div>
+
+        <hr class="divider" />
+
+        <div class="form-group">
+          <label for="email1">Email Address to Check</label>
+          <input type="email" id="email1" name="email1" placeholder="you@example.com" required />
+          <p class="field-hint">We search breach databases for this address.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="email2">Second Email <span style="font-weight:400;opacity:.6;">(optional)</span></label>
+          <input type="email" id="email2" name="email2" placeholder="partner or business email" />
+          <p class="field-hint">Add a partner or business email — both included in your $30 report.</p>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="consent-row">
+          <input type="checkbox" id="consent" name="consent" value="yes" required />
+          <label for="consent">
+            I authorise CyberSurf to search breach databases on my behalf. I confirm these email addresses belong to me. Data is handled per the <a href="privacy.html" target="_blank">Privacy Policy</a>.
+          </label>
+        </div>
+
+        <div class="consent-row">
+          <input type="checkbox" id="consent_passwords" name="consent_passwords" value="yes" required />
+          <label for="consent_passwords">
+            I understand my report may contain exposed passwords found in data breaches. I have read and agree to the <a href="terms.html" target="_blank">Terms of Service</a>.
+          </label>
+        </div>
+
+        <button type="submit" class="btn-order">Check My Credentials — $30 &rarr;</button>
+        <p class="secure-note">&#128274; Secure payment via Stripe &nbsp;&middot;&nbsp; No subscription &nbsp;&middot;&nbsp; Your data is never sold or shared</p>
+
+      </form>
+    </div>
+
+    <a href="/" class="back-link">&larr; Back to CyberSurf Security</a>
+
+  </div>
+
+</body>
+</html>

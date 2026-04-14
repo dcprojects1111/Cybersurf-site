@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Security Scan Bundle — CyberSurf Security</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --aqua:    #00d2ff;
+      --ocean:   #0077be;
+      --sand:    #fcfdf2;
+      --navy:    #0a1628;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(160deg, var(--navy) 0%, #0d2240 100%);
+      min-height: 100vh;
+      color: var(--sand);
+    }
+
+    .header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(0,210,255,.1);
+      text-align: center;
+    }
+    .brand { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: #fff; text-decoration: none; }
+    .brand span { color: var(--aqua); }
+
+    .page { max-width: 560px; margin: 0 auto; padding: 48px 24px 72px; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,200,0,.12);
+      border: 1px solid rgba(255,200,0,.35);
+      color: #ffd200;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 30px;
+      line-height: 1.2;
+      color: var(--sand);
+      margin-bottom: 14px;
+    }
+    h1 .highlight { color: var(--aqua); }
+
+    .sub {
+      font-size: 15px;
+      color: rgba(252,253,242,.6);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    /* Value stack */
+    .value-stack {
+      background: rgba(0,210,255,.05);
+      border: 1px solid rgba(0,210,255,.15);
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 28px;
+    }
+    .value-stack-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--aqua);
+      margin-bottom: 16px;
+    }
+    .stack-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0,210,255,.08);
+    }
+    .stack-item:last-of-type { border-bottom: none; }
+    .stack-left { display: flex; align-items: flex-start; gap: 10px; }
+    .stack-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+    .stack-name { font-size: 13px; color: rgba(252,253,242,.8); font-weight: 500; }
+    .stack-desc { font-size: 11px; color: rgba(252,253,242,.4); margin-top: 2px; line-height: 1.4; }
+    .stack-price { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: rgba(252,253,242,.35); flex-shrink: 0; margin-left: 16px; margin-top: 2px; }
+    .stack-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      margin-top: 4px;
+    }
+    .stack-total-label { font-size: 12px; color: rgba(252,253,242,.35); }
+    .stack-total-price { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: rgba(252,253,242,.35); text-decoration: line-through; }
+
+    /* Bundle price card */
+    .bundle-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(0,210,255,.25);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .bundle-price {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      color: var(--sand);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .bundle-price .currency { font-size: 28px; vertical-align: top; margin-top: 8px; display: inline-block; }
+    .bundle-saving {
+      display: inline-block;
+      background: rgba(0,200,100,.12);
+      border: 1px solid rgba(0,200,100,.3);
+      color: #00c864;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .bundle-tagline {
+      font-size: 14px;
+      color: rgba(252,253,242,.5);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* Sequence steps */
+    .sequence {
+      margin-bottom: 28px;
+    }
+    .sequence-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(252,253,242,.4);
+      margin-bottom: 14px;
+    }
+    .seq-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .seq-day {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--aqua);
+      width: 52px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .seq-content { font-size: 13px; color: rgba(252,253,242,.65); line-height: 1.5; }
+    .seq-content strong { color: var(--sand); }
+
+    /* CTA */
+    .btn-book {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--aqua) 0%, var(--ocean) 100%);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      padding: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      margin-bottom: 14px;
+    }
+    .btn-book:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0,119,190,.4);
+    }
+    .secure-note {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(252,253,242,.3);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .or-line {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(252,253,242,.25);
+      margin: 20px 0;
+      position: relative;
+    }
+    .or-line::before, .or-line::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 43%;
+      height: 1px;
+      background: rgba(0,210,255,.1);
+    }
+    .or-line::before { left: 0; }
+    .or-line::after { right: 0; }
+
+    .contact-note {
+      text-align: center;
+      font-size: 13px;
+      color: rgba(252,253,242,.4);
+      line-height: 1.7;
+    }
+    .contact-note a { color: var(--aqua); text-decoration: none; }
+    .contact-note a:hover { text-decoration: underline; }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 32px;
+      font-size: 13px;
+      color: rgba(252,253,242,.3);
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--aqua); }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 24px; }
+      .bundle-price { font-size: 44px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="/" class="brand">Cyber<span>Surf</span> Security</a>
+  </div>
+
+  <div class="page">
+
+    <div class="badge">&#127965; Best Value — Sunshine Coast</div>
+
+    <h1>From exposed to protected<br><span class="highlight">in one week.</span></h1>
+
+    <p class="sub">
+      One provider. Everything done in sequence. Your Breach Check report tells us what's exposed — then we fix it, lock every account, and check your home network from the outside. Done in a week. No juggling multiple bookings.
+    </p>
+
+    <!-- Value stack -->
+    <div class="value-stack">
+      <div class="value-stack-title">What's included</div>
+
+      <div class="stack-item">
+        <div class="stack-left">
+          <div class="stack-icon">🔍</div>
+          <div>
+            <div class="stack-name">Basic Breach Check</div>
+            <div class="stack-desc">Report delivered within 24 hours — shows exactly which credentials are exposed</div>
+          </div>
+        </div>
+        <div class="stack-price">$30</div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-left">
+          <div class="stack-icon">🔑</div>
+          <div>
+            <div class="stack-name">Lock Change Session</div>
+            <div class="stack-desc">45-min Zoom — Bitwarden vault set up, every exposed password replaced</div>
+          </div>
+        </div>
+        <div class="stack-price">$79</div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-left">
+          <div class="stack-icon">🔐</div>
+          <div>
+            <div class="stack-name">2FA Activation</div>
+            <div class="stack-desc">30-min Zoom — two-factor authentication on email, banking, and social accounts</div>
+          </div>
+        </div>
+        <div class="stack-price">$49</div>
+      </div>
+
+      <div class="stack-item">
+        <div class="stack-left">
+          <div class="stack-icon">🏠</div>
+          <div>
+            <div class="stack-name">Home Security Scan — In-Person</div>
+            <div class="stack-desc">External network scan, router check, device scan, written report within 2 days</div>
+          </div>
+        </div>
+        <div class="stack-price">$229</div>
+      </div>
+
+      <div class="stack-total">
+        <div class="stack-total-label">If bought separately</div>
+        <div class="stack-total-price">$387</div>
+      </div>
+    </div>
+
+    <!-- Bundle price card -->
+    <div class="bundle-card">
+      <div class="bundle-price"><span class="currency">$</span>299</div>
+      <div class="bundle-saving">Save $88</div>
+      <div class="bundle-tagline">One price. One week. Everything done.</div>
+
+      <a href="https://cybersurf-webapp-basic.onrender.com/book-home-scan-bundle" class="btn-book">Get the Full Bundle — $299 &rarr;</a>
+      <p class="secure-note">&#128274; Secure payment via Stripe &nbsp;&middot;&nbsp; Sunshine Coast in-person &nbsp;&middot;&nbsp; Booking confirmation by email</p>
+    </div>
+
+    <!-- Delivery sequence -->
+    <div class="sequence">
+      <div class="sequence-title">How it's delivered</div>
+      <div class="seq-item">
+        <div class="seq-day">Day 1</div>
+        <div class="seq-content"><strong>Breach Check report</strong> delivered via secure link — shows every exposed credential</div>
+      </div>
+      <div class="seq-item">
+        <div class="seq-day">Day 2–3</div>
+        <div class="seq-content"><strong>Lock Change session</strong> (Zoom, 45 min) — password vault set up, every exposed password replaced</div>
+      </div>
+      <div class="seq-item">
+        <div class="seq-day">Day 3–4</div>
+        <div class="seq-content"><strong>2FA Activation</strong> (Zoom, 30 min) — second lock on every account that matters</div>
+      </div>
+      <div class="seq-item">
+        <div class="seq-day">Day 5–7</div>
+        <div class="seq-content"><strong>In-person Home Security Scan</strong> — Darryl comes to you, scans the network, checks the router, scans devices. Report within 2 days.</div>
+      </div>
+    </div>
+
+    <div class="or-line">or</div>
+
+    <div class="contact-note">
+      Questions? <a href="https://cal.com/cybersurf/free-call" target="_blank">Book a free call</a>
+      &nbsp;&middot;&nbsp; <a href="mailto:support@cybersurf.au">support@cybersurf.au</a>
+    </div>
+
+    <a href="/" class="back-link">&larr; Back to CyberSurf Security</a>
+
+  </div>
+
+</body>
+</html>

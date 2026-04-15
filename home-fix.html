@@ -193,6 +193,30 @@
     }
     .step-desc { font-size: 13px; color: rgba(252,253,242,.5); line-height: 1.6; }
 
+    .scope-note {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-top: 12px;
+      margin-bottom: 32px;
+    }
+    .scope-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(252,253,242,.35);
+      margin-bottom: 8px;
+    }
+    .scope-note p {
+      font-size: 13px;
+      color: rgba(252,253,242,.45);
+      line-height: 1.7;
+    }
+    .scope-note a { color: rgba(0,210,255,.6); text-decoration: none; }
+
     .footer-note {
       font-size: 12px;
       color: rgba(252,253,242,.3);
@@ -218,18 +242,22 @@
 
 <div class="page">
 
-  <div class="badge">Launch Offer — Limited Spots</div>
-  <h1>Fix everything<br><span class="highlight">your scan found.</span></h1>
-  <p class="sub">A 90-minute session — Zoom or in-person on the Sunshine Coast. We open your report, work through every issue together, and get it fixed while you watch.</p>
+  <div class="badge">Launch Offer — First 7 Homes Free</div>
+  <h1>Your scan found something.<br><span class="highlight">We'll fix it today.</span></h1>
+  <p class="sub">Malware on a device. Open ports on your router. Vulnerabilities in your network. If your Home Security Scan turned up anything — we come back and fix it the same day. No second appointment. No extra bill. Free for the first 7 homes.</p>
 
   <div class="includes">
-    <div class="includes-title">What we fix in the session</div>
-    <div class="inc-row"><span class="inc-icon">🔒</span>Router admin password — changed from default to something strong</div>
+    <div class="includes-title">What the Fix Session covers</div>
+    <div class="inc-row"><span class="inc-icon">🦠</span>Malware removal — any threats found by Malwarebytes during the scan, removed on-site</div>
     <div class="inc-row"><span class="inc-icon">📡</span>Open ports and exposed services — closed off in your router settings</div>
-    <div class="inc-row"><span class="inc-icon">🔄</span>Router firmware — updated if out of date</div>
-    <div class="inc-row"><span class="inc-icon">📶</span>Wi-Fi password — replaced with a strong passphrase if needed</div>
-    <div class="inc-row"><span class="inc-icon">🏠</span>Guest network — separated from your main network</div>
-    <div class="inc-row"><span class="inc-icon">💻</span>Device OS updates — run and confirmed on all scanned devices</div>
+    <div class="inc-row"><span class="inc-icon">🔄</span>Router firmware — updated to the latest version</div>
+    <div class="inc-row"><span class="inc-icon">🏠</span>Network vulnerabilities — any configuration issues identified in your report, resolved</div>
+    <div class="inc-row"><span class="inc-icon">💻</span>Device vulnerabilities — OS updates and security patches applied to scanned devices</div>
+  </div>
+
+  <div class="scope-note">
+    <div class="scope-title">Not included in this session</div>
+    <p>The Fix Session is scoped to malware removal and vulnerabilities found in your scan report. It does not include password manager setup, 2FA activation, or credential management — those are available as separate services (<a href="lock-change.html">Lock Change — $79</a> and <a href="https://cybersurf-webapp-basic.onrender.com/book-2fa">2FA Activation — $49</a>).</p>
   </div>
 
   <div class="steps">
@@ -237,22 +265,22 @@
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-body">
-        <div class="step-title">Book below</div>
-        <div class="step-desc">Claim your spot and we'll email you a calendar link to pick a time.</div>
+        <div class="step-title">Book your Home Security Scan</div>
+        <div class="step-desc">When you book your scan, let us know you want the Fix Session the same day. We'll block the extra 90 minutes.</div>
       </div>
     </div>
     <div class="step">
       <div class="step-num">2</div>
       <div class="step-body">
-        <div class="step-title">We review your scan report together</div>
-        <div class="step-desc">Bring your report — we go through every finding and explain what it means.</div>
+        <div class="step-title">We scan and deliver the report on-site</div>
+        <div class="step-desc">External network scan, router check, Malwarebytes device scan — report delivered to you on the day.</div>
       </div>
     </div>
     <div class="step">
       <div class="step-num">3</div>
       <div class="step-body">
-        <div class="step-title">We fix it on the spot</div>
-        <div class="step-desc">Router settings, firmware, passwords, network config — done in the session, not left as homework.</div>
+        <div class="step-title">We fix everything before we leave</div>
+        <div class="step-desc">Malware removed, vulnerabilities patched, router locked down — done the same day. You don't have to book a second appointment or wait.</div>
       </div>
     </div>
   </div>
@@ -263,11 +291,11 @@
       <div class="price-free">FREE</div>
     </div>
     <div class="spots-note">
-      <strong>First 7 customers only.</strong> After that, this session returns to $149.<br/>
-      No voucher code needed — just book below.
+      <strong>First 7 homes only.</strong> After that, this session returns to $149.<br/>
+      Must be completed the same day as your scan. No voucher code needed.
     </div>
     <a href="https://cybersurf-webapp-basic.onrender.com/book-fix-session" class="btn-book">Claim your free Fix Session &rarr;</a>
-    <p class="after-note">Zoom (online) or in-person — Sunshine Coast</p>
+    <p class="after-note">In-person — Sunshine Coast &nbsp;·&nbsp; Same day as your scan</p>
   </div>
 
   <div class="footer-note">

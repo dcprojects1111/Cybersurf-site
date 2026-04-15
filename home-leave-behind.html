@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CyberSurf — Leave Behind Card (Print)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@400;500&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+        display: block;
+      }
+      .print-note { display: none; }
+      .card {
+        box-shadow: none !important;
+        margin: 0 !important;
+        page-break-inside: avoid;
+      }
+    }
+
+    .print-note {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 24px;
+    }
+    .print-note strong { color: #333; }
+
+    /* A5 = 148mm × 210mm */
+    .card {
+      width: 148mm;
+      height: 210mm;
+      background: #0a1628;
+      border-radius: 8px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.35);
+      padding: 14mm 12mm 12mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle background texture */
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(0,210,255,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(0,119,190,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Brand */
+    .brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+      letter-spacing: .5px;
+      margin-bottom: 10mm;
+    }
+    .brand span { color: #00d2ff; }
+
+    /* Hero */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .question {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      color: #fcfdf2;
+      line-height: 1.2;
+      margin-bottom: 4mm;
+    }
+    .question span { color: #00d2ff; }
+
+    .answer {
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      color: rgba(252,253,242,.55);
+      line-height: 1.6;
+      margin-bottom: 7mm;
+    }
+
+    /* Includes list */
+    .includes {
+      margin-bottom: 7mm;
+    }
+    .inc-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 11px;
+      color: rgba(252,253,242,.75);
+      line-height: 1.5;
+      margin-bottom: 3px;
+    }
+    .inc-row::before {
+      content: "✓";
+      color: #00d2ff;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 10px;
+      margin-top: 1px;
+    }
+
+    /* Price block */
+    .price-block {
+      background: rgba(0,210,255,.07);
+      border: 1px solid rgba(0,210,255,.2);
+      border-radius: 8px;
+      padding: 4mm 5mm;
+      margin-bottom: 6mm;
+    }
+    .price-row-inner {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 3px;
+    }
+    .price-main {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      color: #fcfdf2;
+    }
+    .price-save {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      color: #00c864;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      background: rgba(0,200,100,.12);
+      border: 1px solid rgba(0,200,100,.25);
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+    .price-sub {
+      font-family: 'Roboto', sans-serif;
+      font-size: 10px;
+      color: rgba(252,253,242,.4);
+      line-height: 1.5;
+    }
+
+    /* Launch badge */
+    .launch-badge {
+      display: inline-block;
+      background: rgba(255,200,0,.12);
+      border: 1px solid rgba(255,200,0,.3);
+      color: #ffd200;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 10px;
+      margin-bottom: 4mm;
+    }
+
+    /* Free fix callout */
+    .fix-callout {
+      background: rgba(0,200,100,.07);
+      border: 1px solid rgba(0,200,100,.2);
+      border-radius: 7px;
+      padding: 3mm 4mm;
+      margin-bottom: 6mm;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .fix-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .fix-text {
+      font-family: 'Roboto', sans-serif;
+      font-size: 10px;
+      color: rgba(252,253,242,.7);
+      line-height: 1.6;
+    }
+    .fix-text strong { color: #00c864; }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid rgba(0,210,255,.1);
+      padding-top: 5mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .contact {
+      font-family: 'Roboto', sans-serif;
+      font-size: 10px;
+      color: rgba(252,253,242,.45);
+      line-height: 1.7;
+    }
+    .contact strong {
+      color: rgba(252,253,242,.8);
+      display: block;
+      font-size: 11px;
+      margin-bottom: 1px;
+    }
+
+    /* QR placeholder */
+    .qr-box {
+      width: 22mm;
+      height: 22mm;
+      background: #fff;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .qr-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 7px;
+      color: #0a1628;
+      text-align: center;
+      letter-spacing: .3px;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+<div class="print-note">
+  <strong>Print settings:</strong> A5 paper · Fit to page · No margins · Colour
+  &nbsp;·&nbsp; Take to Officeworks for best result
+</div>
+
+<div class="card">
+
+  <div class="brand">Cyber<span>Surf</span> Security</div>
+
+  <div class="hero">
+
+    <div class="launch-badge">Launch Offer — First 7 Homes</div>
+
+    <div class="question">Is your home network<br>safe from <span>the outside?</span></div>
+    <div class="answer">Most aren't. Open ports, outdated firmware, and malware on shared devices — and most families have no idea. We check your network the way an attacker would, and tell you exactly what's at risk.</div>
+
+    <div class="includes">
+      <div class="inc-row">Breach Check — every email address scanned</div>
+      <div class="inc-row">Password vault setup — every exposed credential replaced</div>
+      <div class="inc-row">2FA activated on email, banking &amp; social</div>
+      <div class="inc-row">In-person home network scan — router, devices, report</div>
+    </div>
+
+    <div class="price-block">
+      <div class="price-row-inner">
+        <div class="price-main">$299</div>
+        <div class="price-save">Save $237</div>
+      </div>
+      <div class="price-sub">Complete Home Security Check &nbsp;·&nbsp; Worth $536 separately &nbsp;·&nbsp; Sunshine Coast in-person</div>
+    </div>
+
+    <div class="fix-callout">
+      <div class="fix-icon">🛠️</div>
+      <div class="fix-text"><strong>Fix Session included free — launch offer.</strong> If the scan finds malware or vulnerabilities, we fix everything before we leave. Same day. No extra charge. First 7 bundles only.</div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="contact">
+      <strong>Darryl — CyberSurf Security</strong>
+      Sunshine Coast, QLD<br>
+      04XX XXX XXX<br>
+      cybersurf.au
+    </div>
+    <div class="qr-box">
+      <div class="qr-label">SCAN TO<br>BOOK<br>———<br>cybersurf.au<br>/home-scan<br>-bundle</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

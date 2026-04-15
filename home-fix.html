@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Security Fix Session — CyberSurf Security</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --aqua:    #00d2ff;
+      --ocean:   #0077be;
+      --sand:    #fcfdf2;
+      --navy:    #0a1628;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(160deg, var(--navy) 0%, #0d2240 100%);
+      min-height: 100vh;
+      color: var(--sand);
+    }
+
+    .header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(0,210,255,.1);
+      text-align: center;
+    }
+    .brand { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: #fff; text-decoration: none; }
+    .brand span { color: var(--aqua); }
+
+    .page { max-width: 560px; margin: 0 auto; padding: 48px 24px 72px; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,200,0,.12);
+      border: 1px solid rgba(255,200,0,.35);
+      color: #ffd200;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 34px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+    h1 .highlight { color: var(--aqua); }
+
+    .sub {
+      font-size: 16px;
+      color: rgba(252,253,242,.6);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    /* What's included */
+    .includes {
+      background: rgba(0,210,255,.05);
+      border: 1px solid rgba(0,210,255,.2);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 32px;
+    }
+    .includes-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(0,210,255,.6);
+      margin-bottom: 14px;
+    }
+    .inc-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(0,210,255,.08);
+      font-size: 14px;
+      color: rgba(252,253,242,.8);
+      line-height: 1.5;
+    }
+    .inc-row:last-of-type { border-bottom: none; }
+    .inc-icon { flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+
+    /* Price card */
+    .price-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(0,210,255,.2);
+      border-radius: 18px;
+      padding: 36px 32px;
+      margin-bottom: 32px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+    .price-was {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      color: rgba(252,253,242,.3);
+      text-decoration: line-through;
+    }
+    .price-free {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 52px;
+      color: #00c864;
+      line-height: 1;
+    }
+
+    .spots-note {
+      font-size: 13px;
+      color: rgba(252,253,242,.45);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .spots-note strong { color: #ffd200; }
+
+    .btn-book {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--aqua) 0%, var(--ocean) 100%);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      text-align: center;
+      padding: 18px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-book:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,210,255,.25); }
+
+    .after-note {
+      font-size: 12px;
+      color: rgba(252,253,242,.3);
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    /* How it works */
+    .steps { margin-bottom: 36px; }
+    .steps-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(0,210,255,.6);
+      margin-bottom: 16px;
+    }
+    .step {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: rgba(0,210,255,.3);
+      flex-shrink: 0;
+      width: 28px;
+      line-height: 1.4;
+    }
+    .step-body {}
+    .step-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #fcfdf2;
+      margin-bottom: 3px;
+    }
+    .step-desc { font-size: 13px; color: rgba(252,253,242,.5); line-height: 1.6; }
+
+    .footer-note {
+      font-size: 12px;
+      color: rgba(252,253,242,.3);
+      text-align: center;
+      margin-top: 8px;
+      line-height: 1.7;
+    }
+    .footer-note a { color: rgba(0,210,255,.6); text-decoration: none; }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 26px; }
+      .price-free { font-size: 42px; }
+      .price-was { font-size: 22px; }
+      .price-card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <a href="index.html" class="brand">Cyber<span>Surf</span> Security</a>
+</header>
+
+<div class="page">
+
+  <div class="badge">Launch Offer — Limited Spots</div>
+  <h1>Fix everything<br><span class="highlight">your scan found.</span></h1>
+  <p class="sub">A 90-minute session — Zoom or in-person on the Sunshine Coast. We open your report, work through every issue together, and get it fixed while you watch.</p>
+
+  <div class="includes">
+    <div class="includes-title">What we fix in the session</div>
+    <div class="inc-row"><span class="inc-icon">🔒</span>Router admin password — changed from default to something strong</div>
+    <div class="inc-row"><span class="inc-icon">📡</span>Open ports and exposed services — closed off in your router settings</div>
+    <div class="inc-row"><span class="inc-icon">🔄</span>Router firmware — updated if out of date</div>
+    <div class="inc-row"><span class="inc-icon">📶</span>Wi-Fi password — replaced with a strong passphrase if needed</div>
+    <div class="inc-row"><span class="inc-icon">🏠</span>Guest network — separated from your main network</div>
+    <div class="inc-row"><span class="inc-icon">💻</span>Device OS updates — run and confirmed on all scanned devices</div>
+  </div>
+
+  <div class="steps">
+    <div class="steps-title">How it works</div>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Book below</div>
+        <div class="step-desc">Claim your spot and we'll email you a calendar link to pick a time.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">We review your scan report together</div>
+        <div class="step-desc">Bring your report — we go through every finding and explain what it means.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">We fix it on the spot</div>
+        <div class="step-desc">Router settings, firmware, passwords, network config — done in the session, not left as homework.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="price-card">
+    <div class="price-row">
+      <div class="price-was">$149</div>
+      <div class="price-free">FREE</div>
+    </div>
+    <div class="spots-note">
+      <strong>First 7 customers only.</strong> After that, this session returns to $149.<br/>
+      No voucher code needed — just book below.
+    </div>
+    <a href="https://cybersurf-webapp-basic.onrender.com/book-fix-session" class="btn-book">Claim your free Fix Session &rarr;</a>
+    <p class="after-note">Zoom (online) or in-person — Sunshine Coast</p>
+  </div>
+
+  <div class="footer-note">
+    Questions? <a href="mailto:support@cybersurf.au">support@cybersurf.au</a> &nbsp;·&nbsp; Sunshine Coast, QLD
+  </div>
+
+</div>
+</body>
+</html>

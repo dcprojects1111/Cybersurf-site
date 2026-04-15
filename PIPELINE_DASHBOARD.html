@@ -131,6 +131,12 @@
       <span class="task-status s-live">In progress</span>
     </div>
 
+    <div class="sidebar-section">Action Queue</div>
+    <div class="task-item" onclick="show('actions')">
+      <div class="task-name">Open Tasks — Do In Order</div>
+      <span class="task-status s-priority">7 open</span>
+    </div>
+
     <div class="sidebar-section">Affiliates</div>
     <div class="task-item" onclick="show('affiliates')">
       <div class="task-name">Affiliate Tracker</div>
@@ -566,6 +572,33 @@
       <div class="panel-title">Social Media Setup</div>
       <div class="panel-sub">Social Media Expert guidance — channels, content strategy, brand voice, and 30-day posting schedule.</div>
 
+      <div style="background:rgba(0,210,255,.05);border:1px solid rgba(0,210,255,.2);border-radius:12px;padding:18px 22px;margin-bottom:24px;">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:#00d2ff;margin-bottom:12px;">Account Setup Checklist — Do In This Order</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(255,165,0,.07);border:1px solid rgba(255,165,0,.25);border-radius:8px;">
+            <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;color:#ffa500;width:20px;flex-shrink:0;">1</span>
+            <span><strong style="color:#ffa500;">Google Business Profile</strong> — <a href="https://business.google.com" target="_blank">business.google.com</a> &nbsp;·&nbsp; <span style="color:rgba(252,253,242,.45);">Drives local search. Verification 1–5 days. Do this before anything else.</span></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(0,210,255,.04);border:1px solid rgba(0,210,255,.12);border-radius:8px;">
+            <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;color:#00d2ff;width:20px;flex-shrink:0;">2</span>
+            <span><strong>Facebook Business Page</strong> — CyberSurf Security &nbsp;·&nbsp; <span style="color:rgba(252,253,242,.45);">Then join 5 local Sunshine Coast groups.</span></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(0,210,255,.04);border:1px solid rgba(0,210,255,.12);border-radius:8px;">
+            <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;color:#00d2ff;width:20px;flex-shrink:0;">3</span>
+            <span><strong>Instagram Business Account</strong> — connect to Facebook page. Bio link → cybersurf.au</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(0,210,255,.04);border:1px solid rgba(0,210,255,.12);border-radius:8px;">
+            <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;color:#00d2ff;width:20px;flex-shrink:0;">4</span>
+            <span><strong>LinkedIn Company Page</strong> — link from Darryl's personal profile. Post as personal account, not company page.</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:8px;color:rgba(252,253,242,.3);font-size:12px;">
+            <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;width:20px;flex-shrink:0;">5</span>
+            <span>YouTube &amp; TikTok — Month 2 onwards, skip for now</span>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:rgba(252,253,242,.35);">Posts are already drafted in MARKETING/SOCIAL_POSTS.md — only publish after accounts are live.</div>
+      </div>
+
       <!-- Google Business Profile — CRITICAL -->
       <div style="background:rgba(255,165,0,.08);border:2px solid rgba(255,165,0,.4);border-radius:12px;padding:20px 24px;margin-bottom:20px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
@@ -797,6 +830,99 @@
           Email 2 (Day 3): Password manager recommendation + 2FA setup guide<br/>
           Email 3 (Day 7): Bundle offer — "Still haven't set up your password manager? Here's the easy way to get it all done."
         </div>
+      </div>
+    </div>
+
+    <!-- ── ACTION QUEUE ── -->
+    <div class="panel" id="panel-actions">
+      <div class="panel-title">Open Tasks — Do In Order</div>
+      <div class="panel-sub">Complete these in sequence. Each step may gate the next. Updated 15 April 2026.</div>
+
+      <div style="background:rgba(255,71,87,.08);border:2px solid rgba(255,71,87,.3);border-radius:12px;padding:18px 22px;margin-bottom:28px;">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:#ff4757;margin-bottom:8px;">&#9888; Verify Before Building — Cal.com Home Security Scan</div>
+        <div style="font-size:13px;color:rgba(252,253,242,.7);line-height:1.7;">
+          The dashboard infrastructure section says <strong style="color:#fcfdf2;">"9 Cal.com booking types live"</strong> but today's session also logged <em>Create Cal.com event: Home Security Scan</em> as a to-do. One of these is wrong. <strong style="color:#fcfdf2;">Log into cal.com now and check if <code style="background:rgba(255,255,255,.08);padding:1px 6px;border-radius:4px;">home-security-scan</code> already exists.</strong> Step 4 below is conditional on what you find.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">CHECK — Does Cal.com Home Security Scan booking already exist?</div>
+          Log into cal.com → Event Types. Look for a booking with slug <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">home-security-scan</code>. If it's there, mark Step 4 as done. If it's missing, do Step 4. Either way, confirm before moving on.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Create Stripe product: Home Security Fix Session — $149</div>
+          Stripe Dashboard → Products → Create. Price: $149 one-off. Copy the Price ID. Add as env var <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">FIX_SESSION_PRICE_ID</code> on Render, then trigger a manual redeploy. Fix Session payments will not process until this is done.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Create Cal.com event: Home Security Fix Session</div>
+          Slug: <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">home-security-fix</code> · Duration: 90 min · Type: In-Person · Location: Customer's address (Sunshine Coast). Copy the booking link and confirm it is wired into the Fix Session post-payment confirmation email.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num" style="background:rgba(255,165,0,.2);color:#ffa500;">4</div>
+        <div class="step-body">
+          <div class="step-title">Create Cal.com event: Home Security Scan &nbsp;<span style="font-size:11px;font-weight:400;color:rgba(252,253,242,.35);">only if Step 1 confirms it is missing</span></div>
+          Slug: <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">home-security-scan</code> · Duration: 2.5–3 hrs · Type: In-Person · Add a suburb/postcode field so you know if travel is required. This booking type is required for the In-Person Scan and the Scan Bundle to work.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Build Google Form consent form for in-person scans</div>
+          Required before accepting any in-person Home Security Scan booking. Capture: customer full name, address, date, permission to access devices, acknowledgement that the scan is non-destructive. Link the form in the Cal.com booking confirmation email for the Scan event so it goes out automatically at time of booking.
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="step-title">Set up social media accounts — in this exact order</div>
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+            <div style="background:rgba(255,165,0,.07);border:1px solid rgba(255,165,0,.2);border-radius:8px;padding:10px 14px;font-size:13px;color:rgba(252,253,242,.75);">
+              <strong style="color:#ffa500;">6a. Google Business Profile</strong> — <a href="https://business.google.com" target="_blank">business.google.com</a><br/>
+              <span style="font-size:12px;color:rgba(252,253,242,.45);">Do this first — before any social account. Drives "cybersecurity near me" search traffic on Google Maps. Add all services + prices + logo + headshot. Set service area to Sunshine Coast. Verification takes 1–5 days via postcard or phone.</span>
+            </div>
+            <div style="background:rgba(0,210,255,.05);border:1px solid rgba(0,210,255,.15);border-radius:8px;padding:10px 14px;font-size:13px;color:rgba(252,253,242,.75);">
+              <strong style="color:#00d2ff;">6b. Facebook Business Page</strong> — create as CyberSurf Security<br/>
+              <span style="font-size:12px;color:rgba(252,253,242,.45);">Set up page, add logo, cover photo, services. Then join 5 local Sunshine Coast groups (Sunshine Coast Buy/Sell, local business groups). Participate as a helpful expert — no ads until Week 3.</span>
+            </div>
+            <div style="background:rgba(0,210,255,.05);border:1px solid rgba(0,210,255,.15);border-radius:8px;padding:10px 14px;font-size:13px;color:rgba(252,253,242,.75);">
+              <strong style="color:#00d2ff;">6c. Instagram Business Account</strong><br/>
+              <span style="font-size:12px;color:rgba(252,253,242,.45);">Connect to Facebook Business Page (same Meta account). Set profile pic to logo, bio link to cybersurf.au. Add "Cybersecurity · Sunshine Coast QLD" in bio.</span>
+            </div>
+            <div style="background:rgba(0,210,255,.05);border:1px solid rgba(0,210,255,.15);border-radius:8px;padding:10px 14px;font-size:13px;color:rgba(252,253,242,.75);">
+              <strong style="color:#00d2ff;">6d. LinkedIn Company Page</strong> — create as CyberSurf Security<br/>
+              <span style="font-size:12px;color:rgba(252,253,242,.45);">Link from Darryl's personal profile. Post as personal profile (Darryl Wessling) — not just the company page. People buy from people.</span>
+            </div>
+            <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(252,253,242,.35);">
+              YouTube &amp; TikTok — Month 2 onwards. Skip for now.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <div class="step-title">Publish social posts — drafts already saved</div>
+          Posts for LinkedIn, Facebook, and Instagram are written and saved in <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">MARKETING/SOCIAL_POSTS.md</code>. Accounts must be live (Step 6) before posting. Post LinkedIn first, adapt for Facebook (add local Sunshine Coast hook), strip to 3 dot points for Instagram. See the Social Media panel for the full 30-day content schedule.
+        </div>
+      </div>
+
+      <div style="margin-top:24px;background:rgba(0,210,255,.05);border:1px solid rgba(0,210,255,.15);border-radius:10px;padding:14px 18px;font-size:13px;color:rgba(252,253,242,.55);line-height:1.8;">
+        <strong style="color:#00d2ff;">Dependency map:</strong> Steps 1–5 are independent of Steps 6–7. Steps 2 and 3 can be done in parallel. Step 4 depends on Step 1. Step 7 is strictly gated on Step 6 — no point publishing posts to accounts that don't exist yet.
       </div>
     </div>
 

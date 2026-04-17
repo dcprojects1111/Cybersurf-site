@@ -1050,6 +1050,22 @@
         </div>
       </div>
 
+      <div class="step">
+        <div class="step-num">11</div>
+        <div class="step-body">
+          <div class="step-title">🛡️ Add malware scanning to Surf-Check playbook — HitmanPro portable</div>
+          <div style="margin-top:6px;font-size:13px;color:rgba(252,253,242,.55);line-height:1.6;">
+            Add a malware scanning section to <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">~/cybersurf/PLAYBOOKS/nmap-workflow.html</code> covering portable/no-install tools.
+            <br/><br/>
+            <strong style="color:#fcfdf2;">Recommended tool: HitmanPro</strong> — single .exe, runs from USB, uses 4 cloud engines simultaneously (Sophos, Kaspersky, G Data, Bitdefender), leaves nothing on client machine.
+            <br/><br/>
+            Also document: ESET Online Scanner (browser-based), Malwarebytes Portable, Microsoft Safety Scanner.
+            <br/><br/>
+            <strong style="color:#ffa500;">Key workflow:</strong> Download HitmanPro to USB before visit → plug in → run → findings → remove USB. Nothing installs, nothing left behind. Add to Surf-Check deliverables as a standard step after Nmap + vuln scan.
+          </div>
+        </div>
+      </div>
+
       <div style="margin-top:24px;background:rgba(0,210,255,.05);border:1px solid rgba(0,210,255,.15);border-radius:10px;padding:14px 18px;font-size:13px;color:rgba(252,253,242,.55);line-height:1.8;">
         <strong style="color:#00d2ff;">Dependency map:</strong> Steps 1–5 are independent of Steps 6–7. Steps 2 and 3 can be done in parallel. Step 4 depends on Step 1. Step 7 is strictly gated on Step 6. Step 8 (practice run) should be done before any paid customer. Step 9 can start in parallel with Step 8 — the Coming Soon page doesn't require the practice run to be complete.
       </div>

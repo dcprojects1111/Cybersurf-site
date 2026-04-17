@@ -855,13 +855,55 @@
       </div>
 
       <div class="section-title">Highest Priority — Build the Post-Purchase Email Sequence</div>
-      <div class="card-orange">
-        <div style="font-size:13px;color:rgba(252,253,242,.7);line-height:1.7;">
-          The post-purchase email sequence is the most valuable asset CyberSurf doesn't have yet. One breach check buyer receiving the right follow-up emails at the right time is worth 3 cold leads. This should be built in Month 1, Week 2 alongside Dark Web Monitoring.<br/><br/>
-          <strong style="color:#ffa500;">3-email sequence:</strong><br/>
-          Email 1 (Day 1): Report delivered + Dark Web Monitoring upsell while urgency is highest<br/>
-          Email 2 (Day 3): Password manager recommendation + 2FA setup guide<br/>
-          Email 3 (Day 7): Bundle offer — "Still haven't set up your password manager? Here's the easy way to get it all done."
+      <div style="background:rgba(255,71,87,.07);border:2px solid rgba(255,71,87,.4);border-radius:12px;padding:20px 24px;margin-bottom:20px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#ff4757;">&#9993; Post-Purchase Email Sequence — MUST BUILD</div>
+          <span class="task-status s-priority">&#9888; Not Built Yet</span>
+        </div>
+        <div style="font-size:13px;color:rgba(252,253,242,.75);line-height:1.8;">
+          One breach check buyer receiving the right follow-up emails is worth 3 cold leads. Copy is written, Editor-approved (52/60), saved at <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">MARKETING/EMAIL_SEQUENCES.md</code>. Just needs building in MailerLite.<br/><br/>
+          <strong style="color:#ffd200;">Platform: MailerLite (free) + Zapier (free) + Stripe</strong><br/>
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:7px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="background:rgba(255,71,87,.2);color:#ff4757;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;padding:2px 8px;border-radius:10px;flex-shrink:0;">1</span>
+              <span>Create free account at <strong>mailerlite.com</strong> using support@cybersurf.au</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="background:rgba(255,71,87,.2);color:#ff4757;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;padding:2px 8px;border-radius:10px;flex-shrink:0;">2</span>
+              <span>Verify domain — MailerLite gives you DNS records to add in VentraIP. Stops emails landing in spam.</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="background:rgba(255,71,87,.2);color:#ff4757;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;padding:2px 8px;border-radius:10px;flex-shrink:0;">3</span>
+              <span>Go to <strong>Automations → New automation</strong> → name it "Post-Purchase Breach Check" → trigger: "When subscriber joins group: Breach Check Buyers" → add 3 emails at Day 1 / Day 3 / Day 7 → paste copy from EMAIL_SEQUENCES.md</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="background:rgba(255,71,87,.2);color:#ff4757;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;padding:2px 8px;border-radius:10px;flex-shrink:0;">4</span>
+              <span>Connect Stripe via <strong>Zapier (free)</strong> — trigger: Stripe New Payment → action: MailerLite Add Subscriber to "Breach Check Buyers". Maps customer name + email automatically.</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="background:rgba(255,71,87,.2);color:#ff4757;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;padding:2px 8px;border-radius:10px;flex-shrink:0;">5</span>
+              <span>Add suppression tags — if buyer purchases an upsell, stop the sequence so you don't resell what they already bought.</span>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="background:rgba(255,71,87,.2);color:#ff4757;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;padding:2px 8px;border-radius:10px;flex-shrink:0;">6</span>
+              <span>Test end-to-end — make a $1 Stripe test payment, confirm subscriber appears in MailerLite, confirm Email 1 fires.</span>
+            </div>
+          </div>
+          <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;font-size:12px;">
+            <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:10px 12px;">
+              <div style="color:#00d2ff;font-weight:700;margin-bottom:4px;">Email 1 — Day 1</div>
+              <div style="color:rgba(252,253,242,.55);">Report delivery + Dark Web Monitoring upsell</div>
+            </div>
+            <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:10px 12px;">
+              <div style="color:#00d2ff;font-weight:700;margin-bottom:4px;">Email 2 — Day 3</div>
+              <div style="color:rgba(252,253,242,.55);">Bitwarden + Authy setup guide + 2FA session CTA</div>
+            </div>
+            <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:10px 12px;">
+              <div style="color:#00d2ff;font-weight:700;margin-bottom:4px;">Email 3 — Day 7</div>
+              <div style="color:rgba(252,253,242,.55);">Complete Protection Bundle $149 + first month monitoring free</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;font-size:12px;color:rgba(252,253,242,.4);">Cost: $0 &nbsp;·&nbsp; Build time: ~3 hours &nbsp;·&nbsp; Projected return: ~$1,500/mo at 50 breach checks/month</div>
         </div>
       </div>
     </div>

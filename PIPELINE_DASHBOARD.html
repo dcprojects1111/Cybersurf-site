@@ -109,8 +109,8 @@
     <div class="topbar-meta">Last updated: 21 April 2026 &nbsp;·&nbsp; One-person operation — Sunshine Coast QLD</div>
   </div>
   <div class="topbar-stats">
-    <div class="tstat"><div class="tstat-val">9</div><div class="tstat-label">Live Products</div></div>
-    <div class="tstat"><div class="tstat-val">3</div><div class="tstat-label">Needs Stripe IDs</div></div>
+    <div class="tstat"><div class="tstat-val">13</div><div class="tstat-label">Live Products</div></div>
+    <div class="tstat"><div class="tstat-val">2</div><div class="tstat-label">Open Actions</div></div>
     <div class="tstat"><div class="tstat-val">8</div><div class="tstat-label">Affiliates to Apply</div></div>
     <div class="tstat"><div class="tstat-val">$2,250</div><div class="tstat-label">Month 3 Target</div></div>
   </div>
@@ -180,7 +180,7 @@
       <div class="section-title">Infrastructure — To Do</div>
       <div style="background:rgba(255,165,0,.04);border:1px solid rgba(255,165,0,.2);border-radius:12px;padding:16px 20px;margin-bottom:24px;font-size:12px;color:rgba(252,253,242,.6);line-height:2.2;">
         <span style="color:#ff4757;font-weight:700;">⚠ Professional Indemnity Insurance</span> — Required before taking first paying client · Cybersecurity Consultant / Penetration Tester specialist category · Research underway — see Legal Register for recommended providers<br/>
-        <span style="color:#ff4757;font-weight:700;">⚠ IT Support — 4 Stripe Products needed</span> — Create in Stripe dashboard + add env vars in Render: <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_QUICK_PRICE_ID</code> ($99) · <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_TUNEUP_PRICE_ID</code> ($199) · <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_FRESH_PRICE_ID</code> ($249) · <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_NEWSETUP_PRICE_ID</code> ($299) · Booking page returns error until these are set<br/>
+        ✓ <strong style="color:#00c864;">IT Support — 4 Stripe Products live</strong> — IT_QUICK_PRICE_ID · IT_TUNEUP_PRICE_ID · IT_FRESH_PRICE_ID · IT_NEWSETUP_PRICE_ID — all set in Render · Booking flow fully live ✓<br/>
         <span style="color:#ffa500;font-weight:700;">⬜ Cal.com IT Support booking type</span> — Create at cal.com/cybersurf/it-support · Confirmation email links here · Duration: 1–4 hrs depending on package · In-person, Sunshine Coast<br/>
         <span style="color:#ffa500;font-weight:700;">⬜ Monthly breach scan cron job</span> — Set up on cron-job.org · URL: <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">/run-monitoring?secret=MONITOR_SECRET</code> · Schedule: 1st of each month · Required for Dark Web Monitoring automation<br/>
         <span style="color:#ffa500;font-weight:700;">⬜ DKIM record for cybersurf.au</span> — Add to VentraIP DNS · Improves email deliverability for breach alerts and booking confirmations · Recommended before subscriber base grows
@@ -266,34 +266,34 @@
         <div class="card-green">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
             <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Quick Fix</div>
-            <span class="task-status s-build">Needs Stripe ID</span>
+            <span class="task-status s-live">Live</span>
           </div>
           <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$99 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">one-off · up to 1hr</span></div>
-          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Booking form ✓ &nbsp;·&nbsp; Webhook ✓ &nbsp;·&nbsp; Confirmation email ✓ &nbsp;·&nbsp; <span style="color:#ffa500;">⚠ IT_QUICK_PRICE_ID not set</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Booking form ✓ &nbsp;·&nbsp; Webhook ✓ &nbsp;·&nbsp; Confirmation email ✓ &nbsp;·&nbsp; <span style="color:#00c864;">✓ Stripe live</span></div>
         </div>
         <div class="card-green">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
             <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Home Tech Tune-Up</div>
-            <span class="task-status s-build">Needs Stripe ID</span>
+            <span class="task-status s-live">Live</span>
           </div>
           <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$199 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">one-off · up to 2.5hrs</span></div>
-          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Booking form ✓ &nbsp;·&nbsp; Webhook ✓ &nbsp;·&nbsp; Confirmation email ✓ &nbsp;·&nbsp; <span style="color:#ffa500;">⚠ IT_TUNEUP_PRICE_ID not set</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Booking form ✓ &nbsp;·&nbsp; Webhook ✓ &nbsp;·&nbsp; Confirmation email ✓ &nbsp;·&nbsp; <span style="color:#00c864;">✓ Stripe live</span></div>
         </div>
         <div class="card-green">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
             <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Fresh Device Setup</div>
-            <span class="task-status s-build">Needs Stripe ID</span>
+            <span class="task-status s-live">Live</span>
           </div>
           <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$249 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">one-off · up to 3hrs · security included</span></div>
-          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Antivirus + VPN + 2FA + Bitwarden + free Breach Check ✓ &nbsp;·&nbsp; <span style="color:#ffa500;">⚠ IT_FRESH_PRICE_ID not set</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Antivirus + VPN + 2FA + Bitwarden + free Breach Check ✓ &nbsp;·&nbsp; <span style="color:#00c864;">✓ Stripe live</span></div>
         </div>
         <div class="card-green">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
             <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">New Home Tech Setup</div>
-            <span class="task-status s-build">Needs Stripe ID</span>
+            <span class="task-status s-live">Live</span>
           </div>
           <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$299 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">one-off · up to 4hrs</span></div>
-          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Multiple devices, data transfer, full network setup ✓ &nbsp;·&nbsp; <span style="color:#ffa500;">⚠ IT_NEWSETUP_PRICE_ID not set</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Multiple devices, data transfer, full network setup ✓ &nbsp;·&nbsp; <span style="color:#00c864;">✓ Stripe live</span></div>
         </div>
       </div>
       <div style="background:rgba(0,210,255,.05);border:1px solid rgba(0,210,255,.15);border-radius:10px;padding:12px 16px;margin-bottom:24px;font-size:12px;color:rgba(252,253,242,.55);line-height:1.8;">
@@ -970,17 +970,9 @@
       </div>
 
       <div class="step">
-        <div class="step-num" style="background:rgba(255,71,87,.25);color:#ff4757;">1</div>
-        <div class="step-body">
-          <div class="step-title">🔴 Create 4 IT Support products in Stripe — add price IDs to Render</div>
-          <div style="margin-top:8px;font-size:13px;color:rgba(252,253,242,.65);line-height:1.8;">
-            In Stripe dashboard → Products → Add product. Create all 4 as one-time AUD payments:<br/>
-            <strong style="color:#fcfdf2;">Quick Fix</strong> — $99 AUD · one-time &nbsp;→&nbsp; copy Price ID → Render env var: <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_QUICK_PRICE_ID</code><br/>
-            <strong style="color:#fcfdf2;">Home Tech Tune-Up</strong> — $199 AUD · one-time &nbsp;→&nbsp; <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_TUNEUP_PRICE_ID</code><br/>
-            <strong style="color:#fcfdf2;">Fresh Device Setup</strong> — $249 AUD · one-time &nbsp;→&nbsp; <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_FRESH_PRICE_ID</code><br/>
-            <strong style="color:#fcfdf2;">New Home Tech Setup</strong> — $299 AUD · one-time &nbsp;→&nbsp; <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_NEWSETUP_PRICE_ID</code><br/>
-            Render will restart automatically after env var changes. IT Support booking flow is fully live once this is done.
-          </div>
+        <div class="step-num" style="background:rgba(0,200,100,.3);color:#00c864;">✓</div>
+        <div class="step-body" style="opacity:.5;text-decoration:line-through;">
+          <div class="step-title">Create 4 IT Support products in Stripe — add price IDs to Render — DONE</div>
         </div>
       </div>
 

@@ -106,11 +106,11 @@
 <div class="topbar">
   <div>
     <div class="brand">Cyber<span>Surf</span> <span style="font-weight:400;color:rgba(252,253,242,.4);font-size:14px;">Command Dashboard</span></div>
-    <div class="topbar-meta">Last updated: April 2026 &nbsp;·&nbsp; One-person operation — Sunshine Coast QLD</div>
+    <div class="topbar-meta">Last updated: 21 April 2026 &nbsp;·&nbsp; One-person operation — Sunshine Coast QLD</div>
   </div>
   <div class="topbar-stats">
-    <div class="tstat"><div class="tstat-val">2</div><div class="tstat-label">Live Products</div></div>
-    <div class="tstat"><div class="tstat-val">7</div><div class="tstat-label">Products to Launch</div></div>
+    <div class="tstat"><div class="tstat-val">9</div><div class="tstat-label">Live Products</div></div>
+    <div class="tstat"><div class="tstat-val">3</div><div class="tstat-label">Needs Stripe IDs</div></div>
     <div class="tstat"><div class="tstat-val">8</div><div class="tstat-label">Affiliates to Apply</div></div>
     <div class="tstat"><div class="tstat-val">$2,250</div><div class="tstat-label">Month 3 Target</div></div>
   </div>
@@ -170,14 +170,18 @@
 
       <div class="section-title">Infrastructure — Completed ✓</div>
       <div style="background:rgba(0,210,100,.05);border:1px solid rgba(0,210,100,.2);border-radius:12px;padding:16px 20px;margin-bottom:24px;font-size:12px;color:rgba(252,253,242,.6);line-height:2;">
-        ✓ Render web app — deployed &nbsp;·&nbsp; ✓ PostgreSQL database — live &nbsp;·&nbsp; ✓ Stripe — connected &nbsp;·&nbsp; ✓ pCloud delivery — working<br/>
-        ✓ cybersurf.au domain — live &nbsp;·&nbsp; ✓ ProtonMail (darryl@cybersurf.au) — receiving emails &nbsp;·&nbsp; ✓ Gmail SMTP (cybersurfau@gmail.com) — sending alerts<br/>
-        ✓ Cal.com — 10 booking types live &nbsp;·&nbsp; ✓ Privacy Policy — published &nbsp;·&nbsp; ✓ Terms of Service — published &nbsp;·&nbsp; ✓ ABN — registered
+        ✓ Render Hobby plan ($7/mo) — always-on, no spin-down &nbsp;·&nbsp; ✓ PostgreSQL Starter ($7/mo) — persistent, 1GB &nbsp;·&nbsp; ✓ DATABASE_URL env var set &nbsp;·&nbsp; ~$14/mo from May 2026<br/>
+        ✓ Stripe — connected &nbsp;·&nbsp; ✓ pCloud delivery — working &nbsp;·&nbsp; ✓ cybersurf.au domain — live &nbsp;·&nbsp; ✓ ABN — registered<br/>
+        ✓ ProtonMail (darryl@cybersurf.au) — receiving &nbsp;·&nbsp; ✓ Gmail SMTP (cybersurfau@gmail.com) — sending alerts &nbsp;·&nbsp; ✓ Privacy Policy published &nbsp;·&nbsp; ✓ Terms of Service published<br/>
+        ✓ Cal.com — booking types live &nbsp;·&nbsp; ✓ DL print leaflet — PDF ready (leaflet_print.pdf) &nbsp;·&nbsp; ✓ All services in-person only — no Zoom/online language in webapp<br/>
+        ✓ IT Support booking flow — /book-it-support live in webapp &nbsp;·&nbsp; ✓ Preferred time field + in-person confirmation email &nbsp;·&nbsp; ✓ it-support.html page live on website
       </div>
 
       <div class="section-title">Infrastructure — To Do</div>
       <div style="background:rgba(255,165,0,.04);border:1px solid rgba(255,165,0,.2);border-radius:12px;padding:16px 20px;margin-bottom:24px;font-size:12px;color:rgba(252,253,242,.6);line-height:2.2;">
         <span style="color:#ff4757;font-weight:700;">⚠ Professional Indemnity Insurance</span> — Required before taking first paying client · Cybersecurity Consultant / Penetration Tester specialist category · Research underway — see Legal Register for recommended providers<br/>
+        <span style="color:#ff4757;font-weight:700;">⚠ IT Support — 4 Stripe Products needed</span> — Create in Stripe dashboard + add env vars in Render: <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_QUICK_PRICE_ID</code> ($99) · <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_TUNEUP_PRICE_ID</code> ($199) · <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_FRESH_PRICE_ID</code> ($249) · <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_NEWSETUP_PRICE_ID</code> ($299) · Booking page returns error until these are set<br/>
+        <span style="color:#ffa500;font-weight:700;">⬜ Cal.com IT Support booking type</span> — Create at cal.com/cybersurf/it-support · Confirmation email links here · Duration: 1–4 hrs depending on package · In-person, Sunshine Coast<br/>
         <span style="color:#ffa500;font-weight:700;">⬜ Monthly breach scan cron job</span> — Set up on cron-job.org · URL: <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">/run-monitoring?secret=MONITOR_SECRET</code> · Schedule: 1st of each month · Required for Dark Web Monitoring automation<br/>
         <span style="color:#ffa500;font-weight:700;">⬜ DKIM record for cybersurf.au</span> — Add to VentraIP DNS · Improves email deliverability for breach alerts and booking confirmations · Recommended before subscriber base grows
       </div>
@@ -249,6 +253,51 @@
           <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$299 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">one-off · save $88</span></div>
           <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Stripe ✓ &nbsp;·&nbsp; home-scan-bundle.html ✓ &nbsp;·&nbsp; booking form ✓ &nbsp;·&nbsp; Cal.com pending</div>
         </div>
+      </div>
+
+      <!-- ── IT SUPPORT ── -->
+      <div style="background:rgba(0,210,255,.06);border:1px solid rgba(0,210,255,.2);border-radius:10px;padding:10px 18px;margin:28px 0 16px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--aqua);">
+        🛠️ Home IT Support — Added 21 Apr 2026
+      </div>
+      <div style="font-size:12px;color:rgba(252,253,242,.4);margin-bottom:16px;line-height:1.7;">
+        In-person IT help on the Sunshine Coast. Booking flow live in webapp — <strong style="color:#ffa500;">needs 4 Stripe price IDs before customers can pay.</strong> Booking page at /book-it-support. it-support.html live on website.
+      </div>
+      <div class="grid-2">
+        <div class="card-green">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Quick Fix</div>
+            <span class="task-status s-build">Needs Stripe ID</span>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$99 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">one-off · up to 1hr</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Booking form ✓ &nbsp;·&nbsp; Webhook ✓ &nbsp;·&nbsp; Confirmation email ✓ &nbsp;·&nbsp; <span style="color:#ffa500;">⚠ IT_QUICK_PRICE_ID not set</span></div>
+        </div>
+        <div class="card-green">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Home Tech Tune-Up</div>
+            <span class="task-status s-build">Needs Stripe ID</span>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$199 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">one-off · up to 2.5hrs</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Booking form ✓ &nbsp;·&nbsp; Webhook ✓ &nbsp;·&nbsp; Confirmation email ✓ &nbsp;·&nbsp; <span style="color:#ffa500;">⚠ IT_TUNEUP_PRICE_ID not set</span></div>
+        </div>
+        <div class="card-green">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">Fresh Device Setup</div>
+            <span class="task-status s-build">Needs Stripe ID</span>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$249 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">one-off · up to 3hrs · security included</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Antivirus + VPN + 2FA + Bitwarden + free Breach Check ✓ &nbsp;·&nbsp; <span style="color:#ffa500;">⚠ IT_FRESH_PRICE_ID not set</span></div>
+        </div>
+        <div class="card-green">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;">New Home Tech Setup</div>
+            <span class="task-status s-build">Needs Stripe ID</span>
+          </div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;color:#00d2ff;margin-bottom:6px;">$299 <span style="font-size:12px;font-weight:400;color:rgba(252,253,242,.35);">one-off · up to 4hrs</span></div>
+          <div style="font-size:12px;color:rgba(252,253,242,.55);line-height:1.6;">Multiple devices, data transfer, full network setup ✓ &nbsp;·&nbsp; <span style="color:#ffa500;">⚠ IT_NEWSETUP_PRICE_ID not set</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(0,210,255,.05);border:1px solid rgba(0,210,255,.15);border-radius:10px;padding:12px 16px;margin-bottom:24px;font-size:12px;color:rgba(252,253,242,.55);line-height:1.8;">
+        <strong style="color:#00d2ff;">Door-knock upsell ladder:</strong> Quick Fix $99 → Tune-Up $199 (on day: "while I'm here…") → Fresh Device $249 (trigger: customer mentions new laptop) → Home Security Check $299 (upsell after any IT visit). Suburb field on booking form enables geographic clustering for visit routes.
       </div>
 
       <!-- ── B2B BUSINESS ── -->
@@ -911,9 +960,39 @@
     <!-- ── ACTION QUEUE ── -->
     <div class="panel" id="panel-actions">
       <div class="panel-title">Open Tasks — Do In Order</div>
-      <div class="panel-sub">Complete these in sequence. Each step may gate the next. Updated 17 April 2026.</div>
+      <div class="panel-sub">Complete these in sequence. Each step may gate the next. Updated 21 April 2026.</div>
 
       <div style="background:rgba(255,71,87,.08);border:2px solid rgba(255,71,87,.3);border-radius:12px;padding:18px 22px;margin-bottom:28px;">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:#ff4757;margin-bottom:8px;">&#9888; Priority — Complete IT Support Setup (2 steps, takes ~15 min)</div>
+        <div style="font-size:13px;color:rgba(252,253,242,.7);line-height:1.7;">
+          The IT Support booking flow is <strong style="color:#fcfdf2;">live in the webapp</strong> and the it-support.html page is live on the website — but customers can't pay until Stripe products are created and price IDs added to Render. <strong style="color:#fcfdf2;">Do Steps 1 and 2 below first.</strong>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num" style="background:rgba(255,71,87,.25);color:#ff4757;">1</div>
+        <div class="step-body">
+          <div class="step-title">🔴 Create 4 IT Support products in Stripe — add price IDs to Render</div>
+          <div style="margin-top:8px;font-size:13px;color:rgba(252,253,242,.65);line-height:1.8;">
+            In Stripe dashboard → Products → Add product. Create all 4 as one-time AUD payments:<br/>
+            <strong style="color:#fcfdf2;">Quick Fix</strong> — $99 AUD · one-time &nbsp;→&nbsp; copy Price ID → Render env var: <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_QUICK_PRICE_ID</code><br/>
+            <strong style="color:#fcfdf2;">Home Tech Tune-Up</strong> — $199 AUD · one-time &nbsp;→&nbsp; <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_TUNEUP_PRICE_ID</code><br/>
+            <strong style="color:#fcfdf2;">Fresh Device Setup</strong> — $249 AUD · one-time &nbsp;→&nbsp; <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_FRESH_PRICE_ID</code><br/>
+            <strong style="color:#fcfdf2;">New Home Tech Setup</strong> — $299 AUD · one-time &nbsp;→&nbsp; <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">IT_NEWSETUP_PRICE_ID</code><br/>
+            Render will restart automatically after env var changes. IT Support booking flow is fully live once this is done.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num" style="background:rgba(255,71,87,.25);color:#ff4757;">2</div>
+        <div class="step-body">
+          <div class="step-title">🔴 Create Cal.com booking type: IT Support</div>
+          Slug: <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;">it-support</code> · Set duration range (1–4 hrs, or create 4 separate types per package) · Type: In-Person · Location: Customer's address, Sunshine Coast · This is the link sent in the post-payment confirmation email.
+        </div>
+      </div>
+
+      <div style="background:rgba(255,71,87,.08);border:2px solid rgba(255,71,87,.3);border-radius:12px;padding:18px 22px;margin:28px 0;">
         <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:#ff4757;margin-bottom:8px;">&#9888; Verify Before Building — Cal.com Home Security Scan</div>
         <div style="font-size:13px;color:rgba(252,253,242,.7);line-height:1.7;">
           The dashboard infrastructure section says <strong style="color:#fcfdf2;">"9 Cal.com booking types live"</strong> but today's session also logged <em>Create Cal.com event: Home Security Scan</em> as a to-do. One of these is wrong. <strong style="color:#fcfdf2;">Log into cal.com now and check if <code style="background:rgba(255,255,255,.08);padding:1px 6px;border-radius:4px;">home-security-scan</code> already exists.</strong> Step 4 below is conditional on what you find.

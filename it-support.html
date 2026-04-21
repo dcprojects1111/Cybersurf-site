@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home IT Help | CyberSurf Security — Sunshine Coast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --aqua:    #00d2ff;
+      --ocean:   #0077be;
+      --charcoal:#2d3436;
+      --sand:    #fcfdf2;
+      --white:   #ffffff;
+      --alert:   #ff4757;
+      --mid:     #636e72;
+      --border:  rgba(0,210,255,.18);
+      --radius:  14px;
+      --nav-h:   76px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--sand);
+      color: var(--charcoal);
+      line-height: 1.7;
+    }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-height: 1.2; }
+
+    /* ══════════════════════════════════════
+       NAV
+    ══════════════════════════════════════ */
+    nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      z-index: 1000;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-wordmark {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 20px;
+      color: #fff;
+      text-shadow: 0 1px 6px rgba(0,0,0,.3);
+    }
+    .nav-wordmark span { color: var(--aqua); }
+    .nav-right { display: flex; align-items: center; gap: 28px; }
+    .nav-link {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 14px;
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      text-shadow: 0 1px 4px rgba(0,0,0,.25);
+    }
+    .nav-cta {
+      background: rgba(255,255,255,.18);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,.5);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 14px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    #hero {
+      min-height: 88vh;
+      padding-top: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 70% 20%, rgba(0,210,255,.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 80%, rgba(0,60,120,.35) 0%, transparent 55%),
+        linear-gradient(175deg,
+          #0099cc 0%,
+          #00b8e6 18%,
+          #00d2ff 36%,
+          #0099cc 52%,
+          #006fa8 68%,
+          #004f80 84%,
+          #003360 100%
+        );
+      padding-left: 5%; padding-right: 5%;
+    }
+    .hero-inner { max-width: 760px; }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(255,220,80,.08);
+      color: #ffe57a;
+      border: 1px solid rgba(255,220,80,.45);
+      box-shadow: 0 0 18px rgba(255,220,80,.15);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 12px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 20px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(6px);
+    }
+    .hero-h1 {
+      font-size: clamp(32px, 5.5vw, 58px);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 22px;
+      letter-spacing: -1px;
+      text-shadow: 0 2px 12px rgba(0,0,0,.2);
+    }
+    .hero-h1 .highlight {
+      background: linear-gradient(135deg, #ffe066, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 18px; font-weight: 300;
+      color: rgba(255,255,255,.88);
+      max-width: 580px; margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 16px;
+      padding: 16px 36px; border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,119,190,.30);
+      transition: transform .2s, box-shadow .2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,119,190,.40); }
+    .btn-ghost {
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,.5);
+      padding: 14px 28px; border-radius: 10px;
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(6px);
+    }
+    .hero-price-pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 50px;
+      padding: 10px 20px 10px 14px;
+      backdrop-filter: blur(8px);
+    }
+    .price-badge {
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900; font-size: 18px;
+      padding: 4px 14px; border-radius: 30px;
+    }
+    .price-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 14px;
+      color: #fff;
+    }
+
+    /* ══════════════════════════════════════
+       SHARED SECTION STYLES
+    ══════════════════════════════════════ */
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--aqua); margin-bottom: 14px;
+    }
+    .section-h2 {
+      font-size: clamp(26px, 4vw, 42px);
+      color: var(--charcoal);
+      margin-bottom: 18px;
+      letter-spacing: -.5px;
+    }
+    .section-lead {
+      font-size: 17px; color: var(--mid);
+      max-width: 600px; line-height: 1.75;
+      margin-bottom: 52px;
+    }
+
+    /* ══════════════════════════════════════
+       WHAT WE FIX
+    ══════════════════════════════════════ */
+    #what {
+      padding: 96px 5%;
+      background: var(--white);
+    }
+    .what-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0 56px;
+      align-items: start;
+    }
+    .what-divider {
+      background: rgba(0,210,255,.15);
+      align-self: stretch;
+      min-height: 400px;
+    }
+    .explainer-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .explainer-item { display: flex; gap: 16px; align-items: flex-start; }
+    .explainer-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(0,210,255,.12), rgba(0,119,190,.12));
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .explainer-item-text h4 {
+      font-size: 15px; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 3px;
+    }
+    .explainer-item-text p { font-size: 14px; color: var(--mid); }
+
+    /* Security difference box */
+    .security-box {
+      background: linear-gradient(135deg, rgba(0,210,255,.06), rgba(0,119,190,.08));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-top: 8px;
+    }
+    .security-box .section-label { margin-bottom: 10px; }
+    .security-box h3 {
+      font-size: 20px; color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+    .security-box p {
+      font-size: 15px; color: var(--mid);
+      line-height: 1.7; margin-bottom: 14px;
+    }
+    .security-box p:last-child { margin-bottom: 0; }
+    .security-check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .security-check-list li {
+      font-size: 14px; color: var(--charcoal);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .security-check-list li::before {
+      content: '✓';
+      color: var(--aqua); font-weight: 900; flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════
+       PRICING
+    ══════════════════════════════════════ */
+    #pricing {
+      padding: 96px 5%;
+      background: var(--sand);
+      text-align: center;
+    }
+    #pricing .section-label,
+    #pricing .section-h2,
+    #pricing .section-lead { margin: 0 auto; }
+    .pricing-grid {
+      max-width: 1080px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: left;
+      position: relative;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,210,255,.12); }
+    .pricing-card.featured {
+      border-color: var(--aqua);
+      box-shadow: 0 0 0 2px rgba(0,210,255,.15);
+    }
+    .pricing-badge {
+      position: absolute; top: -13px; left: 24px;
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 20px;
+    }
+    .pricing-icon { font-size: 28px; margin-bottom: 14px; }
+    .pricing-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--aqua); margin-bottom: 6px;
+    }
+    .pricing-card h3 {
+      font-size: 18px; color: var(--charcoal); margin-bottom: 12px;
+    }
+    .pricing-price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 36px; font-weight: 900;
+      color: var(--ocean); line-height: 1; margin-bottom: 4px;
+    }
+    .pricing-price sup { font-size: 18px; vertical-align: super; }
+    .pricing-duration {
+      font-size: 13px; color: var(--mid); margin-bottom: 18px;
+    }
+    .pricing-card p {
+      font-size: 14px; color: var(--mid);
+      line-height: 1.6; margin-bottom: 20px;
+    }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; }
+    .pricing-features li {
+      font-size: 13px; color: var(--charcoal);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--aqua); font-weight: 900; flex-shrink: 0;
+    }
+    .pricing-cta {
+      display: block; text-align: center;
+      padding: 13px 20px; border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 13px;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .pricing-cta.outline {
+      border: 2px solid var(--ocean);
+      color: var(--ocean);
+    }
+    .pricing-cta.outline:hover { background: var(--ocean); color: white; }
+    .pricing-cta.solid {
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0,119,190,.25);
+    }
+    .pricing-cta.solid:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,119,190,.35); }
+    .pricing-note {
+      margin-top: 28px;
+      font-size: 14px; color: var(--mid);
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════════
+       WHY CYBERSURF — dark section
+    ══════════════════════════════════════ */
+    #why {
+      padding: 96px 5%;
+      background: linear-gradient(135deg, #0a1628 0%, #0d2240 50%, #0a2a38 100%);
+      color: var(--sand);
+      text-align: center;
+    }
+    #why .section-label { color: var(--aqua); }
+    #why .section-h2 { color: var(--sand); margin: 0 auto 14px; }
+    #why .section-lead { color: rgba(252,253,242,.65); margin: 0 auto 52px; }
+    .value-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .value-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(0,210,255,.15);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      transition: background .2s;
+      text-align: left;
+    }
+    .value-card:hover { background: rgba(0,210,255,.08); }
+    .value-icon { font-size: 32px; margin-bottom: 14px; }
+    .value-card h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px; font-weight: 700;
+      color: var(--sand); margin-bottom: 8px;
+    }
+    .value-card p { font-size: 13px; color: rgba(252,253,242,.55); line-height: 1.6; }
+
+    /* ══════════════════════════════════════
+       HOW IT WORKS
+    ══════════════════════════════════════ */
+    #how {
+      padding: 96px 5%;
+      background: var(--white);
+      text-align: center;
+    }
+    #how .section-label,
+    #how .section-h2,
+    #how .section-lead { margin: 0 auto; }
+    .steps-grid {
+      max-width: 960px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+    .step-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,210,255,.06);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .step-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,210,255,.12); }
+    .step-number {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900; font-size: 18px; color: #fff;
+      margin: 0 auto 16px;
+    }
+    .step-card h3 { font-size: 14px; color: var(--charcoal); margin-bottom: 8px; text-align: center; }
+    .step-card p { font-size: 13px; color: var(--mid); line-height: 1.6; text-align: center; }
+
+    /* ══════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════ */
+    #faq {
+      padding: 96px 5%;
+      background: var(--sand);
+    }
+    .faq-inner {
+      max-width: 780px; margin: 0 auto;
+    }
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+      margin-bottom: 14px;
+    }
+    .faq-item h4 {
+      font-size: 16px; color: var(--charcoal); margin-bottom: 8px;
+    }
+    .faq-item p { font-size: 14px; color: var(--mid); line-height: 1.7; }
+
+    /* ══════════════════════════════════════
+       CTA
+    ══════════════════════════════════════ */
+    #cta {
+      padding: 96px 5%;
+      background: linear-gradient(160deg, #0a1628 0%, #0d2240 60%, #0a3355 100%);
+      text-align: center;
+    }
+    #cta h2 {
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 900; margin-bottom: 14px;
+      color: var(--sand);
+    }
+    #cta .cta-lead {
+      font-size: 18px; color: rgba(252,253,242,.65);
+      margin-bottom: 36px; max-width: 520px;
+      margin-left: auto; margin-right: auto;
+    }
+    .cta-actions {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .btn-cta-primary {
+      background: linear-gradient(135deg, var(--aqua), var(--ocean));
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 16px;
+      padding: 18px 40px; border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 6px 28px rgba(0,119,190,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(0,119,190,.5); }
+    .btn-cta-ghost {
+      color: rgba(252,253,242,.75);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,.3);
+      padding: 16px 30px; border-radius: 10px;
+      background: rgba(255,255,255,.06);
+    }
+    .cta-sub {
+      margin-top: 24px;
+      font-size: 14px; color: rgba(252,253,242,.35);
+    }
+    .cta-sub a { color: var(--aqua); text-decoration: none; }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer {
+      background: var(--charcoal);
+      color: rgba(252,253,242,.55);
+      padding: 40px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 18px; color: var(--sand);
+    }
+    .footer-brand span { color: var(--aqua); }
+    footer nav a {
+      color: rgba(252,253,242,.45);
+      text-decoration: none; font-size: 13px;
+      margin-left: 24px;
+      transition: color .2s;
+    }
+    footer nav a:hover { color: var(--aqua); }
+    .footer-legal {
+      width: 100%;
+      font-size: 11px; color: rgba(252,253,242,.3);
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 20px; margin-top: 12px;
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 980px) {
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 860px) {
+      .what-grid { grid-template-columns: 1fr; gap: 48px; }
+      .what-divider { display: none; }
+      .nav-link { display: none; }
+    }
+    @media (max-width: 600px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .value-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 400px) {
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav aria-label="Main navigation">
+  <a href="index.html" class="nav-brand" aria-label="CyberSurf Security home">
+    <span class="nav-wordmark">Cyber<span>Surf</span> Security</span>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="https://cal.com/cybersurf/free-call" target="_blank" class="nav-cta">Book a Free Call</a>
+  </div>
+</nav>
+
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">🛠 Sunshine Coast Home IT Help</div>
+
+    <h1 class="hero-h1">
+      IT Help From Someone Who<br>
+      <span class="highlight">Actually Keeps You Safe</span>
+    </h1>
+
+    <p class="hero-sub">
+      Fast, friendly tech support for Sunshine Coast homes — with security built in from the start. We fix the problem and make sure nothing else is quietly going wrong in the background.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">Book a Call-Out — from $99 &rarr;</a>
+      <a href="#what" class="btn-ghost">What we fix</a>
+    </div>
+
+    <div class="hero-price-pill">
+      <span class="price-badge">$99</span>
+      <span class="price-text">Flat-rate call-out &mdash; no hidden charges</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ WHAT WE FIX + WHY WE'RE DIFFERENT ══ -->
+<section id="what">
+  <div class="what-grid">
+
+    <!-- LEFT: What we fix -->
+    <div>
+      <p class="section-label">We Sort It Out</p>
+      <h2 class="section-h2">We sort out the tech<br>that's been bothering you.</h2>
+      <p class="section-lead" style="margin-bottom:32px;">
+        No job too small. No jargon. We explain what we did before we leave.
+      </p>
+      <ul class="explainer-list">
+        <li class="explainer-item">
+          <div class="explainer-icon">📶</div>
+          <div class="explainer-item-text">
+            <h4>Slow or dropping Wi-Fi</h4>
+            <p>We find the cause, not just restart the router.</p>
+          </div>
+        </li>
+        <li class="explainer-item">
+          <div class="explainer-icon">🖨️</div>
+          <div class="explainer-item-text">
+            <h4>Printer won't connect</h4>
+            <p>Fixed properly, not just for today.</p>
+          </div>
+        </li>
+        <li class="explainer-item">
+          <div class="explainer-icon">💻</div>
+          <div class="explainer-item-text">
+            <h4>Computer running slow</h4>
+            <p>Cleaned up, updated, and running like it should.</p>
+          </div>
+        </li>
+        <li class="explainer-item">
+          <div class="explainer-icon">📱</div>
+          <div class="explainer-item-text">
+            <h4>New phone, tablet or laptop setup</h4>
+            <p>Configured the way you actually want it, not just out of the box.</p>
+          </div>
+        </li>
+        <li class="explainer-item">
+          <div class="explainer-icon">📧</div>
+          <div class="explainer-item-text">
+            <h4>Email problems &amp; app issues</h4>
+            <p>Accounts not syncing, apps crashing, passwords forgotten — sorted.</p>
+          </div>
+        </li>
+        <li class="explainer-item">
+          <div class="explainer-icon">🌐</div>
+          <div class="explainer-item-text">
+            <h4>New NBN or router setup</h4>
+            <p>New connection configured, devices connected, everything working.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="what-divider"></div>
+
+    <!-- RIGHT: Why we're different -->
+    <div>
+      <p class="section-label">The CyberSurf Difference</p>
+      <h2 class="section-h2">We fix it.<br>Then we check it's safe.</h2>
+      <p class="section-lead" style="margin-bottom:28px;">
+        Most IT support fixes your problem and walks out the door. Because we're cyber security specialists, we also check that your home network and devices are set up safely.
+      </p>
+
+      <div class="security-box">
+        <p class="section-label">Included on every visit</p>
+        <h3>Your complimentary security check</h3>
+        <p>
+          While we're there, we take a quick look at the things most IT people ignore — your router security settings, whether your software is current, whether your accounts are at risk.
+        </p>
+        <p>
+          We'll let you know what we find. No pressure to act on it — just information, from someone who actually knows what they're looking for.
+        </p>
+        <ul class="security-check-list">
+          <li>Router security settings reviewed</li>
+          <li>Software &amp; Windows update status checked</li>
+          <li>Password habits noted — no judgment, just advice</li>
+          <li>Any obvious risks flagged in plain English</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══ PRICING ══ -->
+<section id="pricing">
+  <p class="section-label">Simple, Flat-Rate Pricing</p>
+  <h2 class="section-h2">No surprises. No hourly meter running.</h2>
+  <p class="section-lead">
+    Pick what suits your situation. All visits include the complimentary security check.
+  </p>
+
+  <div class="pricing-grid">
+
+    <!-- Quick Fix -->
+    <div class="pricing-card">
+      <div class="pricing-icon">⚡</div>
+      <div class="pricing-name">Quick Fix</div>
+      <h3>Drop-In Help</h3>
+      <div class="pricing-price"><sup>$</sup>99</div>
+      <div class="pricing-duration">Up to 1 hour on-site</div>
+      <p>Single issue — slow computer, printer not connecting, Wi-Fi drop-out, device setup.</p>
+      <ul class="pricing-features">
+        <li>One focused issue resolved</li>
+        <li>Plain-English explanation</li>
+        <li>Security check included</li>
+        <li>Same-week availability</li>
+      </ul>
+      <a href="https://cal.com/cybersurf/free-call" target="_blank" class="pricing-cta outline">Book Now &rarr;</a>
+    </div>
+
+    <!-- Tune-Up -->
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-icon">🛠️</div>
+      <div class="pricing-name">Home Tech Tune-Up</div>
+      <h3>Full Device Health Check</h3>
+      <div class="pricing-price"><sup>$</sup>199</div>
+      <div class="pricing-duration">Up to 2.5 hours on-site</div>
+      <p>Full device check, software updates, speed optimisation, and a proper security once-over.</p>
+      <ul class="pricing-features">
+        <li>All devices in the house checked</li>
+        <li>Updates, speed &amp; storage sorted</li>
+        <li>Password health review</li>
+        <li>Detailed security check</li>
+        <li>Written summary of what we found</li>
+      </ul>
+      <a href="https://cal.com/cybersurf/free-call" target="_blank" class="pricing-cta solid">Book Now &rarr;</a>
+    </div>
+
+    <!-- New Setup -->
+    <div class="pricing-card">
+      <div class="pricing-icon">📦</div>
+      <div class="pricing-name">New Home Tech Setup</div>
+      <h3>Everything Connected</h3>
+      <div class="pricing-price"><sup>$</sup>299</div>
+      <div class="pricing-duration">Up to 4 hours on-site</div>
+      <p>New devices set up properly — laptop, phone, tablet, printer, TV — all connected and secure.</p>
+      <ul class="pricing-features">
+        <li>New device setup &amp; data transfer</li>
+        <li>Network &amp; printer configuration</li>
+        <li>Security settings applied by default</li>
+        <li>All devices tested before we leave</li>
+        <li>Follow-up call at 7 days</li>
+      </ul>
+      <a href="https://cal.com/cybersurf/free-call" target="_blank" class="pricing-cta outline">Book Now &rarr;</a>
+    </div>
+
+    <!-- Ongoing -->
+    <div class="pricing-card" style="opacity:.75;">
+      <div class="pricing-badge" style="background:var(--mid);">Coming Soon</div>
+      <div class="pricing-icon">🛡️</div>
+      <div class="pricing-name">Ongoing Cover</div>
+      <h3>Secure IT + Guard</h3>
+      <div class="pricing-price"><sup>$</sup>850<span style="font-size:16px;font-weight:400;color:var(--mid)">/mo</span></div>
+      <div class="pricing-duration">Monthly retainer</div>
+      <p>Priority IT call-out included plus full Cyber Security Guard coverage — ongoing monitoring, alerts, and incident support.</p>
+      <ul class="pricing-features">
+        <li>One IT visit per month included</li>
+        <li>Additional visits at $79/hr</li>
+        <li>Dark web monitoring</li>
+        <li>Quarterly security health review</li>
+        <li>Priority response for incidents</li>
+      </ul>
+      <span class="pricing-cta outline" style="cursor:default;opacity:.5;pointer-events:none;">Coming Soon</span>
+    </div>
+
+  </div>
+
+  <p class="pricing-note">
+    Not sure which one? <a href="https://cal.com/cybersurf/free-call" target="_blank" style="color:var(--ocean);font-weight:700;">Book a free 15-minute call</a> and we'll point you to the right option.
+  </p>
+</section>
+
+
+<!-- ══ WHY CYBERSURF ══ -->
+<section id="why">
+  <p class="section-label">Why CyberSurf</p>
+  <h2 class="section-h2">Not just any IT person.</h2>
+  <p class="section-lead">
+    The difference is what we check while we're there — and who you're dealing with.
+  </p>
+
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="value-icon">📍</div>
+      <h4>Locally based on the Sunshine Coast</h4>
+      <p>Not a national call centre dispatching a random technician. You know who's coming.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">👤</div>
+      <h4>Same person every time</h4>
+      <p>Darryl — not a rotating roster of contractors who have to be briefed from scratch each visit.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🔒</div>
+      <h4>Security-qualified, not just tech-trained</h4>
+      <p>Most IT support people fix the problem. We also know what attackers look for — and check for it.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">💬</div>
+      <h4>Plain English, always</h4>
+      <p>No jargon, no condescension. We explain what we found and what we did before we leave.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">📋</div>
+      <h4>No lock-in contracts</h4>
+      <p>Book when you need it. No subscriptions required — unless you want ongoing cover.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">📍</div>
+      <h4>Caloundra to Noosa</h4>
+      <p>We cover the full Sunshine Coast — Caloundra, Buderim, Maroochydore, Noosa and everywhere in between.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ HOW IT WORKS ══ -->
+<section id="how">
+  <p class="section-label">How It Works</p>
+  <h2 class="section-h2">Book. We come to you. Job done.</h2>
+  <p class="section-lead" style="margin-bottom:48px;">
+    We keep it simple. No waiting on hold, no driving to a shop, no leaving your computer overnight.
+  </p>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <h3>Book online or call</h3>
+      <p>Tell us what's going on. Takes 2 minutes.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <h3>We confirm a time</h3>
+      <p>Same week in most cases. We come to you.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <h3>We fix it</h3>
+      <p>Bring everything we need. No extra trips.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">4</div>
+      <h3>We explain what we did</h3>
+      <p>No mystery, no mess. Plain English before we leave.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">5</div>
+      <h3>We flag anything security-related</h3>
+      <p>No pressure — just honest information from someone who knows.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FAQ ══ -->
+<section id="faq">
+  <div class="faq-inner">
+    <p class="section-label">Common Questions</p>
+    <h2 class="section-h2" style="margin-bottom:40px;">A few things people usually ask.</h2>
+
+    <div class="faq-item">
+      <h4>Do I need to be tech-savvy?</h4>
+      <p>Not at all. We use plain English, not IT jargon. If we do something technical, we explain what it was and why before we leave.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What if it takes longer than expected?</h4>
+      <p>We'll tell you before we go over the included time — no surprise bills. You'll always know the cost before we proceed with anything additional.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do you only do security, or actual IT help?</h4>
+      <p>Both. That's the point. We started as a cyber security business, and adding IT support means every visit has a security expert in the room — not just a technician.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do you work on Macs and Windows?</h4>
+      <p>Yes — and most Android and Apple mobile devices too. If you've got a mix of devices in the house, we can handle them all in a single visit.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What areas do you cover?</h4>
+      <p>The full Sunshine Coast — Caloundra to Noosa, including Buderim, Maroochydore, Kawana, Coolum, and surrounding areas. Not sure if we cover you? Just ask.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What's the difference between IT help and the Complete Home Security Check?</h4>
+      <p>IT Help is for fixing a specific tech problem — something's broken, slow, or not connecting. The <a href="index.html#services" style="color:var(--ocean);font-weight:700;">Complete Home Security Check ($299)</a> is a dedicated 3-hour security assessment of your whole setup — passwords, accounts, network, and devices — with everything fixed on the day. Most clients start with IT Help and book the security check once they've seen how we work.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CTA ══ -->
+<section id="cta">
+  <h2>Got something that needs sorting?</h2>
+  <p class="cta-lead">Book a call-out this week. Flat-rate pricing, no surprises, same-week availability across the Sunshine Coast.</p>
+
+  <div class="cta-actions">
+    <a href="https://cal.com/cybersurf/free-call" target="_blank" class="btn-cta-primary">Book a Call-Out — from $99 &rarr;</a>
+    <a href="index.html" class="btn-cta-ghost">See all services</a>
+  </div>
+
+  <p class="cta-sub">
+    Questions first? <a href="https://cal.com/cybersurf/free-call" target="_blank">Book a free 15-minute call</a> — no obligation.
+  </p>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-brand">Cyber<span>Surf</span> Security</div>
+  <nav aria-label="Footer navigation">
+    <a href="index.html">Home</a>
+    <a href="breach-check.html">Breach Check</a>
+    <a href="it-support.html">IT Help</a>
+    <a href="index.html#services">All Services</a>
+  </nav>
+  <div class="footer-legal">
+    &copy; 2026 CyberSurf Security &mdash; Sunshine Coast, QLD &nbsp;|&nbsp;
+    <a href="privacy.html" style="color:rgba(252,253,242,.4);text-decoration:none;">Privacy Policy</a> &nbsp;|&nbsp;
+    support@cybersurf.au &nbsp;|&nbsp; ABN: [Insert ABN]
+  </div>
+</footer>
+
+</body>
+</html>

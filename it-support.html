@@ -283,7 +283,7 @@
     .pricing-grid {
       max-width: 1080px; margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       align-items: start;
     }
@@ -548,6 +548,8 @@
     ══════════════════════════════════════ */
     @media (max-width: 980px) {
       .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 700px) {
+      .pricing-grid { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 860px) {
@@ -757,6 +759,28 @@
         <li>Follow-up call at 7 days</li>
       </ul>
       <a href="https://cal.com/cybersurf/free-call" target="_blank" class="pricing-cta outline">Book Now &rarr;</a>
+    </div>
+
+    <!-- Fresh Device Setup -->
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Security Included</div>
+      <div class="pricing-icon">🆕</div>
+      <div class="pricing-name">Fresh Device Setup</div>
+      <h3>New Device, Locked Down</h3>
+      <div class="pricing-price"><sup>$</sup>249</div>
+      <div class="pricing-duration">Up to 3 hours on-site</div>
+      <p>Brand new device set up properly — with your data moved across and every major security layer activated before we leave.</p>
+      <ul class="pricing-features">
+        <li>Full device setup (Wi-Fi, email, apps, printer)</li>
+        <li>Data transfer from old device</li>
+        <li>Antivirus installed &amp; configured</li>
+        <li>VPN installed &amp; configured</li>
+        <li>Password manager setup (Bitwarden)</li>
+        <li>2FA activated on email &amp; banking</li>
+        <li><strong>Free Basic Breach Check</strong> included ($30 value)</li>
+        <li>Written setup summary left with you</li>
+      </ul>
+      <a href="https://cal.com/cybersurf/free-call" target="_blank" class="pricing-cta solid">Book Now &rarr;</a>
     </div>
 
     <!-- Ongoing -->

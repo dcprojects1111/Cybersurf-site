@@ -45,6 +45,7 @@
 - [ ] Create Cal.com event: Home Security Scan — slug `home-security-scan`, 2.5–3 hrs, in-person
 - [ ] Build Google Form consent form for in-person scans
 - [ ] Publish social posts (LinkedIn, Facebook, Instagram)
+- [ ] Wire up Kali Linux MCP server — install Kali as second WSL2 distro (`wsl --install -d kali-linux`), install tools (nmap, nikto, dnsutils, whois), install `mcp` Python package, then add MCP config entry to `~/.claude/settings.json` pointing at `mcp_server.py` via `wsl -d kali-linux`
 
 ---
 

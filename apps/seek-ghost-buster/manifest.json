@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "SEEK Ghost Buster",
+  "short_name": "Ghost Buster",
+  "version": "0.2.4",
+  "description": "Filters ghost jobs and scams on SEEK with a traffic-light verdict per listing. Part of CyberSurf.",
+  "author": "CyberSurf",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://*.seek.com.au/*",
+    "https://*.seek.com/*"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "SEEK Ghost Buster"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.seek.com.au/*",
+        "https://*.seek.com/*"
+      ],
+      "js": [
+        "lib/lists/boilerplate.js",
+        "lib/lists/ghost-keywords.js",
+        "lib/lists/scam-signals.js",
+        "lib/lists/au-recruiters.js",
+        "lib/history.js",
+        "lib/parser.js",
+        "lib/scorers.js",
+        "content/content.js"
+      ],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

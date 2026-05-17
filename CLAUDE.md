@@ -494,3 +494,5 @@ When responding, read the relevant context files if they exist:
 - `MARKETING/DIRECT_SALES.md` — direct sales scripts, territory plans, door-to-door strategy
 - `MARKETING/SALES_STRATEGY.md` — sales director strategy, pipeline stages, channel mix, revenue targets
 - `CODE_NOTES.md` — coder notes, bug fixes, feature decisions
+- `CHAMPIONS/PROJECT_BRIEF.md` — Cybersecurity Champions of Tomorrow project brief (theme: Design Thinking for Cyber Change)
+- `apps/seek-ghost-buster/PROJECT_STATE.md` — **READ FIRST** for any SEEK Ghost Buster work. Locked scope, architecture decisions, signal weights, known issues, pickup point.

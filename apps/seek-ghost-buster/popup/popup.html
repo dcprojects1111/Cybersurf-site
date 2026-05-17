@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SEEK Ghost Buster</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="sgb-header">
+      <div class="sgb-brand">
+        <span class="sgb-mark"></span>
+        <span class="sgb-name">SEEK Ghost Buster</span>
+      </div>
+      <p class="sgb-tag">Filters ghosts &amp; scams while you browse SEEK.</p>
+    </header>
+
+    <section class="sgb-card">
+      <h2>Last scan</h2>
+      <div class="sgb-stats">
+        <div class="sgb-stat green">
+          <span class="sgb-num" id="n-green">0</span>
+          <span class="sgb-lbl">🟢 Go</span>
+        </div>
+        <div class="sgb-stat orange">
+          <span class="sgb-num" id="n-orange">0</span>
+          <span class="sgb-lbl">🟠 Caution</span>
+        </div>
+        <div class="sgb-stat red">
+          <span class="sgb-num" id="n-red">0</span>
+          <span class="sgb-lbl">🔴 Skip</span>
+        </div>
+      </div>
+      <p class="sgb-meta" id="last-meta">No scans yet — open a SEEK search.</p>
+    </section>
+
+    <section class="sgb-card">
+      <h2>Settings</h2>
+      <label class="sgb-toggle">
+        <input type="checkbox" id="hide-red" />
+        <span class="sgb-toggle-text">Hide RED jobs entirely</span>
+      </label>
+    </section>
+
+    <footer class="sgb-footer">
+      <span>v0.1.0</span>
+      <span>Part of <strong>CyberSurf</strong></span>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

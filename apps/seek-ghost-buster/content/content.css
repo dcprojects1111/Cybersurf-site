@@ -1,0 +1,237 @@
+/* SEEK Ghost Buster — content styles
+   Uses CyberSurf "Maldives Beach" palette:
+     #00d2ff  aqua       (brand)
+     #0077be  deep ocean (brand)
+     #2d3436  charcoal   (text)
+     #fcfdf2  sand white (background)
+     #ff4757  alert red  (for RED only)
+   Plus traffic-light greens/oranges.
+*/
+
+/* ---------- Card badge ---------- */
+
+.sgb-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  z-index: 50;
+  cursor: help;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  pointer-events: auto;
+  user-select: none;
+}
+
+.sgb-badge .sgb-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.sgb-badge .sgb-mark {
+  font-size: 11px;
+  opacity: 0.9;
+  font-weight: 700;
+}
+
+.sgb-badge.sgb-source-preview .sgb-mark {
+  animation: sgb-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes sgb-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.sgb-source-foot {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 11px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.sgb-badge .sgb-scores {
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.9;
+  white-space: nowrap;
+}
+
+.sgb-badge.sgb-green {
+  background: #2ecc71;
+}
+.sgb-badge.sgb-orange {
+  background: #f39c12;
+}
+.sgb-badge.sgb-red {
+  background: #ff4757;
+}
+
+/* Tooltip on hover */
+.sgb-badge .sgb-tooltip {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  padding: 14px 16px;
+  background: #fcfdf2;
+  color: #2d3436;
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: left;
+  text-shadow: none;
+  z-index: 100;
+  cursor: default;
+}
+
+.sgb-badge:hover .sgb-tooltip,
+.sgb-badge:focus-within .sgb-tooltip {
+  display: block;
+}
+
+.sgb-tooltip-title {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #2d3436;
+}
+
+.sgb-reason-group {
+  margin-bottom: 10px;
+}
+
+.sgb-reason-group:last-child {
+  margin-bottom: 0;
+}
+
+.sgb-reason-group strong {
+  display: block;
+  font-size: 10px;
+  color: #0077be;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.sgb-reason-group em {
+  color: #888;
+  font-style: italic;
+}
+
+.sgb-reason-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sgb-reason-group li {
+  padding: 2px 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* ---------- Detail-page banner ---------- */
+
+.sgb-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 24px;
+  margin: 0 0 20px 0;
+  border-radius: 10px;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.sgb-banner.sgb-green {
+  background: linear-gradient(135deg, #2ecc71 0%, #00d2ff 100%);
+}
+.sgb-banner.sgb-orange {
+  background: linear-gradient(135deg, #f39c12 0%, #ff7f50 100%);
+}
+.sgb-banner.sgb-red {
+  background: linear-gradient(135deg, #ff4757 0%, #c0392b 100%);
+}
+
+.sgb-banner-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.sgb-banner-light {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.sgb-banner-scores {
+  font-size: 14px;
+  opacity: 0.92;
+  font-weight: 500;
+}
+
+.sgb-banner-reasons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+  font-family: "Roboto", system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+@media (max-width: 720px) {
+  .sgb-banner-reasons {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sgb-banner-reasons .sgb-reason-group strong {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.sgb-banner-reasons .sgb-reason-group em {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+.sgb-banner-reasons .sgb-reason-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sgb-banner-reasons .sgb-reason-group li {
+  padding: 3px 0;
+  line-height: 1.45;
+}

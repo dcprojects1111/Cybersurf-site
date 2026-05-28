@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Services — CyberSurf Security</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--aqua:#00d2ff;--ocean:#0077be;--sand:#fcfdf2;--alert:#ff4757;--border:rgba(0,210,255,.18);--radius:14px;}
+    body{font-family:'Roboto',sans-serif;background:linear-gradient(160deg,#0a1628 0%,#0d2240 100%);min-height:100vh;color:var(--sand);padding:0 20px 80px;}
+    nav{display:flex;align-items:center;justify-content:space-between;max-width:900px;margin:0 auto;padding:24px 0 40px;}
+    .brand{font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;color:#fff;text-decoration:none;}
+    .brand span{color:var(--aqua);}
+    .nav-back{font-size:13px;color:rgba(252,253,242,.4);text-decoration:none;border:1px solid rgba(255,255,255,.15);padding:6px 14px;border-radius:6px;}
+    .nav-back:hover{color:var(--aqua);border-color:var(--aqua);}
+    .page{max-width:900px;margin:0 auto;}
+    .eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(0,210,255,.5);margin-bottom:12px;}
+    h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;color:var(--sand);margin-bottom:12px;line-height:1.2;}
+    .intro{font-size:15px;color:rgba(252,253,242,.5);margin-bottom:48px;line-height:1.6;max-width:560px;}
+    .section-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(0,210,255,.4);margin:44px 0 18px;padding-bottom:12px;border-bottom:1px solid rgba(0,210,255,.1);}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    @media(max-width:700px){.grid{grid-template-columns:1fr;}}
+    @media(min-width:701px) and (max-width:900px){.grid{grid-template-columns:1fr 1fr;}}
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(0,210,255,.15);border-radius:var(--radius);padding:24px 20px;display:flex;flex-direction:column;}
+    .card.featured{background:linear-gradient(135deg,rgba(0,210,255,.07),rgba(0,119,190,.1));border-color:rgba(0,210,255,.35);}
+    .card-badge{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--aqua);background:rgba(0,210,255,.12);border:1px solid rgba(0,210,255,.25);border-radius:20px;display:inline-block;padding:3px 10px;margin-bottom:12px;align-self:flex-start;}
+    .card-badge.popular{background:rgba(255,200,0,.12);color:#ffd200;border-color:rgba(255,200,0,.3);}
+    .card h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:var(--sand);margin-bottom:6px;}
+    .card p{font-size:13px;color:rgba(252,253,242,.5);line-height:1.6;margin-bottom:16px;flex:1;}
+    .price{font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;color:var(--aqua);margin-bottom:16px;}
+    .price span{font-size:13px;font-weight:400;color:rgba(252,253,242,.35);}
+    .btn{display:block;text-align:center;padding:11px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;text-decoration:none;transition:opacity .15s;}
+    .btn-solid{background:var(--aqua);color:#0a1628;}
+    .btn-outline{background:transparent;color:var(--aqua);border:1px solid rgba(0,210,255,.35);}
+    .btn:hover{opacity:.85;}
+    .note{font-size:12px;color:rgba(252,253,242,.25);margin-top:8px;text-align:center;}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="brand">Cyber<span>Surf</span> Security</a>
+  <a href="index.html" class="nav-back">&larr; Back</a>
+</nav>
+
+<div class="page">
+  <div class="eyebrow">Sunshine Coast</div>
+  <h1>All Services</h1>
+  <p class="intro">Everything CyberSurf offers — from a $30 credential check to a full in-home security overhaul.</p>
+
+  <!-- Cyber Security -->
+  <div class="section-title">Cyber Security</div>
+  <div class="grid">
+    <div class="card featured">
+      <span class="card-badge popular">Most Popular</span>
+      <h3>Complete Home Security Check</h3>
+      <p>Breach report, password vault setup, 2FA on key accounts, and an in-person home scan — everything in one week.</p>
+      <div class="price">$299 <span>save $88</span></div>
+      <a href="home-scan-bundle.html" class="btn btn-solid">Get the Full Check &rarr;</a>
+    </div>
+    <div class="card">
+      <span class="card-badge">In-Person</span>
+      <h3>Home Security Scan</h3>
+      <p>External network scan, router check, and device scan — plain-English report showing exactly what's exposed.</p>
+      <div class="price">$229</div>
+      <a href="home-scan.html" class="btn btn-outline">Book a Home Scan &rarr;</a>
+    </div>
+    <div class="card">
+      <span class="card-badge">Live Session</span>
+      <h3>Lock Change</h3>
+      <p>45-minute Zoom session — we set up your password vault and replace every compromised credential.</p>
+      <div class="price">$79</div>
+      <a href="lock-change.html" class="btn btn-outline">Book a Lock Change &rarr;</a>
+    </div>
+    <div class="card">
+      <span class="card-badge">Live Session</span>
+      <h3>2FA Activation</h3>
+      <p>30-minute 1-on-1 session — we set up two-factor authentication on your most important accounts.</p>
+      <div class="price">$49</div>
+      <a href="https://cybersurf-webapp-basic.onrender.com/book-2fa" class="btn btn-outline">Book your session &rarr;</a>
+    </div>
+    <div class="card">
+      <span class="card-badge">Monthly</span>
+      <h3>Dark Web Monitoring</h3>
+      <p>We scan criminal databases every month and alert you the moment your details appear. Cancel anytime.</p>
+      <div class="price">$15 <span>/ month</span></div>
+      <a href="https://cybersurf-webapp-basic.onrender.com/dark-web-monitoring" class="btn btn-outline">Start Monitoring &rarr;</a>
+    </div>
+    <div class="card">
+      <span class="card-badge">One-time</span>
+      <h3>Basic Breach Check</h3>
+      <p>Check up to 2 email addresses against criminal breach databases. Plain-English report within 24 hours.</p>
+      <div class="price">$30</div>
+      <a href="breach-check.html" class="btn btn-outline">Check My Credentials &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Home IT Help -->
+  <div class="section-title">Home IT Help</div>
+  <div class="grid">
+    <div class="card featured">
+      <span class="card-badge">Quick Fix</span>
+      <h3>Quick Fix</h3>
+      <p>Slow Wi-Fi, printer won't connect, new device setup — we fix it and check your security while we're there.</p>
+      <div class="price">$99</div>
+      <a href="it-support.html" class="btn btn-solid">Fix It Now &rarr;</a>
+    </div>
+    <div class="card">
+      <span class="card-badge">Full Audit</span>
+      <h3>Home Tech Tune-Up</h3>
+      <p>Full audit of your home network, devices, and security settings — then we fix everything we find.</p>
+      <div class="price">$199</div>
+      <a href="it-support.html" class="btn btn-outline">Book a Tune-Up &rarr;</a>
+    </div>
+    <div class="card">
+      <span class="card-badge">New Setup</span>
+      <h3>New Home Tech Setup</h3>
+      <p>New router, smart TV, printer, or NAS — set up securely so everything works together from day one.</p>
+      <div class="price">$299</div>
+      <a href="it-support.html" class="btn btn-outline">Book Setup &rarr;</a>
+    </div>
+    <div class="card">
+      <span class="card-badge">Device</span>
+      <h3>Fresh Device Setup</h3>
+      <p>New laptop or PC — set up from scratch, software installed, security locked down from day one.</p>
+      <div class="price">$249</div>
+      <a href="it-support.html" class="btn btn-outline">Book Device Setup &rarr;</a>
+    </div>
+  </div>
+  <p class="note">All IT help services include a free security check while we're there.</p>
+</div>
+</body>
+</html>

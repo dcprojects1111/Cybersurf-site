@@ -487,60 +487,69 @@
     .vs-col-cs { color: var(--aqua); font-weight: 600; }
 
     /* ══════════════════════════════════════
-       ABOUT / TRUST
+       MEET DARRYL
     ══════════════════════════════════════ */
-    #about {
-      padding: 96px 5%;
-      background: var(--white);
-    }
-
-    .about-grid {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-    }
-
-    .about-text .section-h2 { margin-bottom: 18px; }
-    .about-text p {
-      font-size: 16px; color: var(--mid);
-      margin-bottom: 16px; line-height: 1.75;
-    }
-    .about-text p:last-of-type { margin-bottom: 32px; }
-
-    .trust-items { display: flex; flex-direction: column; gap: 16px; }
-    .trust-item {
-      display: flex; gap: 14px; align-items: flex-start;
-    }
-    .trust-item-icon {
-      width: 40px; height: 40px; flex-shrink: 0;
-      background: linear-gradient(135deg, rgba(0,210,255,.12), rgba(0,119,190,.12));
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-    }
-    .trust-item-text h4 { font-size: 14px; color: var(--charcoal); margin-bottom: 2px; }
-    .trust-item-text p { font-size: 13px; color: var(--mid); }
-
-    /* Stat cards on right side */
-    .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .stat-card {
+    #meet-darryl {
+      padding: 96px 5% 80px;
       background: var(--sand);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 20px;
-      text-align: center;
+      border-top: 3px solid rgba(0,210,255,.2);
     }
-    .stat-value {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 36px; font-weight: 900;
-      color: var(--ocean); line-height: 1;
-      margin-bottom: 8px;
+
+    .darryl-grid {
+      max-width: 1100px; margin: 0 auto 72px;
+      display: grid; grid-template-columns: 340px 1fr;
+      gap: 72px; align-items: start;
     }
-    .stat-label { font-size: 13px; color: var(--mid); line-height: 1.4; }
+
+    .darryl-photo-col { display:flex; justify-content:center; padding-top:8px; }
+
+    .darryl-photo-wrap {
+      width: 260px; height: 260px; border-radius: 50%;
+      border: 4px solid var(--aqua);
+      box-shadow: 0 16px 48px rgba(0,119,190,.2), 0 0 0 10px rgba(0,210,255,.08);
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a1628, #0d2240);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .darryl-photo { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .darryl-initials { font-family:'Montserrat',sans-serif; font-weight:900; font-size:72px; color:var(--aqua); display:none; }
+
+    .darryl-quote {
+      font-size: 17px; font-style: italic; color: var(--charcoal); line-height: 1.75;
+      border-left: 3px solid var(--aqua); padding-left: 20px;
+      margin: 20px 0 20px;
+    }
+
+    .darryl-bio { font-size:15px; color:var(--mid); line-height:1.8; margin-bottom:28px; }
+
+    .career-strip { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px; }
+
+    .career-card {
+      display:flex; flex-direction:column; gap:3px;
+      background: var(--white); border:1px solid var(--border);
+      border-radius:10px; padding:13px 18px;
+      box-shadow: 0 2px 8px rgba(0,210,255,.05);
+    }
+    .career-brand { font-family:'Montserrat',sans-serif; font-weight:800; font-size:13px; color:var(--charcoal); }
+    .career-role  { font-size:12px; color:var(--mid); }
+
+    .darryl-closer {
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:15px; color:var(--ocean);
+    }
+
+    .darryl-stats {
+      max-width:1100px; margin:0 auto;
+      display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+      border-top:1px solid rgba(0,210,255,.15); padding-top:56px;
+    }
+    .dstat { text-align:center; }
+    .dstat-value {
+      font-family:'Montserrat',sans-serif; font-weight:900; font-size:36px;
+      color:var(--ocean); line-height:1; margin-bottom:8px;
+    }
+    .dstat-label { font-size:13px; color:var(--mid); line-height:1.5; }
 
     /* ══════════════════════════════════════
        SERVICES — BRIEF STACK
@@ -849,16 +858,17 @@
        RESPONSIVE
     ══════════════════════════════════════ */
     @media (max-width: 860px) {
-      .explainer-grid,
-      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .explainer-grid { grid-template-columns: 1fr; gap: 48px; }
       .steps-grid,
       .services-grid { grid-template-columns: 1fr; }
-      .about-stats { grid-template-columns: 1fr 1fr; }
       .nav-link { display: none; }
       .nav-phone-text { display: none; }
       .what-how-grid { grid-template-columns: 1fr; gap: 48px; }
       .what-how-divider { min-height: 1px; height: 1px; align-self: auto; }
       .what-col, .how-col { padding: 0; }
+      .darryl-grid { grid-template-columns: 1fr; gap: 40px; }
+      .darryl-photo-col { padding-top: 0; }
+      .darryl-stats { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 520px) {
@@ -1002,38 +1012,65 @@
 </section>
 
 
-<!-- ══ ABOUT ══ -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-text">
-      <p class="section-label">About CyberSurf</p>
-      <h2 class="section-h2">Sunshine Coast cybersecurity — without the enterprise price tag</h2>
-      <p>
-        CyberSurf was built for local business owners who need professional-grade security but don't have a $150,000-a-year security team. We're your Cyber Security Guard — your cybersecurity expert, on retainer, without the full-time hire.
-      </p>
-      <p>
-        The Basic Breach Check is our entry point. It's designed to show you exactly what criminals already know about you — so you can act before they do.
-      </p>
-      <a href="breach-check.html" class="btn-primary" style="font-size:14px;padding:12px 28px;">Get your report &rarr;</a>
+<!-- ══ MEET DARRYL ══ -->
+<section id="meet-darryl">
+  <div class="darryl-grid">
+
+    <!-- Photo -->
+    <div class="darryl-photo-col">
+      <div class="darryl-photo-wrap">
+        <img src="darryl.jpg" alt="Darryl Wessling — CyberSurf Security" class="darryl-photo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="darryl-initials">DW</div>
+      </div>
     </div>
 
-    <div class="about-stats">
-      <div class="stat-card">
-        <div class="stat-value">1 in 6<span style="font-size:18px"></span></div>
-        <div class="stat-label">Australian adults had personal data stolen in the last year</div>
+    <!-- Bio -->
+    <div class="darryl-text">
+      <p class="section-label">The Person Behind CyberSurf</p>
+      <h2 class="section-h2">Local Expertise.<br>Real&#8209;World Experience.</h2>
+      <blockquote class="darryl-quote">
+        "I spent over a decade selling tech at Telstra, JB Hi&#8209;Fi, and Harvey Norman. Now I use that same knowledge to protect the people I used to sell it to."
+      </blockquote>
+      <p class="darryl-bio">
+        I know how confusing and overwhelming technology can be — because I've spent years explaining it to everyday Australians across the counter. CyberSurf is how I put that experience to work, keeping your home, your family, and your business safe online. No jargon, no call centres — just Darryl.
+      </p>
+      <div class="career-strip">
+        <div class="career-card">
+          <span class="career-brand">Telstra</span>
+          <span class="career-role">Retail Sales Manager</span>
+        </div>
+        <div class="career-card">
+          <span class="career-brand">JB Hi-Fi</span>
+          <span class="career-role">Communications Sales</span>
+        </div>
+        <div class="career-card">
+          <span class="career-brand">Harvey Norman</span>
+          <span class="career-role">Tech &amp; Electronics Sales</span>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">6 min</div>
-        <div class="stat-label">A cybercrime is reported in Australia every 6 minutes</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">$46k</div>
-        <div class="stat-label">Average cost of a cyber incident for an Australian SME</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">67%</div>
-        <div class="stat-label">Of breaches involve stolen or weak credentials</div>
-      </div>
+      <p class="darryl-closer">CyberSurf is how I give that back.</p>
+    </div>
+
+  </div>
+
+  <!-- Stats strip -->
+  <div class="darryl-stats">
+    <div class="dstat">
+      <div class="dstat-value">1 in 6</div>
+      <div class="dstat-label">Australian adults had personal data stolen in the last year</div>
+    </div>
+    <div class="dstat">
+      <div class="dstat-value">6 min</div>
+      <div class="dstat-label">A cybercrime is reported in Australia every 6 minutes</div>
+    </div>
+    <div class="dstat">
+      <div class="dstat-value">$46k</div>
+      <div class="dstat-label">Average cost of a cyber incident for an Australian SME</div>
+    </div>
+    <div class="dstat">
+      <div class="dstat-value">67%</div>
+      <div class="dstat-label">Of breaches involve stolen or weak credentials</div>
     </div>
   </div>
 </section>

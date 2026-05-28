@@ -230,7 +230,7 @@
 
     .section-label {
       font-family: 'Montserrat', sans-serif;
-      font-size: 11px; font-weight: 700;
+      font-size: 12px; font-weight: 700;
       letter-spacing: 2.5px; text-transform: uppercase;
       color: var(--aqua); margin-bottom: 14px;
     }
@@ -652,11 +652,13 @@
 
     /* Visit steps visual (IT Help) */
     .visit-card {
-      background: var(--sand); border:1px solid var(--border);
+      background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 100%);
+      border: 1px solid rgba(0,210,255,.25);
       border-radius:18px; padding:36px 32px;
       display:flex; flex-direction:column; gap:24px;
-      box-shadow:0 12px 40px rgba(0,210,255,.08);
+      box-shadow: 0 16px 48px rgba(0,0,0,.18), 0 0 0 1px rgba(0,210,255,.08);
     }
+    .visit-card-title { font-family:'Montserrat',sans-serif; font-weight:700; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(0,210,255,.55); margin-bottom:4px; }
     .visit-step { display:flex; gap:16px; align-items:flex-start; }
     .visit-step-num {
       width:42px; height:42px; flex-shrink:0;
@@ -664,8 +666,8 @@
       border-radius:10px; display:flex; align-items:center; justify-content:center;
       font-family:'Montserrat',sans-serif; font-weight:900; font-size:18px; color:#fff;
     }
-    .visit-step-text strong { font-family:'Montserrat',sans-serif; font-weight:700; font-size:15px; color:var(--charcoal); display:block; margin-bottom:4px; }
-    .visit-step-text span { font-size:13px; color:var(--mid); line-height:1.5; }
+    .visit-step-text strong { font-family:'Montserrat',sans-serif; font-weight:700; font-size:15px; color:#fff; display:block; margin-bottom:4px; }
+    .visit-step-text span { font-size:14px; color:rgba(255,255,255,.65); line-height:1.5; }
 
     /* Value breakdown card (Security Check) */
     .value-card {
@@ -935,25 +937,26 @@
     </div>
     <div class="dedicated-visual">
       <div class="visit-card">
+        <div class="visit-card-title">How it works</div>
         <div class="visit-step">
           <div class="visit-step-num">1</div>
           <div class="visit-step-text">
-            <strong>Book online or call Darryl</strong>
-            <span>Tell us what's not working. We'll confirm a time that suits you.</span>
+            <strong>Book Online in 60 Seconds</strong>
+            <span>Call Darryl or book online. Tell us what's not working and we'll lock in a time that suits you.</span>
           </div>
         </div>
         <div class="visit-step">
           <div class="visit-step-num">2</div>
           <div class="visit-step-text">
-            <strong>We come to you</strong>
-            <span>Same week, Sunshine Coast only. Flat rate confirmed before we arrive — no surprises.</span>
+            <strong>We Come to You — Same Week</strong>
+            <span>Sunshine Coast only. Flat rate confirmed before we arrive — no surprises, no call-out fee guessing.</span>
           </div>
         </div>
         <div class="visit-step">
           <div class="visit-step-num">3</div>
           <div class="visit-step-text">
-            <strong>Fixed + security checked</strong>
-            <span>Everything working. Free security sweep included while we're there.</span>
+            <strong>Fixed &amp; Secured</strong>
+            <span>Everything working. Free security sweep included while we're there — no extra charge.</span>
           </div>
         </div>
       </div>

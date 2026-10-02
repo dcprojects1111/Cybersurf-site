@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /business-dashboard.html
+Disallow: /PIPELINE_DASHBOARD.html
+Disallow: /tripwire_dashboard.html
+Disallow: /SCAN_WORKFLOWS.html
+Disallow: /AFFILIATE_AND_NEXT_TIER.html
+
+Sitemap: https://cybersurf.au/sitemap.xml

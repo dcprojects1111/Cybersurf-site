@@ -39,11 +39,9 @@ They say it's not a bad time. Now:
 
 > *"So what I do is I scan home networks — routers, connected devices — and I tell you exactly what's visible to the outside world. Most people are shocked. Last week I found open ports on a family home two streets over, firmware that hadn't been updated since 2020, and malware sitting on a shared laptop. The family had no idea.*
 >
-> *I'm running a launch offer right now — it's called the Complete Home Security Check. For $299 I come to your home, do a full in-person scan of your network and devices, set you up with a password vault, activate two-factor authentication on your key accounts, and run a breach check on your email addresses. Everything done in one week.*
+> *I help locals sort out their tech and keep it safe &mdash; Wi-Fi, devices, and if someone's been hacked, helping them try to get their accounts back. It's $99 an hour, and I give you an estimate of the time before I start, so there are no bill surprises.*
 >
-> *And for the first 7 people — if the scan finds malware or vulnerabilities, I fix everything before I leave. Same day. That fix session is normally $149 on top. It's included free.*
->
-> *I've only got a few spots left. Would that be something worth knowing about your place?"*
+> *Would it be worth booking a time for me to look at your setup?"*
 
 **Listen for:** "How long does it take?" = buying signal. "What does it involve?" = buying signal. "We're pretty careful online" = objection, handle below.
 
@@ -61,9 +59,9 @@ Pull out your phone and show them a quick scan result for their street — not t
 
 **2. "How much does it cost?"**
 
-> *"$299 for everything — breach check, password vault setup, 2FA on your key accounts, and the in-person home scan. If bought separately that's $387. And right now, because I'm just launching, the first 7 people also get the fix session included — that's where I come back and sort out anything the scan finds, malware removed, router locked down, same day. Normally $149 extra. Included free. I've already done [X] of the 7."*
+> *"$99 an hour. Before I start, I'll give you an estimate of how many hours it should take, so you know the likely cost up front."*
 
-Always state how many spots are gone. Never say "plenty left."
+Only quote the hourly rate and the estimate. Never promise a fixed outcome or a fixed total.
 
 ---
 
@@ -89,7 +87,7 @@ See: `home-leave-behind.html` — print-ready file.
 
 | Timing | Action |
 |---|---|
-| Same evening | Text: *"Hi [name], Darryl from CyberSurf — good to meet you today. Here's the link if you want to lock in a time: cybersurf.au/home-scan-bundle"* — only if they gave you their number |
+| Same evening | Text: *"Hi [name], Darryl from CyberSurf — good to meet you today. Here's my number and website if you want to lock in a time: cybersurf.au"* — only if they gave you their number |
 | 3 days later | If no booking — knock again. *"Hey, I left a card the other day. Just checking if you had any questions."* Second knock converts at 2x the rate of first. |
 | After every completed job | Knock the 4 nearest neighbours immediately. *"I just finished a scan two doors down — found [X, anonymised]. Figured I'd let you know while I'm in the street."* Highest-converting door you'll ever knock. |
 

@@ -65,7 +65,7 @@ $30 Breach Check (report delivered)
     ↓  immediate: Lock Change upsell ($79)
     ↓  same day: Dark Web Monitoring pitch in report
     ↓  Day 3 email: re-introduce monitoring if not purchased
-    ↓  Day 7 email: bundle offer
+    ↓  Day 7 email: $99/hr help offer (bundle withdrawn 2026-11-23)
 Dark Web Monitoring ($15/mo) activated
     ↓  Month 2: breach alert triggers OR
     ↓  Renewal email at Day 55 triggers → Surf-Check conversation (if SME)

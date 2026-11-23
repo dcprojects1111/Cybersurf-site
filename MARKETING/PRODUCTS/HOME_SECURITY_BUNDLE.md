@@ -1,3 +1,5 @@
+> **DISCONTINUED 2026-11-23.** The bundle and its pricing were withdrawn. CyberSurf currently offers $99 per hour only. Kept for reference.
+
 # Product: Home Security Bundle — $129
 *Research & Strategy | Last updated: April 2026*
 

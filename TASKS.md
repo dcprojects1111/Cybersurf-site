@@ -25,8 +25,8 @@
 | 2FA Activation | $49 | ✅ | ✅ | Live |
 | Home Security Scan — 3 devices | $229 | ✅ | ✅ | Live — price IDs corrected 15 Apr |
 | Home Security Scan — 6 devices | $269 | ✅ | ✅ | Live — price IDs corrected 15 Apr |
-| Complete Home Security Check | $299 | ✅ | ✅ | Live — price IDs corrected 15 Apr |
-| Home Security Fix Session | $149 | ❌ | ❌ | Stripe product not created yet — free offer active for first 7 customers |
+| Complete Home Security Check | $299 | ✅ | ✅ | WITHDRAWN 2026-11-23 (website now $99/hr only) |
+| Home Security Fix Session | $149 | ❌ | ❌ | WITHDRAWN 2026-11-23 (was a free offer for the first 7 customers) |
 
 ### Today's Work
 - Renamed Home Security Scan Bundle → **Complete Home Security Check**
